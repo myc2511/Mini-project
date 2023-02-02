@@ -1,0 +1,20 @@
+/* Navbar */
+
+body{
+  font-size:larger;
+  font-weight: 600;
+}
+.clr{
+  background-color: #3835ed;
+  color: aliceblue;
+}
+
+.wd{
+  width: 20%;
+}
+
+li{
+  margin: 0 10px;
+}
+
+/* Navbar */
