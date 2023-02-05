@@ -1,8 +1,9 @@
 /* Navbar */
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Poppins:wght@100;300&display=swap');
 body{
   font-size:larger;
   font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
 }
 .clr{
   background-color: #3835ed;
@@ -18,3 +19,11 @@ li{
 }
 
 /* Navbar */
+.cmpln{
+  
+  
+}
+.parent{
+  width: 70%;
+
+}
