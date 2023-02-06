@@ -5,7 +5,7 @@ import Navbar from '../components/Navbar'
 function Complaint() {
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/> */}
       <div className="form">
         <h1 className='text-4xl p-5 text-gray-600'>Student Complaint Form</h1>
         <ComplaintForm/>

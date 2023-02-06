@@ -4,7 +4,7 @@ import Singlecmpln from '../components/Singlecmpln'
 function userProfile() {
   return (
     <div>
-  <Navbar/>
+  {/* <Navbar/> */}
   <div className="parent  m-auto mt-20 flex flex-row">
     <div className="bio basis-1/3">
        <img src="/avatar.png" className="w-40 m-3"   alt=" profile img"/>
