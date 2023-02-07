@@ -8,7 +8,7 @@ function Navbar() {
         <ul className='flex wd'>
             <li><Link to='/Blog'>Blog</Link></li>
             <li><Link to='/Complaint'>Complaint</Link></li>
-            <li><Link to='/'>Logout</Link></li>
+            <li><Link to='/SignUp'>Logout</Link></li>
             <li><Link to='/Userprofile'><img src="/" alt="User" /></Link></li>
         </ul>
       
