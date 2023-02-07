@@ -2,27 +2,29 @@ const mongoose=require("mongoose");
 const studentSchema=new mongoose.Schema({
     name:{
         type:String,
-        required:true
+        required:[true,'Please enter a name']
     },
     enrollmentNo:{
         type:String,
-        required:true
+        required:[true,'Please enter your enrollment number'],
+        unique:true
     },
-    emailId:{
+    email:{
         type:String,
-        required:true
+        required:[true,'Please enter your email id'],
+        unique:true
     },
     password:{
         type:String,
-        required:true
+        required:[true,'Please enter your password'],
     },
-    cpassword:{
-        type:String,
-        required:true
-    },
+    
     mobileNo:{
         type:Number,
-        required:true
+        required:[true,'Please enter your mobile Number'],
+    },
+    avatar:{
+        type:String
     }
 })
 const Student=mongoose.model('STUDENT',studentSchema);
