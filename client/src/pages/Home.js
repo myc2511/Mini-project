@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "../components/Navbar";
 // import SignUp from "../components/SignUp";
 // import Navbar from '../components/Navbar'
 
@@ -12,10 +13,11 @@ function Home() {
 
   return (
     <>
+    <Navbar/>
     <div className="flex mx-auto justify-center mt-40">
       
       <div className="container w-7/12 text-center">
-        <h1 className="text-6xl">Welcome To Our Site</h1>
+        <h1 className="text-6xl">Where student voice meets action</h1>
         <h3 >Ma chuda</h3>
 
         <p  className="p-6 mt-10 ml-44 mr-36 text-2xl text-left">Centralised Public Grievance Redress and Monitoring System (CPGRAMS) is an online platform available to the citizens 24x7 to lodge their grievances to the public authorities on any subject related to service delivery.  CPGRAMS is also accessible to the citizens through standalone mobile application downloadable through Google Play store and mobile application integrated with UMANG.</p>
