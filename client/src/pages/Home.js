@@ -22,8 +22,22 @@ function Home() {
       </div>
 
       <div className="container w-5/12 pl-36 ">
+        
       
         <div className="border-2 p-4 w-8/12">
+
+        <div className=" pb-2">
+          <label htmlFor="select">
+            {/* <p className="para">password:</p> */}
+            {/* <p className="para">Login As</p> */}
+            <select className="w-full rounded-lg p-3 border-gray-500 border-2 rounded" name="cars" id="cars">
+            <option value=""disabled selected hidden >Login As</option>
+              <option value="User">User</option>
+              <option value="Faculty">Faculty</option>
+            </select>
+          </label>
+        </div>
+        
         <div >
           <label htmlFor="username">
             <p className="para">Username:</p>
@@ -49,16 +63,7 @@ function Home() {
             />
           </label>
         </div>
-        <div className=" pb-6">
-          <label htmlFor="select">
-            {/* <p className="para">password:</p> */}
-            <p className="para">Login As</p>
-            <select className="w-full rounded-lg p-3 border-gray-500 border-2 rounded" name="cars" id="cars">
-              <option value="User">User</option>
-              <option value="Faculty">Faculty</option>
-            </select>
-          </label>
-        </div>
+        
 
         <div className=" mt-4 mb-3">
           <label
