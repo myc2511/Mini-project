@@ -41,7 +41,7 @@ function FacultyProfile() {
       </div>
       <div className='basis-2/3'>
 
-        <h2 className='text-2xl'>All Complains</h2>
+        <h2 className='text-2xl'>All Complaints</h2>
       <Singlecmpln/>
       <Singlecmpln/>
   
