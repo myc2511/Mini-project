@@ -8,7 +8,9 @@ function Singlecmpln() {
         <span className='pl-4  text-sm block'>Ticket No: </span>
         <p className="pl-4 text-sm mt-1">Complain Related: Hostel</p>
         <span className="pl-4 inline-block text-sm">Date at Time</span>
-        <span className="float-right mr-3 inline-block">Status: Accepted </span>
+        <span className="float-right mr-3  text-green-400 "> Accepted </span>
+        <span className="float-right mr-3 ">Status</span>
+
         
     </div>
   )

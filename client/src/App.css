@@ -20,5 +20,44 @@ li{
   width: 70%;
 
 }
+/* Signup */
+.modal, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+}
+.modal-content {
+  position: absolute;
+   top: 50%;
+   left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+   width: 35%;
+  border-width: 2px;
+  margin-top: 64px;
+  border-radius: 3px;
+  padding: 40px; 
+  
+}
+.close-modal {
+  position: absolute;
+  top: 10px;
+
+   font-size: 30px;
+  right: 10px;
+  padding: 5px 7px;
+}
+.box-shadow{
+box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;}
+
+
 
 

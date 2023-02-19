@@ -15,8 +15,12 @@ function ComplaintForm() {
       setImages(URL.createObjectURL(e.target.files[0]));
       // console.log(images); 
   }
+  function handleSubmit(e){
+    e.preventDefault();
+    alert("Your Complain submitted Successfully");
+  }
   return (
-    <div>
+    <div className="">
       <form className="mt-8 text-left">
         <div className="flex justify-between">
           <div className="w-5/12">
@@ -125,7 +129,7 @@ function ComplaintForm() {
         </div>
         <div className="">
           <label htmlFor="submit">
-            <input type="submit" value="Submit" className="btn" />
+            <input type="submit" value="Submit" onClick={handleSubmit} className="btn text-white" />
           </label>
         </div>
       </form>

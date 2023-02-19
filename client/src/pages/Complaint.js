@@ -6,8 +6,8 @@ function Complaint() {
   return (
     <div>
       <Navbar/>
-      <div className="form mt-44">
-        <h1 className='text-4xl p-5 text-gray-600'>Student Complaint Form</h1>
+      <div className="box-shadow form mt-44">
+        <h1 className='text-4xl p-5 text-custom-blue'>Student Complaint Form</h1>
         <ComplaintForm/>
       </div>
     </div>

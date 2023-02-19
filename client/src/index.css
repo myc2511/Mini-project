@@ -12,7 +12,7 @@
   @apply mt-3 mb-3;
 }
 .btn{
-  @apply border-2 border-black p-2 w-36 rounded-lg bg-custom-blue mb-10;
+  @apply border-2 border-none p-2 w-36 rounded-lg bg-custom-blue mb-10;
 }
 /* complaintForm */
 

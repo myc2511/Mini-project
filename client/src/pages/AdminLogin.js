@@ -11,8 +11,7 @@ function AdminLogin() {
         <div className="container m-auto w-5/12 pl-36 ">
       <div className="border-2 p-4 w-8/12">
       <p className='text-3xl text-center'>Admin Login</p>
-
-      <div >
+ <div >
         <label htmlFor="username">
           <p className="para">Username:</p>
           <input

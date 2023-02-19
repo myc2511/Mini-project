@@ -6,7 +6,7 @@ function Blog() {
   return (
     <div>
     <Navbar/>
-    <div className='mt-28'>
+    <div className='mt-40'>
     <SingleBlogCmpln/>
       <SingleBlogCmpln/>
       <SingleBlogCmpln/>

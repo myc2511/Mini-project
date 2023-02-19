@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SignUp() {
+function SignUp({closeSignup}) {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,8 +9,11 @@ function SignUp() {
   const [password, setPassword] = useState("");
 
   return (
-    <div className="w-2/6 mx-auto border-2 mt-16 p-5">
-      <h1 className="text-center text-white text-3xl bg-custom-blue p-5 rounded-lg">
+    <div className="model box-shadow">
+    <div className="overlay"></div>
+     <div className=" modal-content"> 
+
+      <h1 className="text-center text-custom-blue text-3xl p-5 rounded-lg">
         SignUp
       </h1>
 
@@ -54,32 +57,7 @@ function SignUp() {
           </label>
         </div>
 
-        <div>
-          <label htmlFor="date of birth">
-            <p className="para">DOB:</p>
-            <input placeholder="" type="date" className="ipt" />
-          </label>
-        </div>
-
-        <div className="mt-5"> 
-        <p>Gender:</p>
-        <div className="mt-2 flex">
-          
-          <div className="border-2 w-2/6 rounded-lg p-3">
-          <input type="radio" id="gender" name="fav_language" value="Male"/>
-          <label className=" p-2 mr-5" htmlfor="Male">Male</label>
-          </div>
-
-          <div className="border-2 w-2/6 ml-2 rounded-lg p-3">
-          <input type="radio" id="gender" name="fav_language" value="Female"/>
-          <label className=" p-2 mr-5" htmlfor="female">Female</label>
-          </div>
-          <div className="border-2 w-2/6 ml-2 rounded-lg p-3">
-          <input type="radio" id="gender" name="fav_language" value="Female"/>
-          <label className=" p-2 mr-5" htmlfor="other">Other</label>
-          </div>
-          </div>
-        </div>
+   
 
         <div>
           <label htmlFor="rollno">
@@ -129,13 +107,13 @@ function SignUp() {
             />
           </label>
         </div>
+ <div className="mx-auto"> <button className="btn w-full text-center m-auto text-white mt-10"> Sign Up</button>
+ <button onClick={closeSignup} className="close-modal hover:text-red-500">X</button>
+ </div>
 
-        <div className="text-center">
-          <label htmlFor="submit">
-            <input type="submit" value="SignUp" className="btn w-full text-white mt-10 " />
-          </label>
-        </div>
+    
       </form>
+      </div>
     </div>
   );
 }

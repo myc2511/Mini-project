@@ -6,27 +6,32 @@ import Navbar from "../components/Navbar";
 function Home() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+const [showSignup,setshowSignup]=useState(false);
   function login(){
     console.log("login");
   }
-
+function handleclick(){
+  setshowSignup(!showSignup)
+}
+function closeSignup(){
+  setshowSignup(false)
+}
   return (
     <>
     <Navbar/>
-    <div className="flex mx-auto justify-center mt-60">
+    <div className="flex mx-auto content-center justify-center  mt-60">
       
       <div className="container w-7/12 text-center">
-        <h1 className="text-6xl">Where student voice </h1>
-      <h1 className="text-6xl">meets action</h1>
+        <h1 className="text-6xl text-custom-blue">Where student voice </h1>
+      <h1 className="text-6xl text-custom-blue">meets action</h1>
 
-        <p  className="p-6 mt-10 ml-44 mr-36 text-2xl text-left">Centralised Public Grievance Redress and Monitoring System (CPGRAMS) is an online platform available to the citizens 24x7 to lodge their grievances to the public authorities on any subject related to service delivery.  CPGRAMS is also accessible to the citizens through standalone mobile application downloadable through Google Play store and mobile application integrated with UMANG.</p>
+        <p  className="p-6 mt-10 ml-44 mr-36 text-m text-left">The College Issue Resolver is a user-friendly web platform designed to facilitate the submission, tracking, and resolution of student complaints and grievances. It offers an easy-to-use interface for students to submit their complaints, while also providing administrators with a streamlined process for tracking, responding to, and resolving issues in a timely manner. With the College Issue Resolver, both students and administrators can work together to ensure a positive and productive learning environment.</p>
       </div>
 
       <div className="container w-5/12 pl-36 ">
         
       
-        <div className="border-2 p-10 w-8/12">
+        <div className=" box-shadow border-2 p-10 w-8/12">
               <h1 className="text-5xl  text-custom-blue mb-8 text-center">Log In</h1>
         <div className=" pb-2">
           <label htmlFor="select">
@@ -73,14 +78,19 @@ function Home() {
     </div>
            <button onClick={login} className="text-white mt-4 mb-3 w-full p-3 ml-1 bg-custom-blue rounded-lg">Log In</button>
         
-        <p className="text-base">Don't have an account? <a  className="text-custom-blue hover:underline text-xl" href="/Signup">Register</a></p>
+        <p className="text-base text-center">Don't have an account? <button onClick={handleclick} className=" text-custom-blue hover:underline text-xl" href="">Register</button></p>
+       
         </div>
 
-        {/* <div><label className=" bg-blue-600 rounded-lg" htmlFor="firstName">
-            <input value="SignUp" type="button" className="ipt" />
-          </label></div> */}
+        
       </div>
     </div>
+
+
+{/* Signup */}
+
+      {showSignup && <SignUp closeSignup={closeSignup}/>}
+     
     </>
   );
 }
