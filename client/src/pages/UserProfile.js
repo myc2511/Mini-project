@@ -9,13 +9,11 @@ function UserProfile() {
   return (
 
     <div>
-  {/* <Navbar/> */}
+ 
+    
+     <Navbar/>
 
-  
-      <div className=''>
-  {/* <Navbar/> */}
-
-  <div className="parent  m-auto mt-20 flex flex-row">
+  <div className="parent  m-auto mt-40 flex flex-row">
     <div className= " m-5 bio basis-1/3">
        <img src="/avatar.png" className="w-40 m-3"   alt=" profile img"/>
        <p className='p-1'>Name : Mohammad Shafiuddin</p>
@@ -49,7 +47,7 @@ function UserProfile() {
     </div>
   </div>
     </div>
-    </div>
+  
   )
 }
 

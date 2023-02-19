@@ -4,7 +4,7 @@ import AdminNav from './AdminNav'
 function AdminCompTable() {
   return (
     <div>      
-<AdminNav/>
+ <AdminNav/>
 
 <div class="relative  overflow-x-auto shadow-md sm:rounded-lg m-auto w-2/3 mt-16">
 {/* <p className='text-center text-3xl'>All Complains</p> */}

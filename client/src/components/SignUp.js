@@ -10,7 +10,7 @@ function SignUp() {
 
   return (
     <div className="w-2/6 mx-auto border-2 mt-16 p-5">
-      <h1 className="   text-center text-3xl bg-blue-500 p-5 rounded-lg">
+      <h1 className="text-center text-white text-3xl bg-custom-blue p-5 rounded-lg">
         SignUp
       </h1>
 
@@ -132,7 +132,7 @@ function SignUp() {
 
         <div className="text-center">
           <label htmlFor="submit">
-            <input type="submit" value="SignUp" className="btn mt-10 " />
+            <input type="submit" value="SignUp" className="btn w-full text-white mt-10 " />
           </label>
         </div>
       </form>
