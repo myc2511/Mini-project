@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import AddIcon from '@mui/icons-material/Add';
 function ComplaintForm() {
 
   const [description, setDescription] = useState("");
@@ -9,11 +9,30 @@ function ComplaintForm() {
   const [enrollmentNo, setEnrollmentno] = useState("");
   const [phone, setPhone] = useState("");
   const [complainTitle, setComplainTitle] = useState("");
-  const [images, setImages] = useState("");
+  const [images, setImages] = useState([]);
 
-   function uploadImg(e){
-      setImages(URL.createObjectURL(e.target.files[0]));
+
+   function handleRemove(e,i){
+    const pic=[...images];
+    pic.splice(i,1);
+    console.log(images);
+    setImages(pic);
+   }
+
+
+   function uploadImg(e,i){
+    const inputdata=[...images];
+inputdata[i]=URL.createObjectURL(e.target.files[0]);
+      setImages(inputdata);
       // console.log(images); 
+
+  }
+  function handleAdd(e){
+
+   const pic=[...images,[]];
+    setImages(pic);
+    e.preventDefault();
+
   }
   function handleSubmit(e){
     e.preventDefault();
@@ -96,20 +115,24 @@ function ComplaintForm() {
             />
           </label>
         </div>
-        <div>
+        <div className="  mt-5 w-44">
+        <span className=" ">Upload Images</span>
+<button className="text-white text-lg  bg-custom-blue w-7 right rounded-full" type="button" onClick={()=>handleAdd()}>+</button>
+        {images.map((data,i)=>(
+          <div key={i}>
           <label htmlFor="rollno">
-            <p className="para">Images:</p>
             <input
-              onChange={uploadImg}
+              onChange={e=>uploadImg(e,i)}
               type="file"
-              className="ipt"
+              className="ipt1"
             />
+       <button className="mt-3 font-bold text-white bg-custom-blue rounded-full  ml-5 font-mono w-10" onClick={()=>handleRemove(i)} type="button"><AddIcon/></button>
 
-            <img className="border p-5 w-1/2" src={images} alt="" />
-            
-           
-            
-          </label>
+
+            <img className="border p-5 w-1/2" src={data} alt="" />
+            </label>
+        </div>
+        ))}
         </div>
         <div>
           <p className="para">Complain description:</p>

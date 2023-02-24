@@ -5,6 +5,9 @@
 .ipt {
   @apply border-2 border-slate-400 w-full p-3 rounded-lg ;
 }
+.ipt1 {
+  @apply border-2 border-slate-400 w-4/5 p-3 rounded-lg ;
+}
 .txtarea{
   @apply  border-2 border-slate-400 w-full rounded-lg p-3;
 }
