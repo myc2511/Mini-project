@@ -1,8 +1,19 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {useSelector,useDispatch} from 'react-redux'
+import {Link,useNavigate} from 'react-router-dom';
 import logo from './img/CC-1.png'
+import { logout,reset } from '../features/auth/authSlice';
+
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function Navbar() {
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
+  const {user}=useSelector((state)=>state.auth)
+    const onLogout=()=>{
+         dispatch(logout());
+         dispatch(reset());
+         navigate("/")
+    }
   return (
     <>
    <nav class="bg-white px-2 sm:px-4 mb-10 py-4  dark:bg-gray-900 fixed w-full  top-0 left-0 border-b border-gray-200 dark:border-gray-600">
@@ -13,7 +24,7 @@ function Navbar() {
       
   </a>
   <div class="flex md:order-2 w-48 justify-between">
-      <button type="button" className="text-custom-blue inline-block left-14  bg-white hover:bg-custom-blue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  px-5 py-2.5 text-center  md:mr-0 dark:hover:text-white dark:bg-white dark:hover:bg-custom-blue text-xl dark:focus:ring-white dark:hover:border-2 dark:hover:border-white">LogOut</button>
+  {user?(<button type="button" onClick={onLogout} className="text-custom-blue inline-block left-14  bg-white hover:bg-custom-blue focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  px-5 py-2.5 text-center  md:mr-0 dark:hover:text-white dark:bg-white dark:hover:bg-custom-blue text-xl dark:focus:ring-white dark:hover:border-2 dark:hover:border-white">LogOut</button>):(<></>)}
       <Link to='/Userprofile'><AccountCircleIcon  sx={{
       color: "white",
       fontSize:"50px"

@@ -1,12 +1,55 @@
 import React, { useState } from "react";
-
-function SignUp({closeSignup}) {
+import {useSelector,useDispatch} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import { register,reset } from "../features/auth/authSlice";
+import { useEffect } from "react";
+     function SignUp({closeSignup}) {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [enrollmentNo, setEnrollmentno] = useState("");
-  const [phone, setPhone] = useState("");
+  const [mobileNo, setmobileNo] = useState();
   const [password, setPassword] = useState("");
+  const [cpassword, setcPassword] = useState("");
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
+
+  const {user,isLoading,isError,isSuccess,message}= useSelector(
+    (state)=> state.auth )
+
+   useEffect(() =>{
+      if(isError){
+        toast.error(message);
+      }
+      if(isSuccess){
+        toast("Registered Successfully");
+      }
+      if(user || isSuccess){
+    
+       navigate("/");
+      //  closeSignup();
+      }
+     dispatch(reset());
+
+  }, [user ,isError,isSuccess,message,navigate,dispatch])
+   
+  
+ const handleSubmit = (e)=>{
+      e.preventDefault();
+    if(password!==cpassword){
+      toast.error('Passwords do not match')
+    }
+    else{
+      const name=firstName+" "+lastName
+      const studentData={
+         name,email,enrollmentNo,mobileNo,password
+      }
+      dispatch(register(studentData));
+   closeSignup();
+     
+    }
+  }
 
   return (
     <div className="model box-shadow">
@@ -76,8 +119,8 @@ function SignUp({closeSignup}) {
             <p className="para">Phone:</p>
             <input
               placeholder="6007686868"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              value={mobileNo}
+              onChange={(e) => setmobileNo(e.target.value)}
               type="number"
               className="ipt"
             />
@@ -96,18 +139,19 @@ function SignUp({closeSignup}) {
           </label>
         </div>
         <div>
-          <label htmlFor="password">
+          <label htmlFor="cpassword">
             <p className="para">Confirm Password</p>
             <input
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Confirm Password"
+              value={cpassword}
+              onChange={(e) => setcPassword(e.target.value)}
               type="password"
               className="ipt"
             />
           </label>
         </div>
- <div className="mx-auto"> <button className="btn w-full text-center m-auto text-white mt-10"> Sign Up</button>
+ <div className="mx-auto"> 
+ <button onClick={handleSubmit} className="btn w-full text-center m-auto text-white mt-10"> Sign Up</button>
  <button onClick={closeSignup} className="close-modal hover:text-red-500">X</button>
  </div>
 
