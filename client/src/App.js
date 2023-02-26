@@ -19,6 +19,7 @@ import AdminNav from './components/AdminNav';
 import AdminCompTable from './components/AdminCompTable';
 import AdminStudent from './components/AdminStudent';
 import AdminHome from './pages/AdminHome';
+import AdminStaff from './components/AdminStaff';
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
         <Route path='/Admin/AdminHome' element={<AdminHome/>}/>
         <Route path='/Admin/Complain' element={<AdminCompTable/>}/>
         <Route path='/Admin/Student' element={<AdminStudent/>}/>
-        <Route path='/Admin/Staff' element={<AdminStudent/>}/>
+        <Route path='/Admin/Staff' element={<AdminStaff/>}/>
 
       </Routes>
       <Footer/>
