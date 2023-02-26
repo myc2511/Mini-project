@@ -13,7 +13,7 @@ import FacultyHome from './pages/FacultyHome';
 import Newcomplains from './pages/Faculty/Newcomplains';
 import Activecomplains from './pages/Faculty/Activecomplains';
 import ClosedCompalins from './pages/Faculty/ClosedCompalins';
-
+import Footer from './components/Footer';
 import AdminLogin from './pages/AdminLogin';
 import AdminNav from './components/AdminNav';
 import AdminCompTable from './components/AdminCompTable';
@@ -50,6 +50,7 @@ function App() {
         <Route path='/Admin/Staff' element={<AdminStudent/>}/>
 
       </Routes>
+      <Footer/>
     </Router> 
     <ToastContainer/>
     </div>

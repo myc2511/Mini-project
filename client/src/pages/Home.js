@@ -60,10 +60,10 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
         <p  className="p-6 mt-10 ml-44 mr-36 text-m text-left">The College Issue Resolver is a user-friendly web platform designed to facilitate the submission, tracking, and resolution of student complaints and grievances. It offers an easy-to-use interface for students to submit their complaints, while also providing administrators with a streamlined process for tracking, responding to, and resolving issues in a timely manner. With the College Issue Resolver, both students and administrators can work together to ensure a positive and productive learning environment.</p>
       </div>
 
-      <div className="container w-5/12 pl-36 ">
+      <div className="container w-5/12 pl-28 ">
         
       
-        <div className=" box-shadow border-2 p-10 w-8/12">
+        <div className=" box-shadow  items-center border-2 p-10 w-8/12">
               <h1 className="text-5xl  text-custom-blue mb-8 text-center">Log In</h1>
         <div className=" pb-2">
           <label htmlFor="select">

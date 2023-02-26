@@ -5,24 +5,10 @@ import logo from './img/CC-1.png'
 function FacultyNav() {
   return (
     <>
-    {/* <div className='flex justify-between p-8 clr'>
-        <div className='basis-1/3'><img src='/'/></div>
-        <div className='basis-1/3'>
-        <ul className='flex justify-between'>
-            <li><Link to='/Blog'>Blog</Link></li>
-            <li><Link to='/Complaint'>Complaint</Link></li>
-            <li><Link to='/SignUp'>Logout</Link></li>
-            <li><Link to='/Userprofile'><img src="/" alt="User" /></Link></li>
-        </ul>
-        </div>
-      
-    </div> */}
-
-    
-<nav class="bg-white px-2 sm:px-4 py-4 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+    <nav class="bg-white px-2 sm:px-4 py-4 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
   <div class="container flex flex-wrap items-center justify-between mx-auto">
-  <a href="https://flowbite.com/" class="flex items-center">
-      <img src={logo} className="w-20" alt="Flowbite Logo"/>
+  <a href="" class="flex items-center">
+      <img src={logo} className="w-20" alt="logo"/>
       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CollegeComplaint</span>
   </a>
   <div class="flex md:order-2"> 
@@ -50,8 +36,7 @@ function FacultyNav() {
   </div>
   </div>
 </nav>
-
-      </>
+</>
   )
 }
 
