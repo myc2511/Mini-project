@@ -10,6 +10,9 @@ function Activecomplains() {
       <FacultyNav/>
       <div className=' container mx-auto mt-40'>
             <Activecmpt/>
+            <Activecmpt/>
+            <Activecmpt/>
+            <Activecmpt/>
         </div>
       
     </div>

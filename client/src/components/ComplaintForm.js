@@ -115,9 +115,9 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
             />
           </label>
         </div>
-        <div className="  mt-5 w-44">
-        <span className=" ">Upload Images</span>
-<button className="text-white text-lg  bg-custom-blue w-7 right rounded-full" type="button" onClick={()=>handleAdd()}>+</button>
+        <div className="  mt-5">
+        <span className="pr-5">Upload Images</span>
+<button className="text-white text-lg  bg-custom-blue w-7 right rounded-full" type="button" onClick={()=>handleAdd()}><AddIcon/></button>
         {images.map((data,i)=>(
           <div key={i}>
           <label htmlFor="rollno">
@@ -126,7 +126,7 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
               type="file"
               className="ipt1"
             />
-       <button className="mt-3 font-bold text-white bg-custom-blue rounded-full  ml-5 font-mono w-10" onClick={()=>handleRemove(i)} type="button"><AddIcon/></button>
+       <button className="mt-3 font-bold text-white bg-custom-blue rounded-full  ml-5 font-mono w-10" onClick={()=>handleRemove(i)} type="button">-</button>
 
 
             <img className="border p-5 w-1/2" src={data} alt="" />
