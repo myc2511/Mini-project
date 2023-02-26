@@ -4,6 +4,8 @@ import Complaint from './pages/Complaint';
 import UserProfile from './pages/UserProfile';
 import SignUp from './components/SignUp';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import Navbar from './components/Navbar';
 import Blog from './pages/Blog';
 import SingleBlogCmpln from './components/SingleBlogCmpln';
@@ -50,6 +52,7 @@ function App() {
 
       </Routes>
     </Router> 
+    <ToastContainer/>
     </div>
   );
 }
