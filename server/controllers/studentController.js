@@ -50,8 +50,9 @@ const registerStudent=asyncHandler(async(req,res)=>{
 //access Public
 const loginStudent=asyncHandler( async(req,res)=>{
     const {email,password}=req.body;
+    console.log(email);
     const student= await Student.findOne({email});
-
+     console.log(student);
      if(student&& (await bcrypt.compare(password,student.password)))
      {
         res.json({

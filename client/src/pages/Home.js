@@ -1,14 +1,28 @@
 import React, { useState } from "react";
+import {useSelector,useDispatch} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import { login,reset } from "../features/auth/authSlice";
+import { useEffect } from "react";
 import Navbar from "../components/Navbar";
  import SignUp from "../components/SignUp";
 // import Navbar from '../components/Navbar'
 
 function Home() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setemail] = useState("");
+  const [password, setPassword] = useState();
 const [showSignup,setshowSignup]=useState(false);
-  function login(){
-    console.log("login");
+
+
+const navigate=useNavigate();
+const dispatch=useDispatch();
+const handlelogin=(e)=>{
+ e.preventDefault();
+ const userdata={
+  email,
+  password,
+ }
+ dispatch(login(userdata));
   }
 function handleclick(){
   setshowSignup(!showSignup)
@@ -16,6 +30,24 @@ function handleclick(){
 function closeSignup(){
   setshowSignup(false)
 }
+const {user,isLoading,isError,isSuccess,message}= useSelector(
+  (state)=> state.auth )
+
+ useEffect(() =>{
+    if(isError){
+      toast.error(message);
+    }
+    if(isSuccess){
+      toast("Registered Successfully");
+    }
+    if(user || isSuccess){
+  
+      navigate("/Userprofile")
+    //  closeSignup();
+    }
+   dispatch(reset());
+
+}, [user ,isError,isSuccess,message,navigate,dispatch])
   return (
     <>
     <Navbar/>
@@ -45,12 +77,12 @@ function closeSignup(){
         </div>
         
         <div  >
-          <label htmlFor="username">
+          <label htmlFor="email">
             <p className="para">Email*</p>
             <input
               placeholder="Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
               type="email"
               className="ipt"
             />
@@ -76,7 +108,7 @@ function closeSignup(){
         </div>
         <label for="remember" class="ml-2 text-m font-medium text-custom-blue dark:text-gray-500">I agree with the <a href="#" class="text-custom-blue hover:underline dark:text-custom-blue">terms and conditions</a>.</label>
     </div>
-           <button onClick={login} className="text-white mt-4 mb-3 w-full p-3 ml-1 bg-custom-blue rounded-lg">Log In</button>
+           <button onClick={handlelogin} className="text-white mt-4 mb-3 w-full p-3 ml-1 bg-custom-blue rounded-lg">Log In</button>
         
         <p className="text-base text-center">Don't have an account? <button onClick={handleclick} className=" text-custom-blue hover:underline text-xl" href="">Register</button></p>
        

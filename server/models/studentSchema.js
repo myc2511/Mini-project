@@ -19,7 +19,7 @@ const studentSchema=new mongoose.Schema({
         required:[true,'Please enter your password'],
     },
     
-    mobileNo:{
+    mobileNo :{
         type:Number,
         required:[true,'Please enter your mobile Number'],
     },
