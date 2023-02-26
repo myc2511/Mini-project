@@ -4,9 +4,10 @@ function AdminStudent() {
   return (
     <div>      
     <AdminNav/>
-        <div className='mt-28 w-2/3 m-auto border-2 border-custom-grey cmpln '>
-            <table className="table-fixed">
-      <thead className=" text-xl pt-4 pb-4 p-4 w-full bg-custom-grey">
+    <div className="flex ml-40 mr-20 content-center justify-center  dark:text-gray-700   mt-30">
+        <div className=' '>
+            <table className="w-full text-m text-left text-gray-500  dark:text-gray-700 mt-40">
+      <thead className=" text-l text-gray-700 uppercase bg-custom-grey dark:bg-gray-700 dark:text-gray-400 mt-60">
         <tr>
           <th className='w-1/4'>Name</th>
           <th className='w-1/5'>Enrollment Number</th>
@@ -29,6 +30,7 @@ function AdminStudent() {
      
       </tbody>
     </table>
+        </div>
         </div>
         </div>
   )

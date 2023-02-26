@@ -6,7 +6,7 @@ function AdminCompTable() {
     <div>      
  <AdminNav/>
 
-<div class="relative  overflow-x-auto shadow-md sm:rounded-lg m-auto w-2/3 mt-16">
+<div class="flex mx-auto content-center justify-center  mt-60">
 {/* <p className='text-center text-3xl'>All Complains</p> */}
     <table class="w-full text-m text-left text-gray-500  dark:text-gray-400">
         <thead class="text-l text-gray-700 uppercase bg-custom-grey dark:bg-gray-700 dark:text-gray-400">

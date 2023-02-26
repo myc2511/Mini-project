@@ -1,19 +1,21 @@
 import React , {useState} from 'react'
+
 function login(){
     console.log("login");
   }
 function AdminLogin() {
     const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  
   return (
+        
+        <div className="flex mx-auto content-center justify-center  mt-60 ">
     
-        <div className="container m-auto w-5/12 pl-36 ">
-      <div className="border-2 p-4 w-8/12">
-      <p className='text-3xl text-center'>Admin Login</p>
+      <div className=" box-shadow border-2 p-10 ">
+      <p className='text-5xl  text-custom-blue mb-8 text-center"'>Admin Login</p>
  <div >
         <label htmlFor="username">
-          <p className="para">Username:</p>
+          <p className="para">Email id:</p>
           <input
             placeholder="Username"
             value={username}
@@ -26,7 +28,7 @@ function AdminLogin() {
 
       <div >
         <label htmlFor="password">
-          <p className="para">password:</p>
+          <p className="para">Password:</p>
           <input
             placeholder="password"
             value={password}
@@ -38,13 +40,12 @@ function AdminLogin() {
       </div>
       
       <div className=" mt-4 mb-3">
-       
-          <input className=" p-3 pr-40 pl-40 ml-1 bg-blue-600 rounded-lg"
-          htmlFor="firstName" onClick={login} value="LogIn" type="button" />
+      <button onClick={login} className="text-white mt-4 mb-3 w-full p-3 ml-1 bg-custom-blue rounded-lg">Log In</button>
         
       </div>
       </div>
     </div>
+    
   )
 }
 
