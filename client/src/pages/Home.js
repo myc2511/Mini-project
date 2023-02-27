@@ -53,22 +53,22 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
 }, [user ,isError,isSuccess,message,navigate,dispatch])
   return (
-    < div className="flex flex-col min-h-screen">
+    < div className="flex flex-col min-h-screen ">
     <Navbar/>
-    <div className="flex mx-auto content-center justify-center  mt-60">
+    <div className="flex justify-between items-center m-auto container mt-60">
       
-      <div className="container w-7/12 text-center">
-        <h1 className="text-6xl text-custom-blue">Where student voice </h1>
-      <h1 className="text-6xl text-custom-blue">meets action</h1>
+      <div className="container w-2/3 p-20 text-center">
+      <h1 className="text-6xl text-custom-blue">Where student <span className="text-8xl">VOICE</span>  </h1>
+      <h1 className="text-6xl text-custom-blue">meets <span className="text-8xl">ACTION</span> </h1>
 
-        <p  className="p-6 mt-10 ml-44 mr-36 text-m text-left">The College Issue Resolver is a user-friendly web platform designed to facilitate the submission, tracking, and resolution of student complaints and grievances. It offers an easy-to-use interface for students to submit their complaints, while also providing administrators with a streamlined process for tracking, responding to, and resolving issues in a timely manner. With the College Issue Resolver, both students and administrators can work together to ensure a positive and productive learning environment.</p>
+        <p  className="mt-10 ml-20 mr-36">The College Issue Resolver is a user-friendly web platform designed to facilitate the submission, tracking, and resolution of student complaints and grievances.</p>
       </div>
 
-      <div className="container w-5/12 pl-28 ">
+      <div className="container w-1/3">
         
       
-        <div className=" box-shadow  items-center border-2 p-10 w-8/12">
-              <h1 className="text-5xl  text-custom-blue mb-8 text-center">Log In</h1>
+        <div className=" box-shadow rounded-lg items-center p-10">
+              {/* <h1 className="text-5xl  text-custom-blue mb-8 text-center">Log In</h1> */}
         <div className=" pb-2">
           <label htmlFor="select">
            
@@ -82,9 +82,9 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
         
         <div  >
           <label htmlFor="email">
-            <p className="para">Email*</p>
+            <p className="para">Email</p>
             <input
-              placeholder="Username"
+              placeholder="Email"
               value={email}
               onChange={(e) => setemail(e.target.value)}
               type="email"
@@ -95,7 +95,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
         <div >
           <label htmlFor="password">
-            <p className="para">Password*</p>
+            <p className="para">Password</p>
             <input
               placeholder="password"
               value={password}
