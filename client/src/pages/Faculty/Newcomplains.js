@@ -5,8 +5,10 @@ import Newcomplaints from '../../components/Faculty/Newcomplaints'
 function Newcomplains() {
   return (
     <div>
-        <FacultyNav/>
+        <FacultyNav homeclr='dark:text-gray-400' newcpl="dark:text-blue-400" activecpl='dark:text-gray-400' closedcpl="dark:text-gray-400"/>
         <div className=' container mx-auto mt-40'>
+           <Newcomplaints/>
+           <Newcomplaints/>
            <Newcomplaints/>
            <Newcomplaints/>
            <Newcomplaints/>
