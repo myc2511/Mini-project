@@ -105,9 +105,9 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
         </div>
         <div>
           <label htmlFor="rollno">
-            <p className="para">Complain:</p>
+            <p className="para">Complaint:</p>
             <input
-              placeholder="Enter your Complain"
+              placeholder="Enter your Complaint"
               value={complainTitle}
               onChange={(e) => setComplainTitle(e.target.value)}
               type="text"
@@ -147,11 +147,11 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
         ))}
         </div>
         <div>
-          <p className="para">Complain description:</p>
+          <p className="para">Complaint description:</p>
 
           <label htmlFor="complain">
             <textarea
-              placeholder="Enter your Complain description"
+              placeholder="Enter your Complaint description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="txtarea"

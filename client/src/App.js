@@ -25,7 +25,7 @@ import AddStaff from './components/AddStaff';
 
 function App() {
   return (
-  <div>
+  <div className='relative'>
 
 
   
@@ -36,10 +36,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         {/* Faculty */}
-        <Route path='/Faculty/Home' element={<FacultyHome/>}/>
-        <Route path='/Faculty/Newcomplaints' element={<Newcomplains/>}/>
-        <Route path='/Faculty/Activecomplains' element={<Activecomplains/>}/>
-        <Route path='/Faculty/ClosedCompalins' element={<ClosedCompalins/>}/>
+        <Route path='/Staff/Home' element={<FacultyHome/>}/>
+        <Route path='/Staff/Newcomplaints' element={<Newcomplains/>}/>
+        <Route path='/Staff/Activecomplains' element={<Activecomplains/>}/>
+        <Route path='/Staff/ClosedCompalins' element={<ClosedCompalins/>}/>
         {/* Faculty */}
         <Route path='/Blog' element={<Blog/>}/>
         <Route path='/SingleComplaint' element={<ViewComplaint/>}/>

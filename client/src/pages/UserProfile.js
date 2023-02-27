@@ -41,6 +41,8 @@ function UserProfile() {
     <div className='basis-2/3'>
     <Singlecmpln/>
     <Singlecmpln/>
+    <Singlecmpln/>
+    
      </div>
   </div>
     </div>

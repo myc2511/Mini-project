@@ -2,11 +2,15 @@ import React from "react";
 import ComplaintDesc from './ViewComplaints/ComplaintDesc';
 import Chat from './ViewComplaints/Chat';
 import { useState } from "react";
+import Navbar from "./Navbar";
 
 function ViewComplaint() {
   const [showComnt,setshowCmnt]=useState(false);
   return (
+    <>
+    <Navbar/>
     <div className="mt-28">
+
       <div className="text-center">
         <button
         onClick={()=>{
@@ -37,6 +41,7 @@ function ViewComplaint() {
 
       
     </div>
+    </>
   );
 }
 
