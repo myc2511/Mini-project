@@ -6,7 +6,7 @@ import { login,reset } from "../features/auth/authSlice";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
  import SignUp from "../components/SignUp";
-// import Navbar from '../components/Navbar'
+
 
 function Home() {
   const [email, setemail] = useState("");
@@ -16,6 +16,8 @@ const [showSignup,setshowSignup]=useState(false);
 
 const navigate=useNavigate();
 const dispatch=useDispatch();
+
+
 const handlelogin=(e)=>{
  e.preventDefault();
  const userdata={
@@ -24,6 +26,8 @@ const handlelogin=(e)=>{
  }
  dispatch(login(userdata));
   }
+
+  
 function handleclick(){
   setshowSignup(!showSignup)
 }
@@ -49,7 +53,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
 }, [user ,isError,isSuccess,message,navigate,dispatch])
   return (
-    <>
+    < div className="flex flex-col min-h-screen">
     <Navbar/>
     <div className="flex mx-auto content-center justify-center  mt-60">
       
@@ -71,7 +75,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
             <select className="w-full rounded-lg p-3 border-gray-500 border-2 " name="cars" id="cars">
             <option value=""disabled selected hidden >Login As</option>
               <option value="User">User</option>
-              <option value="Faculty">Faculty</option>
+              <option value="Faculty">Staff</option>
             </select>
           </label>
         </div>
@@ -123,7 +127,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
       {showSignup && <SignUp closeSignup={closeSignup}/>}
      
-    </>
+    </div>
   );
 }
 

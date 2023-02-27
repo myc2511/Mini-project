@@ -1,25 +1,24 @@
 import React from 'react'
 import { useState } from 'react'
+import { useSelector } from 'react-redux';
 import Navbar from '../components/Navbar'
 import Singlecmpln from '../components/Singlecmpln'
 
 function UserProfile() {
   const [showing,setshowing]=useState(false);
   const [name,setname]=useState("Shafi");
+  const {user} =useSelector((state)=>state.auth)
   return (
 
     <div className=' flex flex-col min-h-screen'>
- 
-    
-     <Navbar/>
-
-  <div className="parent  m-auto mt-40 flex flex-row">
+    <Navbar/>
+<div className="parent  m-auto mt-40 flex flex-row">
     <div className= " m-5 bio basis-1/3">
        <img src="/avatar.png" className="w-52 m-3"   alt=" profile img"/>
-       <p className='p-1'>Name : Mohammad Shafiuddin</p>
-       <p className='p-1'>Enrollment No: LCS2020053</p>
-       <p className='p-1'>Email : shafiuddin9155@gmail.com</p>
-       <p className='p-1'>Mobile No:9572326138</p>
+       <p className='p-1'>Name :{user.name}</p>
+       <p className='p-1'>Enrollment No: {user.enrollmentNo}</p>
+       <p className='p-1'>Email : {user.email}</p>
+       <p className='p-1'>Mobile No:{user.mobileNo}</p>
          <button className="bg-custom-blue edt-btn mt-5 text-white text-sm  p-2 rounded-lg" onClick={() => setshowing(true)}>Edit Profile</button>
        <div className={showing?"block":"hidden"} >
             <label for="">

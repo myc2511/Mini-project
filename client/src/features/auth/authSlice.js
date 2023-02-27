@@ -21,6 +21,7 @@ catch(error){
     return thunkAPI.rejectWithValue(message)
     console.log(error);
 }
+
 })
 //login user
 export const login=createAsyncThunk('auth/login',async(user,thunkAPI)=>{
@@ -59,7 +60,7 @@ export const authSlice=createSlice({
     .addCase(register.fulfilled,(state,action)=>{
         state.isLoading=false
         state.isSuccess=false
-        state.user=action.payload
+        state.user=null
     })
     .addCase(register.rejected,(state,action)=>{
         state.isLoading=false

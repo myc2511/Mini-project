@@ -22,9 +22,7 @@ import { useEffect } from "react";
       if(isError){
         toast.error(message);
       }
-      if(isSuccess){
-        toast("Registered Successfully");
-      }
+     
       if(user || isSuccess){
     
        navigate("/");
@@ -46,7 +44,7 @@ import { useEffect } from "react";
          name,email,enrollmentNo,mobileNo,password
       }
       dispatch(register(studentData));
-   closeSignup();
+        closeSignup();
      
     }
   }
