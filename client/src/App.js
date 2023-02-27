@@ -21,6 +21,7 @@ import AdminStudent from './components/AdminStudent';
 import AdminHome from './pages/AdminHome';
 import AdminStaff from './components/AdminStaff';
 import ViewComplaint from './components/ViewComplaint';
+import AddStaff from './components/AddStaff';
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
         <Route path='/Admin/Complain' element={<AdminCompTable/>}/>
         <Route path='/Admin/Student' element={<AdminStudent/>}/>
         <Route path='/Admin/Staff' element={<AdminStaff/>}/>
-
+        <Route path='/Admin/AddStaff' element={<AddStaff/>}/>
       </Routes>
       <Footer/>
     </Router> 

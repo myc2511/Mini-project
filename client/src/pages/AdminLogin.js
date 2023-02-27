@@ -8,6 +8,7 @@ function AdminLogin() {
   const [password, setPassword] = useState("");
   
   return (
+    <div className='min-h-screen'> 
         
         <div className="flex mx-auto content-center justify-center  mt-60 ">
     
@@ -45,7 +46,7 @@ function AdminLogin() {
       </div>
       </div>
     </div>
-    
+    </div>
   )
 }
 
