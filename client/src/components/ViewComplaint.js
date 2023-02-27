@@ -29,7 +29,7 @@ function ViewComplaint() {
         >
           Comment
           <span class="inline-flex items-center justify-center p-3 h-4 ml-2 text-lg font-semibold text-blue-800 bg-blue-200 rounded-full">
-            2
+            3
           </span>
         </button>
       </div>

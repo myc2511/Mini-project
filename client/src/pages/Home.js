@@ -61,7 +61,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
       <h1 className="text-6xl text-custom-blue">Where student <span className="text-8xl">VOICE</span>  </h1>
       <h1 className="text-6xl text-custom-blue">meets <span className="text-8xl">ACTION</span> </h1>
 
-        <p  className="mt-10 ml-20 mr-36">The College Issue Resolver is a user-friendly web platform designed to facilitate the submission, tracking, and resolution of student complaints and grievances.</p>
+        <p  className="mt-10 ml-20 mr-36">The College Complaint is a user-friendly web platform designed to facilitate the submission, tracking, and resolution of student complaints and grievances.</p>
       </div>
 
       <div className="container w-1/3">

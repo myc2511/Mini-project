@@ -24,7 +24,7 @@ function FacultyHome() {
         <div className='flex flex-col ml-20 w-2/3 items-start p-5'>
           <div className=''>
          <p className='p-2'>Name : Mohammad Shafiuddin</p>
-         <p className='p-2'>Enrollment No: LCS2020053</p>
+         <p className='p-2'>Role : Hostel Warden</p>
          <p className='p-2'>Email : shafiuddin9155@gmail.com</p>
          <p className='p-2'>Mobile No : 9572326138</p>
          <button className="bg-custom-blue edt-btn mt-5 text-white text-sm  p-3 rounded-lg" onClick={() => setshowing(true)}>Edit Profile</button>
