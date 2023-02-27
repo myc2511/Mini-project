@@ -2,11 +2,15 @@ import React from "react";
 import ComplaintDesc from './ViewComplaints/ComplaintDesc';
 import Chat from './ViewComplaints/Chat';
 import { useState } from "react";
-import Footer from "./Footer";
+import Navbar from "./Navbar";
+
 function ViewComplaint() {
-  const [showComnt,setshowCmnt]=useState(true);
+  const [showComnt,setshowCmnt]=useState(false);
   return (
+    <>
+    <Navbar/>
     <div className="mt-28">
+
       <div className="text-center">
         <button
         onClick={()=>{
@@ -14,8 +18,7 @@ function ViewComplaint() {
         }}
           type="button"
           className="w-1/2  border items-center p-5 text-xl font-medium  text-white bg-blue-700  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
-          Complaint Description
+        >Complaint Description
         </button>
         <button
          onClick={()=>{
@@ -38,6 +41,7 @@ function ViewComplaint() {
 
       
     </div>
+    </>
   );
 }
 

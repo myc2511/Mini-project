@@ -30,7 +30,7 @@ return(
         </div>
 
         <div>
-        <a href="" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >Title</a>
+        <a href="/SingleComplaint" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >Title</a>
         <span className="  rounded-full pl-2 pr-2 mt-2 mr-3 text-lg  float-right border-2 border-custom-grey">Public</span>
         <span className='pl-4  text-sm block'>Ticket No: </span>
         <p className="pl-4 text-sm mt-1">Complain Related: Hostel</p>
@@ -41,9 +41,6 @@ return(
          */}
         {/* <img src={img} alt="" /> */}
         {/* </div> */}
-        {/* <span className="float-right  m-3 inline-block">Status: Accepted </span> */}
-
-        <div>
         <ol class="flex justify-center items-center w-full mb-4 sm:mb-5 ">
           <li class="flex w-full items-center text-gray-600 dark:text-gray-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700">
             <div className="flex flex-col items-center mt-5">
@@ -109,7 +106,6 @@ return(
             </div>
           </li>
         </ol>
-        </div>
         <span className="m-4 inline-block text-sm">Date at Time</span>
 
         

@@ -20,6 +20,7 @@ import AdminCompTable from './components/AdminCompTable';
 import AdminStudent from './components/AdminStudent';
 import AdminHome from './pages/AdminHome';
 import AdminStaff from './components/AdminStaff';
+import ViewComplaint from './components/ViewComplaint';
 
 function App() {
   return (
@@ -34,12 +35,13 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         {/* Faculty */}
-        <Route path='/Faculty/Home' element={<FacultyHome/>}/>
-        <Route path='/Faculty/Newcomplaints' element={<Newcomplains/>}/>
-        <Route path='/Faculty/Activecomplains' element={<Activecomplains/>}/>
-        <Route path='/Faculty/ClosedCompalins' element={<ClosedCompalins/>}/>
+        <Route path='/Staff/Home' element={<FacultyHome/>}/>
+        <Route path='/Staff/Newcomplaints' element={<Newcomplains/>}/>
+        <Route path='/Staff/Activecomplains' element={<Activecomplains/>}/>
+        <Route path='/Staff/ClosedCompalins' element={<ClosedCompalins/>}/>
         {/* Faculty */}
         <Route path='/Blog' element={<Blog/>}/>
+        <Route path='/SingleComplaint' element={<ViewComplaint/>}/>
 
         <Route path='/Complaint' element={<Complaint/>}/>
         <Route path='/UserProfile' element={<UserProfile/>}/>
