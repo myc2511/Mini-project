@@ -7,8 +7,12 @@ import FacultyNav from '../../components/FacultyNav'
 function Activecomplains() {
   return (
     <div>
-      <FacultyNav/>
+      <FacultyNav homeclr='dark:text-gray-400' newcpl="dark:text-gray-400" activecpl='dark:text-blue-400' closedcpl="dark:text-gray-400"/>
       <div className=' container mx-auto mt-40'>
+            <Activecmpt/>
+            <Activecmpt/>
+            <Activecmpt/>
+            <Activecmpt/>
             <Activecmpt/>
             <Activecmpt/>
             <Activecmpt/>
