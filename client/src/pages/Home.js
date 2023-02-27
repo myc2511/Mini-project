@@ -6,7 +6,7 @@ import { login,reset } from "../features/auth/authSlice";
 import { useEffect } from "react";
 import Navbar from "../components/Navbar";
  import SignUp from "../components/SignUp";
-// import Navbar from '../components/Navbar'
+
 
 function Home() {
   const [email, setemail] = useState("");
@@ -16,6 +16,8 @@ const [showSignup,setshowSignup]=useState(false);
 
 const navigate=useNavigate();
 const dispatch=useDispatch();
+
+
 const handlelogin=(e)=>{
  e.preventDefault();
  const userdata={
@@ -24,6 +26,8 @@ const handlelogin=(e)=>{
  }
  dispatch(login(userdata));
   }
+
+  
 function handleclick(){
   setshowSignup(!showSignup)
 }
@@ -49,7 +53,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
 }, [user ,isError,isSuccess,message,navigate,dispatch])
   return (
-    <>
+    < div className="flex flex-col min-h-screen">
     <Navbar/>
     <div className="flex mx-auto content-center justify-center  mt-60">
       
@@ -60,10 +64,10 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
         <p  className="p-6 mt-10 ml-44 mr-36 text-m text-left">The College Issue Resolver is a user-friendly web platform designed to facilitate the submission, tracking, and resolution of student complaints and grievances. It offers an easy-to-use interface for students to submit their complaints, while also providing administrators with a streamlined process for tracking, responding to, and resolving issues in a timely manner. With the College Issue Resolver, both students and administrators can work together to ensure a positive and productive learning environment.</p>
       </div>
 
-      <div className="container w-5/12 pl-36 ">
+      <div className="container w-5/12 pl-28 ">
         
       
-        <div className=" box-shadow border-2 p-10 w-8/12">
+        <div className=" box-shadow  items-center border-2 p-10 w-8/12">
               <h1 className="text-5xl  text-custom-blue mb-8 text-center">Log In</h1>
         <div className=" pb-2">
           <label htmlFor="select">
@@ -71,7 +75,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
             <select className="w-full rounded-lg p-3 border-gray-500 border-2 " name="cars" id="cars">
             <option value=""disabled selected hidden >Login As</option>
               <option value="User">User</option>
-              <option value="Faculty">Faculty</option>
+              <option value="Faculty">Staff</option>
             </select>
           </label>
         </div>
@@ -123,7 +127,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
       {showSignup && <SignUp closeSignup={closeSignup}/>}
      
-    </>
+    </div>
   );
 }
 

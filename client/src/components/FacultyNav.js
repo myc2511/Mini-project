@@ -43,8 +43,7 @@ function FacultyNav(props) {
   </div>
   </div>
 </nav>
-
-      </>
+</>
   )
 }
 
