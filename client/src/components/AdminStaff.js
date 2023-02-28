@@ -1,14 +1,22 @@
-import React from 'react'
+import React,{useState} from 'react'
 import AdminNav from './AdminNav'
 import AddIcon from '@mui/icons-material/Add';
+import AddStaff from './AddStaff';
 
 function AdminStaff() {
+    const [showaddstaff,setshowAddstaff]=useState(false);
+    function handleclick(){
+    setshowAddstaff(!showaddstaff)
+      }
+      function closeaddstaff(){
+        setshowAddstaff(false)
+      }
   return (
     <div className='min-h-screen'>      
  <AdminNav/>
 <div className="container flex flex-col mx-auto  ">
 <div className='ml-auto justify-self-end'>
-  <button className='bg-custom-blue  mr-10 edt-btn mt-36 mb-10 text-white text-sm  p-4 rounded-lg'>Add Staff<AddIcon/></button>
+  <button onClick= {handleclick} className='bg-custom-blue  mr-10 edt-btn mt-36 mb-10 text-white text-sm  p-4 rounded-lg'>Add Staff<AddIcon/></button>
 </div>
 
 <div className='rounded-lg'>
@@ -106,6 +114,7 @@ function AdminStaff() {
     </table>
     </div>
 </div>
+ {showaddstaff && <AddStaff closeaddstaff={closeaddstaff}/>}
 </div> 
   )
 }

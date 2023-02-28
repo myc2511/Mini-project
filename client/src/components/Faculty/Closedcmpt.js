@@ -4,7 +4,7 @@ function Closedcmpt() {
   return (
     <div>
       <div className="p-2  m-5 w-2/3 mx-auto rounded-2xl box-shadow cmpln">
-        <a href="" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue   " >Title</a>
+        <a href="/Staff/SingleCompalins" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue   " >Title</a>
         <p className=" pl-2 pr-2 mt-2 mr-3 text-lg  float-right shadow-md">Private</p>
        <div className='flex justify-around'>
         <span className=' mt-4  text-sm block'>Ticket No:46786378 </span>

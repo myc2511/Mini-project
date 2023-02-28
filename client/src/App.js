@@ -22,7 +22,7 @@ import AdminHome from './pages/AdminHome';
 import AdminStaff from './components/AdminStaff';
 import ViewComplaint from './components/ViewComplaint';
 import AddStaff from './components/AddStaff';
-
+import ViewComplainstaff from './components/ViewComplainstaff'
 function App() {
   return (
   <div className='relative'>
@@ -40,6 +40,8 @@ function App() {
         <Route path='/Staff/Newcomplaints' element={<Newcomplains/>}/>
         <Route path='/Staff/Activecomplains' element={<Activecomplains/>}/>
         <Route path='/Staff/ClosedCompalins' element={<ClosedCompalins/>}/>
+        <Route path='/Staff/SingleCompalins' element={<ViewComplainstaff/>}/>
+
         {/* Faculty */}
         <Route path='/Blog' element={<Blog/>}/>
         <Route path='/SingleComplaint' element={<ViewComplaint/>}/>

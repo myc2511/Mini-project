@@ -30,7 +30,7 @@ return(
         </div>
 
         <div>
-        <a href="/SingleComplaint" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >Title</a>
+        <a href="/SingleComplaint" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >Water Cooler not Working (4th floor Hostel-1)</a>
         <span className="  rounded-full pl-2 pr-2 mt-2 mr-3 text-lg  float-right border-2 border-custom-grey">Public</span>
         <span className='pl-4  text-sm block'>Ticket No: </span>
         <p className="pl-4 text-sm mt-1">Complain Related: Hostel</p>

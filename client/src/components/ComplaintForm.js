@@ -127,6 +127,17 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
                  </select>
           </label>
           </div>
+          <div className=" pb-2">
+        <p className="para">Complaint Type:</p>
+          <label htmlFor="select">
+           
+            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " >
+            <option value="" hidden >Select</option>
+              <option value="Hostel">Private</option>
+              <option value="Academics">Public</option>
+                 </select>
+          </label>
+          </div>  
         <div className="  mt-5">
         <span className="pr-5">Upload Images</span>
 <button className="text-white text-lg  bg-custom-blue w-7 right rounded-full" type="button" onClick={()=>handleAdd()}><AddIcon/></button>

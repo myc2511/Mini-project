@@ -1,25 +1,20 @@
 import React from 'react'
 import { useState } from 'react';
-function AddStaff() {
+function AddStaff({closeaddstaff}) {
     const [firstName, setFirstname] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [role, setRole] = useState("");
-    
-  
-  
-   
-  
-     
-   
-    function handleSubmit(e){
+     function handleSubmit(e){
       e.preventDefault();
       alert("Staff added  Successfully");
     }
   return (
-    <div className="flex mx-auto content-center justify-center  mt-20">
-      <form className="mt-8 text-left box-shadow border-2 p-10">
+    <div className="model box-shadow">
+    <div className="overlay"></div>
+    <div className=" modal-content flex mx-auto content-center justify-center  mt-20">
+      <form className="mt-8 text-left   p-10">
         <div className="flex justify-between">
           <div className="w-5/12">
             <label htmlFor="firstName">
@@ -83,13 +78,14 @@ function AddStaff() {
             />
           </label>
         </div>
-        {/* <button onClick={closeSignup} className="close-modal hover:text-red-500">X</button> */}
+        <button onClick={closeaddstaff} className="close-modal hover:text-red-500">X</button>
         <div className="">
           <label htmlFor="submit">
-            <input type="submit" value="Submit" onClick={handleSubmit} className="btn text-white" />
+            <input type="submit" value="Submit" onClick={handleSubmit} className="btn mt-5 text-white" />
           </label>
         </div>
       </form>
+    </div>
     </div>
     
   );

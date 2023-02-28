@@ -4,7 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import { register,reset } from "../features/auth/authSlice";
 import { useEffect } from "react";
-     function SignUp({closeSignup}) {
+  function SignUp({closeSignup}) {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
