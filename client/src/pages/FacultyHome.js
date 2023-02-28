@@ -17,15 +17,15 @@ function FacultyHome() {
     <div className="parent m-auto mt-20 mb-20 box-shadow rounded-lg h-full">
       <div className= "flex flex-row m-10  bio  items-center">
         <div className=' w-1/2 items-start'>
-         <img src="/avatar.png" className="w-96 m-10  rounded-full"   alt=" profile img"/>
+         <img src="https://media.istockphoto.com/id/942801002/photo/confident-cute-smart-business-man-with-spectacles-in-formal-wear.jpg?s=170667a&w=0&k=20&c=_tiCjnOXeH55u_Mwm6ZIDDYGtrMe5kUiveswfAHbmuI=" className="w-96 m-10  rounded-full"   alt=" profile img"/>
         </div>
        
          
         <div className='flex flex-col ml-20 w-2/3 items-start p-5'>
           <div className=''>
-         <p className='p-2'>Name : Mohammad Shafiuddin</p>
+         <p className='p-2'>Name : Mohd Yasif Choudhary</p>
          <p className='p-2'>Role : Hostel Warden</p>
-         <p className='p-2'>Email : shafiuddin9155@gmail.com</p>
+         <p className='p-2'>Email : yasifchoudhary702@gmail.com</p>
          <p className='p-2'>Mobile No : 9572326138</p>
          <button className="bg-custom-blue edt-btn mt-5 text-white text-sm  p-3 rounded-lg" onClick={() => setshowing(true)}>Edit Profile</button>
          </div>

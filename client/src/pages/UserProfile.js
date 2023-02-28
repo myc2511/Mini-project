@@ -12,7 +12,7 @@ function UserProfile() {
 
     <div className=' flex flex-col min-h-screen'>
     <Navbar/>
-<div className="parent  m-auto mt-40 flex flex-row">
+<div className="parent  m-auto mt-40 flex flex-row mb-20">
     <div className= " m-5 bio basis-1/3">
        <img src="/avatar.png" className="w-52 m-3"   alt=" profile img"/>
        <p className='p-1'>Name :{user.name}</p>

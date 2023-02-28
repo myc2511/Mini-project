@@ -7,7 +7,7 @@ function ClosedCompalins() {
   return (
     <div>
       <FacultyNav homeclr='dark:text-gray-400' newcpl="dark:text-gray-400" activecpl='dark:text-gray-400' closedcpl="dark:text-blue-400"/>
-      <div className=' container mx-auto mt-40'>
+      <div className=' container mx-auto my-40'>
             <Closedcmpt/>
             <Closedcmpt/>
             <Closedcmpt/>
