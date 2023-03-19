@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function ComplaintDesc() {
+ 
   return (
     <div>
       <div className=" w-full container mx-auto mt-10">

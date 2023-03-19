@@ -37,7 +37,7 @@ const registerStudent=asyncHandler(async(req,res)=>{
             enrollmentNo:student.enrollmentNo,
             email:student.email,
             mobileNo:student.mobileNo,
-            token:generateToken(student._id)
+            token:generateToken(student.id)
   })
      }
      else{
@@ -50,9 +50,9 @@ const registerStudent=asyncHandler(async(req,res)=>{
 //access Public
 const loginStudent=asyncHandler( async(req,res)=>{
     const {email,password}=req.body;
-    console.log(email);
+   
     const student= await Student.findOne({email});
-     console.log(student);
+   
      if(student&& (await bcrypt.compare(password,student.password)))
      {
         res.json({
@@ -61,7 +61,7 @@ const loginStudent=asyncHandler( async(req,res)=>{
             enrollmentNo:student.enrollmentNo,
             email:student.email,
             mobileNo:student.mobileNo,
-           token:generateToken(student._id)
+           token:generateToken(student.id)
         })}
      else{
         res.status(400)
@@ -88,6 +88,7 @@ const getStudent=asyncHandler( async(req,res)=>{
 
 //Generate Token
 const generateToken=(id)=>{
+    console.log(id);
     return jwt.sign({id},process.env.JWT_SECRET,{
         expiresIn:'30d',
     })

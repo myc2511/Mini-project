@@ -8,7 +8,8 @@ dotenv.config({path:'./config.env'});
 require('./db/config')
 
 app.use('/api/students',require('./routes/studentRoutes'))
-//const Student=require('./models/studentSchema');
+app.use('/api/complain',require('./routes/ComplainRoutes'))
+
 const PORT=process.env.PORT;
 
 //

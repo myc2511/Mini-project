@@ -1,17 +1,24 @@
 import React, { useState } from "react";
+import {useSelector,useDispatch} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import { register,reset } from "../features/complain/complainSlice";
+import { useEffect } from "react";
 import AddIcon from '@mui/icons-material/Add';
 function ComplaintForm() {
 
-  const [description, setDescription] = useState("");
-  const [firstName, setFirstname] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [enrollmentNo, setEnrollmentno] = useState("");
-  const [phone, setPhone] = useState("");
-  const [complainTitle, setComplainTitle] = useState("");
+  const navigate=useNavigate();
+const dispatch=useDispatch();
+
+  const [desc, setDesc] = useState("");
+  const [title, settitle] = useState("");
   const [images, setImages] = useState([]);
+  const options1 = ["Private", "Public"];
+  const options2 = ["Mess", "Hostel","Academics"];
 
-
+  const [complain_type,setcomplainType]=useState(options1[0]);
+   
+  const [complain_regarding,setcomplainRegard]=useState(options2[0]);
    function handleRemove(e,i){
     const pic=[...images];
     pic.splice(i,1);
@@ -34,107 +41,84 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
     e.preventDefault();
 
   }
+  const {data,isLoading,isError,isSuccess,message}= useSelector(
+    (state)=> state.complain )
+  
+   useEffect(() =>{
+      // if(isError){
+      //   toast.error(message);
+      // }
+      // if(isSuccess){
+      //   toast("Registered Successfully");
+      // }
+      // if( isSuccess){
+    
+      //   navigate("/Userprofile")
+      // //  closeSignup();
+      // }
+     dispatch(reset());
+  
+  }, [data ,isError,isSuccess,message,navigate,dispatch])
   function handleSubmit(e){
     e.preventDefault();
-    alert("Your Complain submitted Successfully");
+    const data={
+      title,
+      desc,
+      status:"Open",
+      photo:images,
+      complain_regarding,
+      complain_type
+     }
+     dispatch(register(data));
+    //   dispatch(reset());
+    //  settitle("");
+    //  setDesc("");
+    //  setImages("");
+    //  setcomplainType(options1[0]);
+    //  setcomplainRegard(options2[0]);
+   // alert("Your Complain submitted Successfully");
   }
   return (
     <div className="">
       <form className="mt-8 text-left">
-        <div className="flex justify-between">
-          <div className="w-5/12">
-            <label htmlFor="firstName">
-              <p className="para">First Name:</p>
-              <input
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstname(e.target.value)}
-                type="text"
-                className="ipt"
-              />
-            </label>
-          </div>
-          <div className="w-5/12">
-            <label htmlFor="lastName">
-              <p className="para">Last Name:</p>
-              <input
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                type="text"
-                className="ipt"
-              />
-            </label>
-          </div>
-        </div>
+      
         <div>
-          <label htmlFor="email">
-            <p className="para">Email:</p>
-            <input
-              placeholder="example@gmail.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="email"
-              className="ipt"
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="rollno">
-            <p className="para">Enrollment No:</p>
-            <input
-              placeholder="LCS2020001"
-              value={enrollmentNo}
-              onChange={(e) => setEnrollmentno(e.target.value)}
-              type="text"
-              className="ipt"
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="phone">
-            <p className="para">Phone:</p>
-            <input
-              placeholder="6007686868"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              type="number"
-              className="ipt"
-            />
-          </label>
-        </div>
-        <div>
-          <label htmlFor="rollno">
-            <p className="para">Complaint:</p>
+          <label htmlFor="Title">
+            <p className="para">Title</p>
             <input
               placeholder="Enter your Complaint"
-              value={complainTitle}
-              onChange={(e) => setComplainTitle(e.target.value)}
+              value={title}
+              onChange={(e) => settitle(e.target.value)}
               type="text"
               className="ipt"
             />
           </label>
         </div>
         <div className=" pb-2">
-        <p className="para">Complaint Regarding:</p>
+        <p className="para">Complaint Regarding</p>
           <label htmlFor="select">
            
-            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " >
-            <option value="" hidden >Select</option>
-              <option value="Hostel">Hostel</option>
-              <option value="Academics">Academics</option>
-              <option value="Mess">Mess</option>
+            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " onChange={(e) => setcomplainRegard(e.target.value)}  >
+            {options2.map((value) => (
+          <option value={value} key={value}>
+            {value}
+          </option>
+         ))}
+           
                  </select>
           </label>
           </div>
           <div className=" pb-2">
-        <p className="para">Complaint Type:</p>
+        <p className="para">Complaint Type</p>
           <label htmlFor="select">
            
-            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " >
-            <option value="" hidden >Select</option>
-              <option value="Hostel">Private</option>
-              <option value="Academics">Public</option>
+            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " onChange={(e) => setcomplainType(e.target.value)} >
+            {options1.map((value) => (
+          <option value={value} key={value}>
+            {value}
+          </option>
+         ))}
+           
                  </select>
           </label>
           </div>  
@@ -163,8 +147,8 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
           <label htmlFor="complain">
             <textarea
               placeholder="Enter your Complaint description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
               className="txtarea"
               name="complain"
               id=""

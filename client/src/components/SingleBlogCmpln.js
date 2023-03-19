@@ -1,7 +1,7 @@
 import React from "react";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-function SingleBlogCmpln(){
+function SingleBlogCmpln(props){
 
 return(
 
@@ -9,7 +9,7 @@ return(
 
         
         <div className="p-2  m-5 rounded-2xl box-shadow cmpln flex">
-        <div className="m-auto w-36 flex flex-col items-center"> 
+        <div className="m-5 my-auto w-1/6  flex flex-col items-center"> 
         <button type="button" class="hover:bg-gray-300 rounded-full ">
             <ArrowDropUpIcon sx={{
      
@@ -29,13 +29,13 @@ return(
 </button>
         </div>
 
-        <div>
-        <a href="/SingleComplaint" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >Water Cooler not Working (4th floor Hostel-1)</a>
+        <div className="w-5/6">
+        <a href="/SingleComplaint" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >{props.title}</a>
         <span className="  rounded-full pl-2 pr-2 mt-2 mr-3 text-lg  float-right border-2 border-custom-grey">Public</span>
-        <span className='pl-4  text-sm block'>Ticket No: </span>
-        <p className="pl-4 text-sm mt-1">Complain Related: Hostel</p>
+        <span className='pl-4  text-sm block'>Ticket No: {props.ticketno}</span>
+        <p className="pl-4 text-sm mt-1">Complain Related: {props.cmpln}</p>
 
-        <p className="pl-4 pt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora nam illum, sunt magnam enim doloremque autem, porro asperiores nihil maiores, voluptate repudiandae labore quis repellendus? Temporibus nobis voluptas quis enim? ores nihil maiores, </p>
+        <p className="pl-4 pt-4">{props.desc}</p>
         {/* <div> */}
         {/* <ArrowUpwardIcon/>
          */}

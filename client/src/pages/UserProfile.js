@@ -3,11 +3,19 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux';
 import Navbar from '../components/Navbar'
 import Singlecmpln from '../components/Singlecmpln'
-
+import { useDispatch } from 'react-redux';
+import {getAllUserComplain} from "../features/complain/complainSlice"
+import { useEffect } from 'react';
 function UserProfile() {
   const [showing,setshowing]=useState(false);
-  const [name,setname]=useState("Shafi");
+
   const {user} =useSelector((state)=>state.auth)
+  const { alluserComplain}=useSelector((state)=>state.complain)
+  const dispatch=useDispatch();
+  useEffect(() => {
+    dispatch(getAllUserComplain());
+  }, [dispatch])
+  
   return (
 
     <div className=' flex flex-col min-h-screen'>
@@ -39,9 +47,12 @@ function UserProfile() {
          
     </div>
     <div className='basis-2/3'>
-    <Singlecmpln/>
-    <Singlecmpln/>
-    <Singlecmpln/>
+    {alluserComplain?alluserComplain.map((p)=>(
+      <Singlecmpln title={p.title} ticketno={p._id} complain_type={p.complain_type} complain_regarding={p.complain_regarding}/>
+   )):  <><div>No complain </div></>}
+    
+    {/* <Singlecmpln/>
+    <Singlecmpln/> */}
     
      </div>
   </div>
