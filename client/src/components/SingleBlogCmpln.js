@@ -1,14 +1,16 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-function SingleBlogCmpln(props){
 
+import { Link } from "react-router-dom";
+
+function SingleBlogCmpln(props){
+  
+  
 return(
 
     <div className="container mx-auto w-4/6 ">
-
-        
-        <div className="p-2  m-5 rounded-2xl box-shadow cmpln flex">
+ <div className="p-2  m-5 rounded-2xl box-shadow cmpln flex">
         <div className="m-5 my-auto w-1/6  flex flex-col items-center"> 
         <button type="button" class="hover:bg-gray-300 rounded-full ">
             <ArrowDropUpIcon sx={{
@@ -30,8 +32,13 @@ return(
         </div>
 
         <div className="w-5/6">
-        <a href="/SingleComplaint" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >{props.title}</a>
-        <span className="  rounded-full pl-2 pr-2 mt-2 mr-3 text-lg  float-right border-2 border-custom-grey">Public</span>
+        {/*   */}
+
+        <Link to={`/Complaint/${props.ticketno}`} >
+        <a href="/"  className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >{props.title}</a>
+        </Link>
+        <span className="  rounded-full pl-2 pr-2 mt-2 mr-3 tex
+        t-lg  float-right border-2 border-custom-grey">Public</span>
         <span className='pl-4  text-sm block'>Ticket No: {props.ticketno}</span>
         <p className="pl-4 text-sm mt-1">Complain Related: {props.cmpln}</p>
 

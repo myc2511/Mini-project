@@ -34,6 +34,7 @@ function App() {
  <Router>
        {/* <Navbar/> */}
       <Routes>
+      <Route path="/Complaint/:id" element={<ViewComplaint/>}/>
         <Route path='/' element={<Home/>}/>
         {/* Faculty */}
         <Route path='/Staff/Home' element={<FacultyHome/>}/>
@@ -44,7 +45,7 @@ function App() {
 
         {/* Faculty */}
         <Route path='/Blog' element={<Blog/>}/>
-        <Route path='/SingleComplaint' element={<ViewComplaint/>}/>
+       
 
         <Route path='/Complaint' element={<Complaint/>}/>
         <Route path='/UserProfile' element={<UserProfile/>}/>

@@ -1,5 +1,5 @@
 import React from "react";
-import ComplaintDesc from './ViewComplaints/ComplaintDesc';
+import ComplaintDesc from './ComplaintDesc';
 import Chat from './ViewComplaints/Chat';
 import { useState } from "react";
 import Navbar from "./Navbar";

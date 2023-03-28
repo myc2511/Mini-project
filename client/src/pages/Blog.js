@@ -18,9 +18,9 @@ function Blog() {
   useEffect(() =>{
 
 dispatch(fetchPublic());
-  dispatch(reset());
+   dispatch(reset());
 
-}, [publicComplain,dispatch])
+}, [isError,dispatch])
   
   return (
     <div>
