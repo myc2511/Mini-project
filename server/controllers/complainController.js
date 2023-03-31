@@ -63,13 +63,14 @@ const deleteComplain=asyncHandler(async(req,res)=>{
 })
 //Get Complain
 const getComplain=asyncHandler(async(req,res)=>{
-     
-   try {
-      console.log(req.query._id)
-      const compl = await Complain.find({_id : req.params._id});
  
+   try {
+     
+      const compl = await Complain.findById(req.params._id);
+    
       res.status(200).json(compl);
-    } catch (err) {
+    } 
+    catch (err) {
       res.status(500).json(err);
     }
 })
@@ -81,7 +82,7 @@ const getAllComplain=asyncHandler(async(req,res)=>{
   try {
     let complains;
     if (userid) {
-      complains = await Complain.find({ user_id:userid });
+      complains = await Complain.find({ user_id:userid }).sort({ createdAt: 'desc'}).exec();
     }  else {
       complains = await Complain.find();
     }
@@ -96,7 +97,7 @@ const getPublicComplain=asyncHandler(async(req,res)=>{
   try {
     let complains;
 
-      complains = await Complain.find({complain_type:"Public"});
+      complains = await Complain.find({complain_type:"Public"}).sort({ createdAt: 'desc'}).exec();;
     
     res.status(200).json(complains);
   } catch (err) {

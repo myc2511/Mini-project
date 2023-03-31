@@ -3,23 +3,13 @@ import ComplaintDesc from './ComplaintDesc';
 import Chat from './ViewComplaints/Chat';
 import { useState } from "react";
 import Navbar from "./Navbar";
-import { useDispatch } from "react-redux";
-import {singleComplain} from "../features/complain/complainSlice"
-import { useParams } from "react-router-dom";
-import { useSelector } from 'react-redux';
+
 
 function ViewComplaint() {
   const [showComnt,setshowCmnt]=useState(false);
-    const id=useParams();
-   // console.log(id);
-    
-  const dispatch=useDispatch();
- 
- useEffect(()=>{
- dispatch(singleComplain(id))
-},[id]);
-const {SingleComplain}=useSelector((state)=>state.complain)
-// console.log(SingleComplain);
+   
+
+
   return (
     <>
     <Navbar/>

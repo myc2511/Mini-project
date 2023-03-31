@@ -3,9 +3,9 @@ const Comment=require('../models/comment');
 
 const addComment=asyncHandler( async(req,res)=>{
    
-    const {name,comment,photo,complain_id}=req.body;
+    const {desc,photo,complain_id}=req.body;
    
-     if(!name||!comment){
+     if(!desc){
         res.status(400);
         throw new Error('Please add all data')
      }
@@ -13,17 +13,17 @@ const addComment=asyncHandler( async(req,res)=>{
 
     //Create Comment
      const comm= await Comment.create({
-     name,
-     comment,
-     photo:[],
+     desc,
+     photo:photo,
     complain_id,
+    user_id:req.student.id
        })
      if(comm){
         res.status(201).json({
             _id:comm.id,
-            name:comm.name,
-            complain_id:complain.complain_id,
-          
+            desc:comm.desc,
+            complain_id:comm.complain_id,
+            user_id:req.student.id
   })
      }
      else{
@@ -31,3 +31,16 @@ const addComment=asyncHandler( async(req,res)=>{
         throw new Error('Invalid data')
      }
 })
+const getallComment=asyncHandler(async(req,res)=>{
+ 
+   try {
+     
+      const comments = await Comment.find({complain_id:req.params._id});
+    
+      res.status(200).json(comments);
+    } 
+    catch (err) {
+      res.status(500).json(err);
+    }
+})
+module.exports={addComment,getallComment}

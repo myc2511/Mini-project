@@ -10,6 +10,7 @@ require('./db/config')
 
 app.use('/api/students',require('./routes/studentRoutes'))
 app.use('/api/complain',require('./routes/ComplainRoutes'))
+app.use('/api/complain/comments',require('./routes/CommentRoutes'))
 
 const PORT=process.env.PORT;
 

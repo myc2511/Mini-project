@@ -1,8 +1,25 @@
 import React, { useEffect } from 'react'
-
+import { useDispatch, useSelector } from "react-redux";
+import {singleComplain} from "../features/complain/complainSlice"
+import { useParams } from "react-router-dom";
 
 
 function ComplaintDesc() { 
+
+ const id=useParams();
+
+ //   // const {SingleComplain,isError,isSuccess,message}= useSelector(
+ //   //   (state)=> state.complain )
+   const dispatch=useDispatch();
+  
+  useEffect(()=>{
+   
+  dispatch(singleComplain(id))
+ },[id,dispatch]);
+ const {SingleComplain}=useSelector((state)=>state.complain)
+ if (!SingleComplain) {
+  return <p>Loading...</p>
+}
   return (
     <div>
       <div className=" w-full container mx-auto mt-10">
@@ -76,22 +93,17 @@ function ComplaintDesc() {
       <div className="w-1/2 mx-auto">
 
         <div>
-        <h1 className="text-4xl text-center m-10 p-3 text-custom-blue">Water Cooler not Working (4th floor Hostel-1)</h1>
+      
+        <h1 className="text-4xl text-center m-10 p-3 text-custom-blue">  {SingleComplain.title}</h1>
         <p>Submitted By : Mohammad Shafiuddin</p>
         <p>Email : example@gmail.com</p>
         <p>Rollno : LCS2020001</p>
         <p>Phone No : 89438498989</p>
         
         <p className="pt-10">Description:</p>
-        <p className=" pb-10 text-gray-500">I am writing to report an issue with the water cooler in our Hostel. The water cooler appears to be malfunctioning and is not dispensing cold water.
+        <p className=" pb-10 text-gray-500">
+{SingleComplain.desc}
 
-Whenever I attempt to dispense water, the machine makes a low humming noise but no water comes out. Additionally, the water that is dispensed is warm, indicating that the cooling system is not functioning properly.
-
-This issue is causing inconvenience to our staff, as we are unable to enjoy cold water during the day, especially during the warm weather.
-
-I kindly request your immediate attention to this matter and would appreciate it if someone could come to our office to repair or replace the water cooler as soon as possible.
-
-Thank you for your prompt attention to this matter.
         </p>
         </div>
         <p className="mb-3">Attachments:</p>

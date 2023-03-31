@@ -36,7 +36,7 @@ const getsingleComplain=async(id,token)=>{
     }
     // // 
     //console.log(id);
-    const response=await axios.get(API_URL+`?_id=${id}`,config)
+    const response=await axios.get(API_URL+`/compl/${id}`,config)
    // console.log(response.data)
     return response.data;
 }

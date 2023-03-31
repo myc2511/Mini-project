@@ -1,19 +1,20 @@
 const mongoose=require('mongoose');
 const comment=new mongoose.Schema({
-    name:{
-        type:String,
-        required: "this field is required"
-    },
-    comment:{
+   
+    desc:{
         type:String,
         required:"true"
     },
-    photo:[{
-        type:String,
-    }],
+    photo:{
+        type:Array,
+    },
     complain_id:{
         type:mongoose.Schema.Types.ObjectId,
         ref: 'COMPLAIN'
+    },
+    user_id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'STUDENT'
     }
 },{
     timestamps: true
