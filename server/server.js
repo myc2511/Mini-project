@@ -4,6 +4,9 @@ var cors = require('cors')
 const app=express();
 app.use(express.json());
 app.use(cors())
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 dotenv.config({path:'./config.env'});
 //Database Connection
 require('./db/config')

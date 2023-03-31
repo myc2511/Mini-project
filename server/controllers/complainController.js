@@ -1,6 +1,8 @@
 const asyncHandler=require('express-async-handler');
 const Complain = require('../models/complain');
 const Student=require('../models/studentSchema')
+
+
 const registerComplain=asyncHandler( async(req,res)=>{
    
     const {title,desc,photo,status,complain_type,user_id,complain_regarding}=req.body;
@@ -63,8 +65,8 @@ const deleteComplain=asyncHandler(async(req,res)=>{
 const getComplain=asyncHandler(async(req,res)=>{
      
    try {
-      
-      const compl = await Complain.findById(req.params._id);
+      console.log(req.query._id)
+      const compl = await Complain.find({_id : req.params._id});
  
       res.status(200).json(compl);
     } catch (err) {
