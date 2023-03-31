@@ -8,15 +8,15 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 function Navbar() {
 
 
-  const navigate=useNavigate();
+  let navigate = useNavigate();
   const dispatch=useDispatch();
   const {user}=useSelector((state)=>state.auth)
 
     const onLogout=()=>{
          dispatch(logout());
          dispatch(reset());
-    //  navigate("/");
-    navigate("/", { replace: true });
+         navigate(-1, { replace: true });
+         navigate("/");
  
     }
   return (

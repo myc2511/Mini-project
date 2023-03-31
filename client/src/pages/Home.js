@@ -11,6 +11,7 @@ import Navbar from "../components/Navbar";
 function Home() {
   const [email, setemail] = useState("");
   const [password, setPassword] = useState();
+  const [loginAs, setLoginAs] = useState("");
 const [showSignup,setshowSignup]=useState(false);
 
 
@@ -18,13 +19,35 @@ const navigate=useNavigate();
 const dispatch=useDispatch();
 
 
-const handlelogin=(e)=>{
+const handlelogin=async (e)=>{
  e.preventDefault();
+ if(loginAs === '')
+ alert("choose login option ");
+if(loginAs == 'User'){
  const userdata={
   email,
   password,
  }
  dispatch(login(userdata));
+}else{
+  const url = `http://localhost:5000/api/staff/Stafflogin`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, password}),
+  });
+  const res = await response.json();
+  console.log(res);
+
+  if (res.success) {
+    localStorage.setItem("token", res.authtoken);
+    navigate("/Staff/Home");
+  } else {
+    alert("Wrong credentials");
+  }
+}
   }
 
   
@@ -52,10 +75,11 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
    dispatch(reset());
 
 }, [user ,isError,isSuccess,message,navigate,dispatch])
+
   return (
-    < div className="flex flex-col min-h-screen ">
+    < div className="flex flex-col min-h-screen">
     <Navbar/>
-    <div className="flex justify-between items-center m-auto container mt-60">
+    <div className="flex justify-between items-center m-auto container mt-60 ">
       
       <div className="container w-2/3 p-20 text-center">
       <h1 className="text-6xl text-custom-blue">Where student <span className="text-8xl">VOICE</span>  </h1>
@@ -72,7 +96,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
         <div className=" pb-2">
           <label htmlFor="select">
            
-            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " name="cars" id="cars">
+            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " onChange={(e) => setLoginAs(e.target.value)} value={loginAs} name="cars" id="cars">
             <option value=""disabled selected hidden >Login As</option>
               <option value="User">User</option>
               <option value="Faculty">Staff</option>
