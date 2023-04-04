@@ -28,6 +28,11 @@ const getAllUserComplain=async(token)=>{
    //  console.log(response)
     return response.data;
 }
+const getAllComplain=async()=>{
+    
+    const response=await axios.get(API_URL+'/allComplain')
+     return response.data;
+}
 const getsingleComplain=async(id,token)=>{
     const config={
         headers:{
@@ -41,6 +46,6 @@ const getsingleComplain=async(id,token)=>{
     return response.data;
 }
 const complainService={
-    register,fetchPublicComplain,getAllUserComplain,getsingleComplain
+    register,fetchPublicComplain,getAllUserComplain,getsingleComplain,getAllComplain
 }
 export default complainService

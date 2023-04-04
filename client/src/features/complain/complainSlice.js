@@ -4,6 +4,7 @@ import  complainService from './complainService'
 const initialState={
     data:null,
     publicComplain:null,
+    allComplain:null,
     alluserComplain:null,
     SingleComplain:null,
     isError:false,
@@ -38,6 +39,16 @@ export const getAllUserComplain=createAsyncThunk('complain/',async(data,thunkAPI
     try{
         const token=thunkAPI.getState().auth.user.token
       return await complainService.getAllUserComplain(token);
+    }
+    catch(error){
+      const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+})
+export const getAllComplain=createAsyncThunk('complain/All',async(data,thunkAPI)=>{
+    try{
+       //    const token=thunkAPI.getState().auth.user.token
+      return await complainService.getAllComplain();
     }
     catch(error){
       const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
@@ -85,6 +96,20 @@ export const singleComplain=createAsyncThunk('complain/Single',async(id,thunkAPI
             state.isError=true
             state.message=action.payload
             state.data=null
+        })
+        .addCase(getAllComplain.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getAllComplain.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
+            state.allComplain=action.payload
+        })
+        .addCase(getAllComplain.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            state.allComplain=null
         })
         .addCase(fetchPublic.pending,(state)=>{
             state.isLoading=true

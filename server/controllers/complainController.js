@@ -1,8 +1,14 @@
 const asyncHandler=require('express-async-handler');
 const Complain = require('../models/complain');
 const Student=require('../models/studentSchema')
+const Staff = require('../models/Staff');
 
 
+const StaffHierarchy={
+  mess: ["Mess Committee", "Mess Manager", "Assistant Registrar","Deputy Registrar", "Director"],
+  hostel: ["Hostel Committee","Assistant Warden", "Deputy Registrar","Director"],
+  academics: ["Faculty", "Head of Department", "Dean","Director"],
+}
 const registerComplain=asyncHandler( async(req,res)=>{
    
     const {title,desc,photo,status,complain_type,user_id,complain_regarding}=req.body;
@@ -23,6 +29,7 @@ const registerComplain=asyncHandler( async(req,res)=>{
       user_id:req.student.id,
       complain_type,
       complain_regarding,
+      assigned:{assignedto:null,role:null}
     
      })
      if(complain){
@@ -32,8 +39,7 @@ const registerComplain=asyncHandler( async(req,res)=>{
             desc:complain.desc,
             complain_type:complain.complain_type,
             complain_regarding:complain.complain_regarding,
-          
-  })
+          })
      }
      else{
         res.status(400)
@@ -74,6 +80,17 @@ const getComplain=asyncHandler(async(req,res)=>{
       res.status(500).json(err);
     }
 })
+const getEveryComplain=asyncHandler(async(req,res)=>{
+ 
+  try {
+     const compl = await Complain.find();
+   
+     res.status(200).json(compl);
+   } 
+   catch (err) {
+     res.status(500).json(err);
+   }
+})
 //Get complain of user
 
 const getAllComplain=asyncHandler(async(req,res)=>{
@@ -92,6 +109,8 @@ const getAllComplain=asyncHandler(async(req,res)=>{
   }
  
 })
+
+//Get all public Complain
 const getPublicComplain=asyncHandler(async(req,res)=>{
   
   try {
@@ -105,4 +124,72 @@ const getPublicComplain=asyncHandler(async(req,res)=>{
   }
  
 })
-module.exports={registerComplain,deleteComplain,getComplain,getAllComplain,getPublicComplain}
+const assignComplaint =asyncHandler(async(req,res)=>{
+ 
+  try {
+    const complaint = await Complain.findById(req.params._id);
+    const staff=await Staff.findById(req.body.assignedTo)
+
+    complaint.assigned={
+      assignedto :req.body.assignedTo,
+      role:staff.role
+    };
+    complaint.status = 'IN_PROGRESS';
+    console.log(complaint)
+    await complaint.save().then(function(err) {
+      if (!err) {
+        res.send("Successfully Added to th DataBase.");
+      } else {
+        res.send(err);
+      }
+    });
+  } catch (err) {
+    console.error(err);
+  }})
+
+  const escalateComplaint =asyncHandler(async(req,res)=>{
+  try {
+      const complaint = await Complain.findById(req.params._id);
+       
+        const currentLevel = complaint.assigned.role;
+          const hierarchy = StaffHierarchy[req.body.department];
+         const currentLevelIndex = hierarchy.indexOf(currentLevel);
+
+  if (currentLevelIndex === hierarchy.length - 1) {
+    // We've reached the highest level of authority for this department
+    res.status(400).json("Reached Highest Level");
+  }
+  complaint.assigned.role=hierarchy[currentLevelIndex+1];
+  complaint.assigned.assignedto=null
+  await complaint.save().then(function(err) {
+    if (!err) {
+      res.send("Successfully Added to the DataBase.");
+    } else {
+      res.send(err);
+    }
+  });
+      } catch (err) {
+      console.error(err);
+    }})
+  
+    const closeComplaint =asyncHandler(async(req,res)=>{
+      try {
+          const complaint = await Complain.findById(req.params._id);
+             complaint.status="Closed"
+           await complaint.save()
+      .then(function(err) {
+        if (!err) {
+          res.send("Successfully Added to the DataBase.");
+        } else {
+          res.send(err);
+        }
+      })
+          }
+           catch (err) {
+          console.error(err);
+        }})
+      
+    
+
+  
+module.exports={registerComplain,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}

@@ -10,9 +10,9 @@ import Navbar from './components/Navbar';
 import Blog from './pages/Blog';
 import SingleBlogCmpln from './components/SingleBlogCmpln';
 import FacultyHome from './pages/FacultyHome';
-import Newcomplains from './pages/Faculty/Newcomplains';
-import Activecomplains from './pages/Faculty/Activecomplains';
-import ClosedCompalins from './pages/Faculty/ClosedCompalins';
+import Newcomplains from './pages/Staff/Newcomplains';
+import Activecomplains from './pages/Staff/Activecomplains';
+import ClosedCompalins from './pages/Staff/ClosedCompalins';
 import Footer from './components/Footer';
 import AdminLogin from './pages/AdminLogin';
 import AdminNav from './components/AdminNav';
@@ -38,9 +38,9 @@ function App() {
         <Route path='/' element={<Home/>}/>
         {/* Faculty */}
         <Route path='/Staff/Home' element={<FacultyHome/>}/>
-        <Route path='/Staff/Newcomplaints' element={<Newcomplains/>}/>
+        <Route path='/Staff/Newcomplaints' element={<Newcomplains/>}/> 
         <Route path='/Staff/Activecomplains' element={<Activecomplains/>}/>
-        <Route path='/Staff/ClosedCompalins' element={<ClosedCompalins/>}/>
+       <Route path='/Staff/ClosedCompalins' element={<ClosedCompalins/>}/>
         <Route path='/Staff/SingleCompalins' element={<ViewComplainstaff/>}/>
 
         {/* Faculty */}

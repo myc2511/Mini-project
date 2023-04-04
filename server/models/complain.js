@@ -14,12 +14,14 @@ const complain=new mongoose.Schema({
        status:{
         type:String,
        },
-       comments:[
-        {
-            type:mongoose.Schema.Types.ObjectId, 
-            ref:'COMMENT'
+       assigned: {
+        assignedto: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'staff'},
+        role:{
+          type:String
         }
-       ],
+      },
        user_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'STUDENT'

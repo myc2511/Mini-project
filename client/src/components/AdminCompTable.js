@@ -1,7 +1,18 @@
 import React from 'react';
 import AdminNav from './AdminNav'
-
+import { useDispatch } from 'react-redux';
+import {getAllComplain } from "../features/complain/complainSlice"
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 function AdminCompTable() {
+
+    const { allComplain,message}=useSelector((state)=>state.complain)
+    const dispatch=useDispatch();
+    useEffect(() => {
+      dispatch(getAllComplain());
+    }, [dispatch])
+     console.log(message)
   return (
     <div className='min-h-screen'>      
  <AdminNav/>
@@ -30,24 +41,31 @@ function AdminCompTable() {
             </tr>
         </thead>
         <tbody>
+        {allComplain?allComplain.map((k)=>(
             <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <a  className='no-underline hover:underline inline-block  text-custom-blue' href="">STD12355656</a>
+                <Link to={`/Complaint/${k._id}`} >
+                <a  className='no-underline hover:underline inline-block  text-custom-blue' href="">{k._id}</a>
+                </Link>
                 </th>
                 <td className="px-6 py-4">
-                <a href="/SingleComplaint" className='hover:underline text-custom-blue'>Title 1</a>
+                <a href="/SingleComplaint" className='hover:underline text-custom-blue'>{k.title}</a>
                 </td>
                 <td className="px-6 py-4">
-                    Hostel
+                    {k.complain_regarding}
                 </td>
                 <td className="px-6 py-4">
-                    Accepted
+                    {k.status}
                 </td>
                 <td className="px-6 py-4">
-                    Mohammad Shafiuddin
+                
                 </td>
             </tr>
-            <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+        )):<></>}
+      
+        
+            
+            {/* <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <a  className='no-underline hover:underline inline-block  text-custom-blue' href="">STD12355656</a>
                 </th>
@@ -100,7 +118,7 @@ function AdminCompTable() {
             </tr>
            
         
-          
+           */}
         </tbody>
     </table>
 </div>
