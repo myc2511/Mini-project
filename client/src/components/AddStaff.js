@@ -1,47 +1,75 @@
 import React from 'react'
 import { useState } from 'react';
+import { registerstaff } from '../features/staff/staffSlice';
+import { useDispatch } from 'react-redux';
 function AddStaff({closeaddstaff}) {
-    const [firstName, setFirstname] = useState("");
-    const [lastName, setLastName] = useState("");
+  const options2 = ["Mess", "Hostel","Academics"];
+    const [Name, setName] = useState("");
+    const [department,setdepartment]=useState(options2[0]);
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [role, setRole] = useState("");
+    const [role, setrole] = useState("");
+    const StaffHierarchy={
+      Mess: ["Mess Committee", "Mess Manager", "Assistant Registrar","Deputy Registrar", "Director"],
+      Hostel: ["Hostel Committee","Assistant Warden", "Deputy Registrar","Director"],
+      Academics: ["Faculty", "Head of Department", "Dean","Director"],
+    }
+      const dispatch=useDispatch();
      function handleSubmit(e){
       e.preventDefault();
+      const name=Name;
+      const mobileNo=phone
+      dispatch(registerstaff({name,department,email,role,mobileNo}));
       alert("Staff added  Successfully");
     }
   return (
     <div className="model box-shadow">
     <div className="overlay"></div>
     <div className=" modal-content flex mx-auto content-center justify-center  mt-20">
-      <form className="mt-8 text-left   p-10">
-        <div className="flex justify-between">
-          <div className="w-5/12">
-            <label htmlFor="firstName">
-              <p className="para">First Name:</p>
+      <form className="mt-5 text-left   ">
+      <div >
+            <label htmlFor="Name">
+              <p className="para">Name:</p>
               <input
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstname(e.target.value)}
+                placeholder="Name"
+                value={Name}
+                onChange={(e) => setName(e.target.value)}
                 type="text"
                 className="ipt"
               />
             </label>
           </div>
-          <div className="w-5/12">
-            <label htmlFor="lastName">
-              <p className="para">Last Name:</p>
-              <input
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                type="text"
-                className="ipt"
-              />
-            </label>
+         
+
+       
+     
+        <div className=" pb-2">
+        <p className="para">Deparment</p>
+          <label htmlFor="select">
+           
+            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " onChange={(e) => setdepartment(e.target.value)}  >
+            {options2.map((value) => (
+          <option value={value} key={value}>
+            {value}
+          </option>
+         ))}
+            </select>
+          </label>
           </div>
-        </div>
-        <div>
+          <div className=" pb-2">
+        <p className="para">Role</p>
+          <label htmlFor="select">
+           
+            <select className="w-full rounded-lg p-3 border-gray-500 border-2 " onChange={(e) => setrole(e.target.value)}  >
+            {StaffHierarchy[department].map((value) => (
+          <option value={value} key={value}>
+            {value}
+          </option>
+         ))}
+            </select>
+          </label>
+          </div>
+          <div>
           <label htmlFor="email">
             <p className="para">Email:</p>
             <input
@@ -53,7 +81,6 @@ function AddStaff({closeaddstaff}) {
             />
           </label>
         </div>
-       
         <div>
           <label htmlFor="phone">
             <p className="para">Phone:</p>
@@ -66,18 +93,7 @@ function AddStaff({closeaddstaff}) {
             />
           </label>
         </div>
-        <div>
-          <label htmlFor="rollno">
-            <p className="para">Role</p>
-            <input
-              placeholder="Enter the role"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
-              type="text"
-              className="ipt"
-            />
-          </label>
-        </div>
+       
         <button onClick={closeaddstaff} className="close-modal hover:text-red-500">X</button>
         <div className="">
           <label htmlFor="submit">

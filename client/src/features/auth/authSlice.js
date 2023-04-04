@@ -19,7 +19,7 @@ try{
 catch(error){
     const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
     return thunkAPI.rejectWithValue(message)
-    console.log(error);
+
 }
 
 })

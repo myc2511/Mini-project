@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import { login,reset } from "../features/auth/authSlice";
 import { useEffect } from "react";
+import { loginstaff,resetstaff } from "../features/staff/staffSlice";
 import Navbar from "../components/Navbar";
  import SignUp from "../components/SignUp";
 
@@ -30,24 +31,28 @@ if(loginAs == 'User'){
  }
  dispatch(login(userdata));
 }else{
-  const url = `http://localhost:5000/api/staff/Stafflogin`;
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email, password}),
-  });
-  const res = await response.json();
-  console.log(res);
-
-  if (res.success) {
-    localStorage.setItem("token", res.authtoken);
-    navigate("/Staff/Home");
-  } else {
-    alert("Wrong credentials");
+  const userdata={
+    email,password
   }
-}
+  dispatch(loginstaff(userdata));
+//   const url = `http://localhost:5000/api/staff/Stafflogin`;
+//   const response = await fetch(url, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ email, password}),
+//   });
+//   const res = await response.json();
+//   console.log(res);
+
+//   if (res.success) {
+//     localStorage.setItem("token", res.authtoken);
+//     navigate("/Staff/Home");
+//   } else {
+//     alert("Wrong credentials");
+//   }
+ }
   }
 
   
@@ -59,6 +64,8 @@ function closeSignup(){
 }
 const {user,isLoading,isError,isSuccess,message}= useSelector(
   (state)=> state.auth )
+  const {staff,Loading,Error,Success,msg}= useSelector(
+    (state)=> state.staff )
 
  useEffect(() =>{
     if(isError){
@@ -67,14 +74,26 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
     if(isSuccess){
       toast("Registered Successfully");
     }
-    if(user || isSuccess){
+    if(Error){
+      toast.error(msg);
+    }
+    if(Success){
+      toast("Registered Successfully");
+    }
+    if(user || isSuccess ){
   
       navigate("/Userprofile")
+    
     //  closeSignup();
     }
-   dispatch(reset());
+    if(staff||Success){
+      navigate("/Staff/Home")
 
-}, [user ,isError,isSuccess,message,navigate,dispatch])
+    }
+  //   dispatch(reset());
+  //  dispatch(resetstaff());
+
+}, [user ,isError,isSuccess,message,navigate,dispatch,Success,msg,Error,staff])
 
   return (
     < div className="flex flex-col min-h-screen">

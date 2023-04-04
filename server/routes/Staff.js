@@ -18,7 +18,7 @@ router.post(
   [
     body("email").isEmail(),
     body("name").isLength({ min: 5 }),
-    body("password").isLength({ min: 8 }),
+    // body("password").isLength({ min: 8 }),
     body("mobileNo").isLength({ min: 10 }),
   ],
    async (req, res) => {
@@ -35,7 +35,8 @@ router.post(
     }
 
     const salt = await bcrypt.genSalt(10);
-    const secPass = await bcrypt.hash(req.body.password,salt);
+    const password="12345678"
+    const secPass = await bcrypt.hash(password,salt);
 
     staff = await Staff.create({
         name: req.body.name,
@@ -44,15 +45,25 @@ router.post(
         email: req.body.email,
         mobileNo: req.body.mobileNo,
         avatar: req.body.avatar,
+        department:req.body.department
       })
-      const data = {
-        staff:{
-          id:staff.id
-        }
-      }
-      const authtoken = jwt.sign(data,JWT_SECRET);
-      success = true;
-      res.json({success,authtoken});
+      // const data = {
+      //   staff:{
+      //     id:staff.id
+      //   }
+      // }
+      // const authtoken = jwt.sign(data,JWT_SECRET);
+      // success = true;
+      res.json({
+        _id:staff.id,
+        name:staff.name,
+        // enrollmentNo:staff.enrollmentNo,
+        email:staff.email,
+        mobileNo:staff.mobileNo,
+        Role:staff.role,
+        Department:staff.department,
+       token:generateToken(staff.id)
+    })
 
     }catch(error){
         console.error(error.message);
@@ -94,10 +105,19 @@ router.post(
         id:staff.id
       }
     }
-    const authtoken = jwt.sign(data,JWT_SECRET);
+  //  const authtoken = jwt.sign(data,JWT_SECRET);
     success = true;
-    res.json({success,authtoken});
-      
+   // res.json({success,authtoken});
+    res.json({
+      _id:staff.id,
+      name:staff.name,
+      enrollmentNo:staff.enrollmentNo,
+      email:staff.email,
+      mobileNo:staff.mobileNo,
+      Role:staff.role,
+      Department:staff.department,
+     token:generateToken(staff.id)
+  })
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Interneral server error")
@@ -121,5 +141,10 @@ router.post(
   }
 
 );
-
+const generateToken=(id)=>{
+  console.log(id);
+  return jwt.sign({id},process.env.JWT_SECRET,{
+      expiresIn:'30d',
+  })
+}
 module.exports = router;

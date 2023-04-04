@@ -2,11 +2,13 @@ import React,{useState} from 'react'
 import Singlecmpln from '../components/Singlecmpln';
 import FacultyNav from '../components/FacultyNav';
 // import ViewComplaint from '../components/ViewComplaint';
+import { useSelector } from 'react-redux';
 
 function FacultyHome() {
   
     const [showing,setshowing]=useState(false);
     const [name,setname]=useState("Shafi");
+    const {staff}=useSelector((state)=>state.staff)
     return (
   <div className=' flex flex-col min-h-screen '>    
   <FacultyNav homeclr='dark:text-blue-400' newcpl="dark:text-gray-400" activecpl='dark:text-gray-400' closedcpl="dark:text-gray-400"/>
@@ -23,10 +25,11 @@ function FacultyHome() {
          
         <div className='flex flex-col ml-20 w-2/3 items-start p-5'>
           <div className=''>
-         <p className='p-2'>Name : Mohd Yasif Choudhary</p>
-         <p className='p-2'>Role : Hostel Warden</p>
-         <p className='p-2'>Email : yasifchoudhary702@gmail.com</p>
-         <p className='p-2'>Mobile No : 9572326138</p>
+         <p className='p-2'>Name : {staff.name}</p>
+         <p className='p-2'>Role : {staff.Role}</p>
+         <p className='p-2'>Department : {staff.Department}</p>
+         <p className='p-2'>Email : {staff.email}</p>
+         <p className='p-2'>Mobile No : {staff.mobileNo}</p>
          <button className="bg-custom-blue edt-btn mt-5 text-white text-sm  p-3 rounded-lg" onClick={() => setshowing(true)}>Edit Profile</button>
          </div>
         <div className='pt-5'>
