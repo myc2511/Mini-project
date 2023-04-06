@@ -65,60 +65,7 @@ function AdminCompTable() {
       
         
             
-            {/* <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <a  className='no-underline hover:underline inline-block  text-custom-blue' href="">STD12355656</a>
-                </th>
-                <td className="px-6 py-4">
-                <a href="/SingleComplaint" className='hover:underline text-custom-blue'>Title 2</a>
-                </td>
-                <td className="px-6 py-4">
-                    Hostel
-                </td>
-                <td className="px-6 py-4">
-                    Accepted
-                </td>
-                <td className="px-6 py-4">
-                    Mohammad Shafiuddin
-                </td>
-            </tr>
-            <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <a  className='no-underline hover:underline inline-block  text-custom-blue' href="">STD12355656</a>
-                </th>
-                <td className="px-6 py-4">
-                <a href="/SingleComplaint" className='hover:underline text-custom-blue'>Title 3</a>
-                </td>
-                <td className="px-6 py-4">
-                    Hostel
-                </td>
-                <td className="px-6 py-4">
-                    Accepted
-                </td>
-                <td className="px-6 py-4">
-                    Aman Gangwar
-                </td>
-            </tr>
-            <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <a  className='no-underline hover:underline inline-block  text-custom-blue' href="">STD12355656</a>
-                </th>
-                <td className="px-6 py-4">
-                <a href="/SingleComplaint" className='hover:underline text-custom-blue'>Title 4</a>
-                </td>
-                <td className="px-6 py-4">
-                    Hostel
-                </td>
-                <td className="px-6 py-4">
-                    Accepted
-                </td>
-                <td className="px-6 py-4">
-                    Mohd yasif 
-                </td>
-            </tr>
-           
-        
-           */}
+         
         </tbody>
     </table>
 </div>

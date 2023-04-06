@@ -51,8 +51,7 @@ function UserProfile() {
       <Singlecmpln title={p.title} ticketno={p._id} complain_type={p.complain_type} complain_regarding={p.complain_regarding}/>
    )):  <><div>No complain </div></>}
     
-    {/* <Singlecmpln/>
-    <Singlecmpln/> */}
+
     
      </div>
   </div>

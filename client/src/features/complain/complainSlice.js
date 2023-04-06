@@ -7,6 +7,8 @@ const initialState={
     allComplain:null,
     alluserComplain:null,
     SingleComplain:null,
+    allnewComplain:null,
+    allactiveComplain:null,
     isError:false,
     isSuccess:false,
     isLoading:false,
@@ -66,6 +68,30 @@ export const singleComplain=createAsyncThunk('complain/Single',async(id,thunkAPI
       return thunkAPI.rejectWithValue(message)
     }
 })
+export const getallnewComplain=createAsyncThunk('complain/newComplain',async(data,thunkAPI)=>{
+    try{
+      //  const token=thunkAPI.getState().auth.user.token
+       //  console.log(id.id);
+    
+      return await complainService.getallnewComplain(data);
+    }
+    catch(error){
+      const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+})
+export const getallactiveComplain=createAsyncThunk('complain/activeComplain',async(data,thunkAPI)=>{
+    try{
+      //  const token=thunkAPI.getState().auth.user.token
+       //  console.log(id.id);
+    
+      return await complainService.getallactiveComplain(data);
+    }
+    catch(error){
+      const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+})
 
 
       const complainSlice=createSlice({
@@ -96,6 +122,20 @@ export const singleComplain=createAsyncThunk('complain/Single',async(id,thunkAPI
             state.isError=true
             state.message=action.payload
             state.data=null
+        })
+        .addCase(getallnewComplain.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getallnewComplain.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
+            state.allnewComplain=action.payload
+        })
+        .addCase(getallnewComplain.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            state.allnewComplain=null
         })
         .addCase(getAllComplain.pending,(state)=>{
             state.isLoading=true
@@ -138,6 +178,20 @@ export const singleComplain=createAsyncThunk('complain/Single',async(id,thunkAPI
             state.isError=true
             state.message=action.payload
             state.alluserComplain=null
+        })
+        .addCase(getallactiveComplain.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getallactiveComplain.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
+            state.allactiveComplain=action.payload
+        })
+        .addCase(getallactiveComplain.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            state.allactiveComplain=null
         })
         .addCase(singleComplain.pending,(state)=>{
             state.isLoading=true

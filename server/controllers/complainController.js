@@ -5,9 +5,9 @@ const Staff = require('../models/Staff');
 
 
 const StaffHierarchy={
-  mess: ["Mess Committee", "Mess Manager", "Assistant Registrar","Deputy Registrar", "Director"],
-  hostel: ["Hostel Committee","Assistant Warden", "Deputy Registrar","Director"],
-  academics: ["Faculty", "Head of Department", "Dean","Director"],
+  Mess: ["Mess Committee", "Mess Manager", "Assistant Registrar","Deputy Registrar", "Director"],
+  Hostel: ["Hostel Committee","Assistant Warden", "Deputy Registrar","Director"],
+  Academics: ["Faculty", "Head of Department", "Dean","Director"],
 }
 const registerComplain=asyncHandler( async(req,res)=>{
    
@@ -29,7 +29,7 @@ const registerComplain=asyncHandler( async(req,res)=>{
       user_id:req.student.id,
       complain_type,
       complain_regarding,
-      assigned:{assignedto:null,role:null}
+      assigned:{assignedto:null,role:StaffHierarchy[complain_regarding][0]}
     
      })
      if(complain){
@@ -124,15 +124,43 @@ const getPublicComplain=asyncHandler(async(req,res)=>{
   }
  
 })
+//Get all open complaint
+const getnewComplaint=asyncHandler(async(req,res)=>{
+  
+  try {
+    let complains;
+      
+      complains = await Complain.find({"assigned.role":req.params.Role,"assigned.assignedto":null}).sort({ createdAt: 'desc'}).exec();;
+    
+    res.status(200).json(complains);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+ 
+})
+//Get all active complain
+const getactiveComplaint=asyncHandler(async(req,res)=>{
+  
+  try {
+    let complains;
+     // console.log(req.params.Role)
+      complains = await Complain.find({"assigned.role":req.params.Role,"status":'IN_PROGRESS'}).sort({ createdAt: 'desc'}).exec();;
+    
+    res.status(200).json(complains);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+ 
+})
 const assignComplaint =asyncHandler(async(req,res)=>{
  
   try {
-    const complaint = await Complain.findById(req.params._id);
-    const staff=await Staff.findById(req.body.assignedTo)
-
+  const complaint = await Complain.findById(req.params._id);
+     const staff=await Staff.findById(req.body.assignedTo)
+     //console.log(staff)
     complaint.assigned={
       assignedto :req.body.assignedTo,
-      role:staff.role
+    role:staff.role
     };
     complaint.status = 'IN_PROGRESS';
     console.log(complaint)
@@ -192,4 +220,4 @@ const assignComplaint =asyncHandler(async(req,res)=>{
     
 
   
-module.exports={registerComplain,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}
+module.exports={registerComplain,getactiveComplaint,getnewComplaint,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}

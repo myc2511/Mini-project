@@ -85,6 +85,18 @@ const getStudent=asyncHandler( async(req,res)=>{
     res.json({message:"User data display"})
 })
 
+const getStudentbyid=asyncHandler(async(req,res)=>{
+ 
+    try {
+      
+       const student = await Complain.findById(req.params._id);
+     
+       res.status(200).json(student);
+     } 
+     catch (err) {
+       res.status(500).json(err);
+     }
+ })
 
 //Generate Token
 const generateToken=(id)=>{
@@ -93,4 +105,4 @@ const generateToken=(id)=>{
         expiresIn:'30d',
     })
 }
-module.exports={registerStudent,getStudent,loginStudent}
+module.exports={registerStudent,getStudentbyid,getStudent,loginStudent}
