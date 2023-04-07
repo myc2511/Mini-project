@@ -12,9 +12,13 @@ const comment=new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref: 'COMPLAIN'
     },
-    user_id:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref: 'STUDENT'
+    name:{
+        type:String,
+        required:"true"
+    },
+    role:{
+        type:String,
+        required:"true"
     }
 },{
     timestamps: true

@@ -2,8 +2,8 @@ const asyncHandler=require('express-async-handler');
 const Comment=require('../models/comment');
 
 const addComment=asyncHandler( async(req,res)=>{
-   
-    const {desc,photo,complain_id}=req.body;
+    
+    const {desc,photo,complain_id,name,Role}=req.body;
    
      if(!desc){
         res.status(400);
@@ -16,14 +16,16 @@ const addComment=asyncHandler( async(req,res)=>{
      desc,
      photo:photo,
     complain_id,
-    user_id:req.student.id
+    name,
+    role:Role
        })
      if(comm){
         res.status(201).json({
             _id:comm.id,
             desc:comm.desc,
             complain_id:comm.complain_id,
-            user_id:req.student.id
+       name:comm.name,
+           Role:comm.role
   })
      }
      else{
@@ -36,8 +38,7 @@ const getallComment=asyncHandler(async(req,res)=>{
    try {
      
       const comments = await Comment.find({complain_id:req.params._id});
-    
-      res.status(200).json(comments);
+       res.status(200).json(comments);
     } 
     catch (err) {
       res.status(500).json(err);

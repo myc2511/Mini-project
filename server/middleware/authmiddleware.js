@@ -1,6 +1,7 @@
 const jwt=require('jsonwebtoken');
 const asyncHandler=require('express-async-handler')
 const Student=require('../models/studentSchema');
+const Staff = require('../models/Staff');
 
 const protect=asyncHandler(async(req,res,next)=>{
   let token
@@ -14,6 +15,8 @@ const protect=asyncHandler(async(req,res,next)=>{
 
         //Get user from  the token
         req.student= await Student.findById(decoded.id).select('-password')
+       
+       
         console.log(req.student);
         next();
     }catch(error){

@@ -3,7 +3,7 @@ const router=express.Router();
 const {protect}=require("../middleware/authmiddleware")
 const {registerComplain,assignComplaint,getactiveComplaint, getComplain,deleteComplain,getAllComplain,getPublicComplain,getEveryComplain, escalateComplaint, closeComplaint, getnewComplaint} =require('../controllers/complainController');
 
-router.get('/compl/:_id',protect,getComplain);
+router.get('/compl/:_id',getComplain);
 router.delete('/delete/:_id',deleteComplain);
 router.put('/assignComplain/:_id',assignComplaint)
 router.post('/register',protect,registerComplain);
