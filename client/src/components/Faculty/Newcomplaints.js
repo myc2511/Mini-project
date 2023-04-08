@@ -29,7 +29,6 @@ function Newcomplaints(props) {
   }
   return (
     <>
-    
       <div className="p-2 w-2/3 mx-auto box-shadow m-5 rounded-2xl  cmpln pb-4">
       <Link to={`/Complaint/${props.k._id}`} >
     <a href="" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue   " >{props.k.title}</a>

@@ -10,9 +10,9 @@ function FacultyHome() {
     const [name,setname]=useState("Shafi");
     const {staff}=useSelector((state)=>state.staff)
     return (
-  <div className=' flex flex-col min-h-screen '>    
+  <div className='flex flex-col min-h-screen'>    
   <FacultyNav homeclr='dark:text-blue-400' newcpl="dark:text-gray-400" activecpl='dark:text-gray-400' closedcpl="dark:text-gray-400"/>
-  {/* <ViewComplaint/> */}
+ 
 
       <div className='mt-40'>   
   

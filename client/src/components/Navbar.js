@@ -15,8 +15,8 @@ function Navbar() {
     const onLogout=()=>{
          dispatch(logout());
          dispatch(reset());
-         navigate(-1, { replace: true });
          navigate("/");
+         navigate("/", { replace: true });
  
     }
   return (
