@@ -11,9 +11,9 @@ function ViewComplaint() {
 
 
   return (
-    <>
+    < >
     <Navbar/>
-    <div className="mt-28">
+    <div className="mt-28 flex flex-col min-h-screen">
 
       <div className="text-center">
         <button
@@ -42,8 +42,6 @@ function ViewComplaint() {
         {!showComnt?<ComplaintDesc/>: <Chat/>}
           </div>
 
-
-      
     </div>
     </>
   );

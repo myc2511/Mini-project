@@ -23,13 +23,14 @@ dispatch(fetchPublic());
 }, [isError,dispatch])
   
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
     <Navbar/>
     <div className='mt-40 mb-28'>
-    {publicComplain?publicComplain.map((p)=>(
+
+    {publicComplain.lenght?publicComplain.map((p)=>(
       <SingleBlogCmpln  title={p.title} desc={p.desc} cmpln={p.complain_regarding} ticketno={p._id} key={p}/>
     
-   )):  <><div>No complain </div></>}
+   )):<div className=' flex justify-center mt-80 text-2xl text-slate-400 text-center'> No Complaints Registered </div>}
   
 
     </div>

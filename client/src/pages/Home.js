@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,  useRef  } from "react";
 import {useSelector,useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
@@ -10,8 +10,10 @@ import Navbar from "../components/Navbar";
 
 
 function Home() {
+  const myCheckboxRef = useRef();
   const [email, setemail] = useState("");
   const [password, setPassword] = useState();
+  // const [checkbox, setCheckbox] = useState(false);
   const [loginAs, setLoginAs] = useState("");
 const [showSignup,setshowSignup]=useState(false);
 
@@ -23,7 +25,9 @@ const dispatch=useDispatch();
 const handlelogin=async (e)=>{
  e.preventDefault();
  if(loginAs === '')
- alert("choose login option ");
+ toast.error("choose login option ");
+
+ if(myCheckboxRef.current.checked){
 if(loginAs == 'User'){
  const userdata={
   email,
@@ -35,24 +39,10 @@ if(loginAs == 'User'){
     email,password
   }
   dispatch(loginstaff(userdata));
-//   const url = `http://localhost:5000/api/staff/Stafflogin`;
-//   const response = await fetch(url, {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ email, password}),
-//   });
-//   const res = await response.json();
-//   console.log(res);
-
-//   if (res.success) {
-//     localStorage.setItem("token", res.authtoken);
-//     navigate("/Staff/Home");
-//   } else {
-//     alert("Wrong credentials");
-//   }
  }
+}else{
+  toast("Accept terms and conditions");
+}
   }
 
   
@@ -68,18 +58,18 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
     (state)=> state.staff )
 
  useEffect(() =>{
-    if(isError){
-      toast.error(message);
-    }
-    if(isSuccess){
-      toast("Registered Successfully");
-    }
-    if(Error){
-      toast.error(msg);
-    }
-    if(Success){
-      toast("Registered Successfully");
-    }
+    // if(isError){
+    //   toast.error(message);
+    // }
+    // if(isSuccess){
+    //   toast("Registered Successfully");
+    // }
+    // if(Error){
+    //   toast.error(msg);
+    // }
+    // if(Success){
+    //   toast("Registered Successfully");
+    // }
     if(user || isSuccess ){
   
       navigate("/Userprofile")
@@ -112,7 +102,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
       
         <div className=" box-shadow rounded-lg items-center p-10">
               {/* <h1 className="text-5xl  text-custom-blue mb-8 text-center">Log In</h1> */}
-        <div className=" pb-2">
+        <div className=" py-5 ">
           <label htmlFor="select">
            
             <select className="w-full rounded-lg p-3 border-gray-500 border-2 " onChange={(e) => setLoginAs(e.target.value)} value={loginAs} name="cars" id="cars">
@@ -151,7 +141,9 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
         <div class="flex items-start mt-6 mb-4">
         <div class="flex items-center h-5">
-        <input id="remember" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-custom-blue dark:border-gray-600 dark:focus:ring-custom-blue dark:ring-offset-gray-800" required/>
+        <input id="remember"  
+       ref={myCheckboxRef}
+        type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-custom-blue dark:border-gray-600 dark:focus:ring-custom-blue dark:ring-offset-gray-800" required/>
         </div>
         <label for="remember" class="ml-2 text-m font-medium text-custom-blue dark:text-gray-500">I agree with the <a href="#" class="text-custom-blue hover:underline dark:text-custom-blue">terms and conditions</a>.</label>
     </div>

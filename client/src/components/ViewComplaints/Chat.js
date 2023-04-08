@@ -30,6 +30,7 @@ function Chat() {
       }
    
   return (
+    <div className="flex flex-col min-h-screen">
     <div className='container mx-auto bg-gray-200 mt-5 w-1/2'>
       <div className='p-5'>
       {comments?comments.map((c)=>(
@@ -40,10 +41,7 @@ function Chat() {
         <p className='text-right text-sm pt-2'> <span>Monday 27-02-23</span> 12:06:56</p>
         </div>
    )):  <><div>No complain </div></>}
-     
-
-       
-        
+   
        
       </div>
 
@@ -70,6 +68,7 @@ function Chat() {
    </div>
 </form>
 
+    </div>
     </div>
   )
 }

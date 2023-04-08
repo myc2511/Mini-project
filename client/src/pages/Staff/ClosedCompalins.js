@@ -5,7 +5,7 @@ import FacultyNav from '../../components/FacultyNav'
 
 function ClosedCompalins() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <FacultyNav homeclr='dark:text-gray-400' newcpl="dark:text-gray-400" activecpl='dark:text-gray-400' closedcpl="dark:text-blue-400"/>
       <div className=' container mx-auto my-40'>
             <Closedcmpt/>

@@ -19,18 +19,16 @@ function Activecomplains() {
     }, [])
     const { allactiveComplain,isError,isLoading,message}=useSelector((state)=>state.complain)
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <FacultyNav homeclr='dark:text-gray-400' newcpl="dark:text-gray-400" activecpl='dark:text-blue-400' closedcpl="dark:text-gray-400"/>
-      <div className=' container mx-auto my-40'>
-      {allactiveComplain?allactiveComplain.map((k)=>(  <Activecmpt k={k}/>)):(<></>)}
-           {/* />
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/> */}
+      <div className=' container mx-auto my-40 '>
+      {allactiveComplain?allactiveComplain.map((k)=>(  <Activecmpt k={k}/>)):(<div className=' flex justify-center mt-80 text-2xl text-slate-400 text-center'> No Active Complaints Registered </div>)}
+
+        </div>
+        
+
+        <div>
+         
         </div>
       
     </div>
