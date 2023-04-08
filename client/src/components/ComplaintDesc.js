@@ -8,8 +8,7 @@ function ComplaintDesc() {
 
  const id=useParams();
 
- //   // const {SingleComplain,isError,isSuccess,message}= useSelector(
- //   //   (state)=> state.complain )
+
    const dispatch=useDispatch();
   
   useEffect(()=>{
@@ -17,8 +16,22 @@ function ComplaintDesc() {
   dispatch(singleComplain(id))
  },[id,dispatch]);
  const {SingleComplain}=useSelector((state)=>state.complain)
+ const {user}=useSelector((state)=>state.auth)
  if (!SingleComplain) {
   return <p>Loading...</p>
+}
+const escalteCmpln= async()=>{
+  const url = `http://localhost:5000/api/complain//escalateComplain/${SingleComplain._id}`;
+ // console.log(username);
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ department:SingleComplain.complain_regarding}),
+  });
+  const res = await response.json();
+  //console.log(res)
 }
   return (
     <div>
@@ -93,7 +106,7 @@ function ComplaintDesc() {
       <div className="w-1/2 mx-auto">
 
         <div>
-      
+         {!user?(<button onClick={escalteCmpln} className="bg-custom-blue  mr-5 edt-btn mt-32 mb-10 text-white text-sm  p-4 rounded-lg"> Escalate Complain</button>):<></>}
         <h1 className="text-4xl text-center m-10 p-3 text-custom-blue">  {SingleComplain.title}</h1>
         <p>Submitted By : Mohammad Shafiuddin</p>
         <p>Email : example@gmail.com</p>

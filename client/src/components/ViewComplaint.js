@@ -3,16 +3,19 @@ import ComplaintDesc from './ComplaintDesc';
 import Chat from './ViewComplaints/Chat';
 import { useState } from "react";
 import Navbar from "./Navbar";
+import { useSelector } from "react-redux";
+import FacultyNav from "./FacultyNav";
 
 
 function ViewComplaint() {
   const [showComnt,setshowCmnt]=useState(false);
    
-
+const user=useSelector((state)=>state.user);
+const staff=useSelector((state)=>state.staff)
 
   return (
     <>
-    <Navbar/>
+      {user? (<Navbar/>):(<FacultyNav/>)}
     <div className="mt-28">
 
       <div className="text-center">

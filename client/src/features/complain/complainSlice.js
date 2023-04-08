@@ -59,9 +59,9 @@ export const getAllComplain=createAsyncThunk('complain/All',async(data,thunkAPI)
 })
 export const singleComplain=createAsyncThunk('complain/Single',async(id,thunkAPI)=>{
     try{
-        const token=thunkAPI.getState().auth.user.token
+      //  const token=thunkAPI.getState().auth.user.token
        //  console.log(id.id);
-      return await complainService.getsingleComplain(id.id,token);
+      return await complainService.getsingleComplain(id.id);
     }
     catch(error){
       const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()

@@ -3,24 +3,25 @@ const API_URL='/api/complain/comments'
 
 
 //Post Comment
-const send=async(data,token)=>{
-    const config={
-        headers:{
-            Authorization:`Bearer ${token}`
-        }
-    }
-    const response=await axios.post(API_URL+'/send',data,config)
+const send=async(data)=>{
+    // const config={
+    //     headers:{
+    //         Authorization:`Bearer ${token}`
+    //     }
+    // }
+   // console.log(data);
+    const response=await axios.post(API_URL+'/send',data)
   
     return response.data;
 }
 
-const getComment=async(id,token)=>{
-    const config={
-        headers:{
-            Authorization:`Bearer ${token}`
-        }
-    }
-    const response=await axios.get(API_URL+`/${id}`,config)
+const getComment=async(id)=>{
+    // const config={
+    //     headers:{
+    //         Authorization:`Bearer ${token}`
+    //     }
+    // }
+    const response=await axios.get(API_URL+`/${id}`)
   
     return response.data;
 }

@@ -143,9 +143,9 @@ const getactiveComplaint=asyncHandler(async(req,res)=>{
   
   try {
     let complains;
-     // console.log(req.params.Role)
-      complains = await Complain.find({"assigned.role":req.params.Role,"status":'IN_PROGRESS'}).sort({ createdAt: 'desc'}).exec();;
-    
+      console.log(req.params.Role)
+      complains = await Complain.find({$and: [{"assigned.role":req.params.Role,"assigned.assignedto": { $ne: null },"status":'IN_PROGRESS'}]}).sort({ createdAt: 'desc'}).exec();;
+   // console.log(complains)
     res.status(200).json(complains);
   } catch (err) {
     res.status(500).json(err);

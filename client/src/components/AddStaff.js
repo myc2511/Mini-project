@@ -39,11 +39,7 @@ function AddStaff({closeaddstaff}) {
               />
             </label>
           </div>
-         
-
-       
-     
-        <div className=" pb-2">
+          <div className=" pb-2">
         <p className="para">Deparment</p>
           <label htmlFor="select">
            

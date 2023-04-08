@@ -46,9 +46,6 @@ function AdminNav() {
     </ul>
 
   </div>}
-  
- 
- 
   </div>
 </nav>
 {/* <div className='flex justify-between p-8 clr'>

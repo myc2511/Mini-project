@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch,useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 function Newcomplaints(props) {
    const dispatch=useDispatch();
    const staff=useSelector((state)=>state.staff)
@@ -30,7 +31,9 @@ function Newcomplaints(props) {
     <>
     
       <div className="p-2 w-2/3 mx-auto box-shadow m-5 rounded-2xl  cmpln pb-4">
-    <a href="/Staff/SingleCompalins" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue   " >{props.k.title}</a>
+      <Link to={`/Complaint/${props.k._id}`} >
+    <a href="" className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue   " >{props.k.title}</a>
+    </Link>
     <span className="  rounded-full pl-2 pr-2 mt-2 mr-3 text-lg  float-right border-2 border-custom-grey">{props.k.complain_type}</span>
    <div className=' flex justify-between'>
         <div>

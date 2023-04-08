@@ -23,14 +23,7 @@ function Activecomplains() {
       <FacultyNav homeclr='dark:text-gray-400' newcpl="dark:text-gray-400" activecpl='dark:text-blue-400' closedcpl="dark:text-gray-400"/>
       <div className=' container mx-auto my-40'>
       {allactiveComplain?allactiveComplain.map((k)=>(  <Activecmpt k={k}/>)):(<></>)}
-           {/* />
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/>
-            <Activecmpt/> */}
+          
         </div>
       
     </div>

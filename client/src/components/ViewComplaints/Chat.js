@@ -4,40 +4,61 @@ import { useParams } from 'react-router-dom';
 import { send,getallComment } from '../../features/comment/commentSlice';
 function Chat() {
     const {SingleComplain}=useSelector((state)=>state.complain)
-    
+    const {staff}=useSelector((state)=>state.staff)
+    const {user}=useSelector((state)=>state.auth)
     const [desc,setdesc]=useState("");
+    const [shouldReload, setShouldReload] = useState(false);
     const complain_id=SingleComplain._id
+
+    let name,Role;
+    if(staff!==null){
+        name=staff.name;
+        Role=staff.Role
+    }
+    else{
+        name=user.name;
+        Role=null
+    }
     const data={
         desc,
         complain_id,
+        name,Role
     }
+    // console.log(data )
+  
     const dispatch=useDispatch();
    const id=useParams();
  //  console.log(id)
    useEffect(() => {
         dispatch(getallComment(id.id))
-   }, [id])
+      //  window.location.reload()
+   },[shouldReload])
    
  
-    const handleClick=(e)=>{
+    const handleClick=async(e)=>{
        
         e.preventDefault();
          dispatch(send(data))
+         setShouldReload(true)
+       
     }
     const {comments}=useSelector((state)=>state.comments)
     if (!comments) {
         return <p>Loading...</p>
       }
+      
+     
    
   return (
     <div className='container mx-auto bg-gray-200 mt-5 w-1/2'>
       <div className='p-5'>
       {comments?comments.map((c)=>(
+        
         <div className='bg-gray-300 rounded-lg p-5 m-5'>
-        <p className='text-blue-700'>Mohd Yasif Choudhary</p>
+        <p className='text-blue-700'>{c.name} ({c.role})</p>
     <hr class="h-px mb-2 bg-gray-200 border-0 dark:bg-gray-700"/>
         <p>{c.desc}</p> 
-        <p className='text-right text-sm pt-2'> <span>Monday 27-02-23</span> 12:06:56</p>
+        <p className='text-right text-sm pt-2'> <span>Monday</span> 12:06:56</p>
         </div>
    )):  <><div>No complain </div></>}
      

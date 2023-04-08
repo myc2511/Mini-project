@@ -12,8 +12,12 @@ const initialState={
 export const send=createAsyncThunk('comment/send',async(data,thunkAPI)=>{
 
     try{
-        const token=thunkAPI.getState().auth.user.token
-        return await commentService.send(data,token)
+    //     const token=thunkAPI.getState().auth.user.token
+     
+    //    const token1=thunkAPI.getState().staff.staff.token;
+    //    console.log(token1)
+    console.log(data)
+        return await commentService.send(data)
     }
     catch(error){
         const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
@@ -25,8 +29,8 @@ export const send=createAsyncThunk('comment/send',async(data,thunkAPI)=>{
         export const getallComment=createAsyncThunk('comment/get',async(id,thunkAPI)=>{
 
             try{
-                const token=thunkAPI.getState().auth.user.token
-                return await commentService.getComment(id,token)
+               // const token=thunkAPI.getState().auth.user.token
+                return await commentService.getComment(id)
             }
             catch(error){
                 const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
