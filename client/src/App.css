@@ -20,6 +20,12 @@ li{
   width: 70%;
 
 }
+
+.chat{
+  height: 74.4vh;
+}
+
+
 /* Signup */
 .modal, .overlay {
   width: 100vw;

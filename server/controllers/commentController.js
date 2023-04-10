@@ -25,7 +25,8 @@ const addComment=asyncHandler( async(req,res)=>{
             desc:comm.desc,
             complain_id:comm.complain_id,
        name:comm.name,
-           Role:comm.role
+           Role:comm.role,
+           timestamp:comm.createdAt
   })
      }
      else{

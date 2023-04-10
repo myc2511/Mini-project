@@ -77,6 +77,8 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
     //  setcomplainType(options1[0]);
     //  setcomplainRegard(options2[0]);
    // alert("Your Complain submitted Successfully");
+   toast("Complaint Registered Successfully");
+   navigate("/Userprofile");
   }
   return (
     <div className="">

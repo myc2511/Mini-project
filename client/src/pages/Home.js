@@ -71,19 +71,35 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
     //   toast("Registered Successfully");
     // }
     if(user || isSuccess ){
-  
-      navigate("/Userprofile")
-    
-    //  closeSignup();
-    }
-    if(staff||Success){
-      navigate("/Staff/Home")
+                        
+     navigate("/Userprofile")
+                          
+      // closeSignup();
+      }
 
-    }
+      if(staff||Success){
+        navigate("/Staff/Home")
+      }
+      
+      if(!user && !staff){
+        // console.log(staff);
+        navigate('/');
+      }
+
+    
+    
+
+   
   //   dispatch(reset());
   //  dispatch(resetstaff());
 
 }, [user ,isError,isSuccess,message,navigate,dispatch,Success,msg,Error,staff])
+
+useEffect(()=>{
+  if(!staff){
+  navigate('/');
+  }
+ },[staff])
 
   return (
     < div className="flex flex-col min-h-screen">
@@ -139,13 +155,13 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
           </label>
         </div>
 
-        <div class="flex items-start mt-6 mb-4">
-        <div class="flex items-center h-5">
+        <div className="flex items-start mt-6 mb-4">
+        <div className="flex items-center h-5">
         <input id="remember"  
        ref={myCheckboxRef}
-        type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-custom-blue dark:border-gray-600 dark:focus:ring-custom-blue dark:ring-offset-gray-800" required/>
+        type="checkbox" value="" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-custom-blue dark:border-gray-600 dark:focus:ring-custom-blue dark:ring-offset-gray-800" required/>
         </div>
-        <label for="remember" class="ml-2 text-m font-medium text-custom-blue dark:text-gray-500">I agree with the <a href="#" class="text-custom-blue hover:underline dark:text-custom-blue">terms and conditions</a>.</label>
+        <label htmlFor="remember" className="ml-2 text-m font-medium text-custom-blue dark:text-gray-500">I agree with the <a href="#" className="text-custom-blue hover:underline dark:text-custom-blue">terms and conditions</a>.</label>
     </div>
            <button onClick={handlelogin} className="text-white mt-4 mb-3 w-full p-3 ml-1 bg-custom-blue rounded-lg">Log In</button>
         

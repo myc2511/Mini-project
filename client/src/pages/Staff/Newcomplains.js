@@ -23,7 +23,7 @@ function Newcomplains() {
         <div className=' container mx-auto my-40'>
         {allnewComplain?allnewComplain.map((k)=>( <Newcomplaints k={k}/>)):(<div className=' flex justify-center mt-80 text-2xl text-slate-400 text-center'> No New Complaints Registered </div>)}
           
-        <div className=' flex justify-center mt-80 text-2xl text-slate-400 text-center'> No New Complaints Registered </div>
+        
        
         </div>
       
