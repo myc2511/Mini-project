@@ -14,15 +14,12 @@ const user=useSelector((state)=>state.user);
 const staff=useSelector((state)=>state.staff)
 
   return (
-<<<<<<< HEAD
+
     <>
-      {user? (<Navbar/>):(<FacultyNav/>)}
-    <div className="mt-28">
-=======
-    < >
-    <Navbar/>
+      {!user? (<Navbar/>):(<FacultyNav/>)}
+  
     <div className="mt-28 flex flex-col min-h-screen">
->>>>>>> 686d10a07e05aa29d46032860a2cf7116e813a1b
+
 
       <div className="text-center">
         <button

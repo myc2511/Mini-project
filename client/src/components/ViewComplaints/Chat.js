@@ -17,7 +17,7 @@ function Chat() {
     }
     else{
         name=user.name;
-        Role=null
+        Role="User"
     }
     const data={
         desc,
@@ -47,7 +47,15 @@ function Chat() {
         return <p>Loading...</p>
       }
       
-     
+     const getname=(n,role)=>{
+             if(name===n){
+                return "You"
+             }
+             if(role==="User"){
+                return n;
+             }
+             return n+" ("+role+")";
+     }
    
   return (
     <div className="flex flex-col min-h-screen">
@@ -56,7 +64,8 @@ function Chat() {
       {comments?comments.map((c)=>(
         
         <div className='bg-gray-300 rounded-lg p-5 m-5'>
-        <p className='text-blue-700'>{c.name} ({c.role})</p>
+
+        <p className='text-blue-700'>{getname(c.name,c.role)}</p>
     <hr class="h-px mb-2 bg-gray-200 border-0 dark:bg-gray-700"/>
         <p>{c.desc}</p> 
         <p className='text-right text-sm pt-2'> <span>Monday</span> 12:06:56</p>

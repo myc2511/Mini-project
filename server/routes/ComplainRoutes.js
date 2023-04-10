@@ -8,7 +8,7 @@ router.delete('/delete/:_id',deleteComplain);
 router.put('/assignComplain/:_id',assignComplaint)
 router.post('/register',protect,registerComplain);
 router.put('/escalateComplain/:_id',escalateComplaint);
-router.put('/closeComplain/:_id',protect,closeComplaint);
+router.put('/closeComplain/:_id',closeComplaint);
 router.get('/newComplain/:Role',getnewComplaint);
 router.get('/activeComplain/:Role',getactiveComplaint);
 router.get('/',protect,getAllComplain);

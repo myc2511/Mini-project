@@ -53,9 +53,9 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
       // }
       // if( isSuccess){
     
-      //   navigate("/Userprofile")
+      
       // //  closeSignup();
-      // }
+      //  }
      dispatch(reset());
   
   }, [data ,isError,isSuccess,message,navigate,dispatch])
@@ -70,13 +70,9 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
       complain_type
      }
      dispatch(register(data));
-    //   dispatch(reset());
-    //  settitle("");
-    //  setDesc("");
-    //  setImages("");
-    //  setcomplainType(options1[0]);
-    //  setcomplainRegard(options2[0]);
-   // alert("Your Complain submitted Successfully");
+     toast(" Your Complain is registered Successfully");
+     navigate("/Userprofile")
+
   }
   return (
     <div className="">

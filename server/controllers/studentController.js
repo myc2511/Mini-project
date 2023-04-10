@@ -88,9 +88,9 @@ const getStudent=asyncHandler( async(req,res)=>{
 const getStudentbyid=asyncHandler(async(req,res)=>{
  
     try {
-      
-       const student = await Complain.findById(req.params._id);
-     
+   
+       const student = await Student.findById(req.params._id);
+    
        res.status(200).json(student);
      } 
      catch (err) {
@@ -100,7 +100,7 @@ const getStudentbyid=asyncHandler(async(req,res)=>{
 
 //Generate Token
 const generateToken=(id)=>{
-    console.log(id);
+ 
     return jwt.sign({id},process.env.JWT_SECRET,{
         expiresIn:'30d',
     })
