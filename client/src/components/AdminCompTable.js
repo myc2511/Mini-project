@@ -19,8 +19,8 @@ function AdminCompTable() {
 
 <div className=" container flex mx-auto content-center justify-center  mt-60">
 {/* <p className='text-center text-3xl'>All Complains</p> */}
-    <table class="w-full  mx-auto text-m text-left text-gray-500  dark:text-gray-400">
-        <thead class="text-l text-white uppercase  dark:bg-gray-700 dark:text-gray-400 mt-60">
+    <table className="w-full  mx-auto text-m text-left text-gray-500  dark:text-gray-400">
+        <thead className="text-l text-white uppercase  dark:bg-gray-700 dark:text-gray-400 mt-60">
             <tr>
                 <th scope="col" className="px-6 py-3">
                 TicketNo
@@ -42,7 +42,7 @@ function AdminCompTable() {
         </thead>
         <tbody>
         {allComplain?allComplain.map((k)=>(
-            <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+            <tr className="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <Link to={`/Complaint/${k._id}`} >
                 <a  className='no-underline hover:underline inline-block  text-custom-blue' href="">{k._id}</a>

@@ -10,7 +10,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 dotenv.config({path:'./config.env'});
-//Storage
+
+
+app.use('/uploads',express.static('uploads'))
 
 
 //Database Connection

@@ -11,14 +11,22 @@ const StaffHierarchy={
 }
 const registerComplain=asyncHandler( async(req,res)=>{
    
-    const {title,desc,photo,status,complain_type,user_id,complain_regarding}=req.body;
-   
+    const {title,desc,complain_type,complain_regarding}=req.body;
+   // console.log(req)
      if(!title||!desc||!complain_type||!complain_regarding){
         res.status(400);
         throw new Error('Please add all data')
      }
-    
-
+    let photo;
+   console.log(req.files)
+    if(req.files){
+      let path=''
+      req.files.forEach(function(files,index,arr){
+        path=path+files.path+','
+      })
+      path=path.substring(0,path.lastIndexOf(","))
+      photo=path
+    }
     //Create Complain
      const complain= await Complain.create({
      title,
@@ -170,6 +178,29 @@ const getactiveComplaint=asyncHandler(async(req,res)=>{
   }
  
 })
+//get all closed complain
+const getclosedComplaint=asyncHandler(async(req,res)=>{
+  
+  try {
+    let result = [];
+ 
+    let complains
+     complains= await Complain.find();
+      complains.map((cpl)=>{
+       const lastindex = cpl.assigned.length -1;
+      
+       if(cpl.assigned[lastindex].role === req.params.Role && cpl.assigned[lastindex].assignedto !== null && 
+        cpl.status==='Closed' ){
+         result.push(cpl);
+       }
+     });
+ 
+       res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+ 
+})
 const assignComplaint =asyncHandler(async(req,res)=>{
  
   try {
@@ -229,7 +260,7 @@ const assignComplaint =asyncHandler(async(req,res)=>{
           const complaint = await Complain.findById(req.params._id);
              complaint.status="Closed"
            await complaint.save()
-      .then(function(err) {
+         .then(function(err) {
         if (!err) {
           res.send("Successfully Added to the DataBase.");
         } else {
@@ -244,4 +275,4 @@ const assignComplaint =asyncHandler(async(req,res)=>{
     
 
   
-module.exports={registerComplain,getactiveComplaint,getnewComplaint,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}
+module.exports={registerComplain,getclosedComplaint,getactiveComplaint,getnewComplaint,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}

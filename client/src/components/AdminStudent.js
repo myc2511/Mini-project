@@ -18,7 +18,7 @@ function AdminStudent() {
         </tr>
       </thead>
       <tbody className=' break-word text-center'>
-        <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+        <tr className="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
           <td className='pt-4 pb-4 p-4 text-md '> Mohammad Shafiuddin
           </td>
           <td className='pt-4 pb-4 p-4 text-md '>LCS2020053</td>
@@ -30,7 +30,7 @@ function AdminStudent() {
      
       </tbody>
       <tbody className=' break-word text-center'>
-        <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+        <tr className="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
           <td className='pt-4 pb-4 p-4 text-md '> Aman Gangwar
           </td>
           <td className='pt-4 pb-4 p-4 text-md '>LCS2020049</td>
@@ -42,7 +42,7 @@ function AdminStudent() {
      
       </tbody>
       <tbody className=' break-word text-center'>
-        <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+        <tr className="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
           <td className='pt-4 pb-4 p-4 text-md '>Mohd Yasif Choudhary
           </td>
           <td className='pt-4 pb-4 p-4 text-md '>LCS2020073</td>

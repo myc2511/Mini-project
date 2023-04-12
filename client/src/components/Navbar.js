@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useSelector,useDispatch} from 'react-redux'
 import {Link,useNavigate } from 'react-router-dom';
-import logo from './img/CC-1.png'
+import logo from './img/FinalLogo.png'
 import { logout,reset } from '../features/auth/authSlice';
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+
 function Navbar() {
 
 
@@ -13,22 +14,17 @@ function Navbar() {
   const {user}=useSelector((state)=>state.auth)
 
     const onLogout=()=>{
-      try {
-        dispatch(logout());
-        dispatch(reset());
-        navigate("/", { replace: true });
-      } catch (error) {
-        console.log(error);
-      }
-        
- 
+      dispatch(logout());
+      dispatch(reset());
+      navigate('/',{replace:true});
     }
+  
   return (
     <>
-   <nav className="bg-white px-2 sm:px-4  py-4  dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-  <div className=" flex flex-wrap items-center justify-between mx-auto">
+   <nav className="bg-white px-2 sm:px-4  py-4 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+  <div className=" flex flex-wrap items-center mx-20 justify-between ">
   <a href="/" className="flex items-center">
-  <img src={logo} className="w-20" alt="faculty/HomeFlowbite Logo"/>
+  <img src={logo} className="w-20 mr-4" alt="faculty/HomeFlowbite Logo"/>
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CollegeComplaint</span>
       
   </a>

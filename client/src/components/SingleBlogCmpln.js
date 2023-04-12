@@ -12,22 +12,22 @@ return(
     <div className="container mx-auto w-4/6 ">
  <div className="p-2  m-5 rounded-2xl box-shadow cmpln flex">
         <div className="m-5 my-auto w-1/6  flex flex-col items-center"> 
-        <button type="button" class="hover:bg-gray-300 rounded-full ">
+        <button type="button" className="hover:bg-gray-300 rounded-full ">
             <ArrowDropUpIcon sx={{
      
       fontSize:"50px"
          
   }}/>
-  <span class="sr-only">Icon description</span>
+  <span className="sr-only">Icon description</span>
 </button>
 <p className="">12</p>
-<button type="button" class="hover:bg-gray-300 rounded-full ">
+<button type="button" className="hover:bg-gray-300 rounded-full ">
             <ArrowDropDownIcon sx={{
      
       fontSize:"50px"
          
   }}/>
-  <span class="sr-only">Icon description</span>
+  <span className="sr-only">Icon description</span>
 </button>
         </div>
 
@@ -48,14 +48,14 @@ return(
          */}
         {/* <img src={img} alt="" /> */}
         {/* </div> */}
-        <ol class="flex justify-center items-center w-full mb-4 sm:mb-5 ">
-          <li class="flex w-full items-center text-gray-600 dark:text-gray-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700">
+        <ol className="flex justify-center items-center w-full mb-4 sm:mb-5 ">
+          <li className="flex w-full items-center text-gray-600 dark:text-gray-500 after:content-[''] after:w-full after:h-1 after:border-b after:border-blue-100 after:border-4 after:inline-block dark:after:border-blue-700">
             <div className="flex flex-col items-center mt-5">
-              <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-700 shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-700 shrink-0">
                 <svg
                   aria-hidden="true"
-                  class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
-                  className="w-6 h-6"
+                  className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
+                  
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -70,12 +70,12 @@ return(
               <span className="text-gray-700">Accepted</span>
             </div>
           </li>
-          <li class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
+          <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block dark:after:border-gray-700">
             <div className="flex flex-col items-center mt-5">
-              <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-700 shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-blue-700 shrink-0">
                 <svg
                   aria-hidden="true"
-                  class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
+                  className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -91,12 +91,12 @@ return(
               <span className="text-gray-700">Pending</span>
             </div>
           </li>
-          <li class="flex items-center">
+          <li className="flex items-center">
             <div className="flex flex-col items-center mt-5">
-              <div class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+              <div className="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
                 <svg
                   aria-hidden="true"
-                  class="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
+                  className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"

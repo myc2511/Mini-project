@@ -70,7 +70,7 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
       complain_type
      }
      dispatch(register(data));
-     toast(" Your Complain is registered Successfully");
+     toast("Complaint Registered Successfully");
      navigate("/Userprofile")
 
   }

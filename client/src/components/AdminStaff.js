@@ -20,8 +20,8 @@ function AdminStaff() {
 </div>
 
 <div className='rounded-lg'>
-    <table class="w-full  mx-auto text-m text-left text-gray-500  dark:text-gray-400">
-        <thead class="text-l text-white uppercase  dark:bg-gray-700 dark:text-gray-400 mt-60">
+    <table className="w-full  mx-auto text-m text-left text-gray-500  dark:text-gray-400">
+        <thead className="text-l text-white uppercase  dark:bg-gray-700 dark:text-gray-400 mt-60">
             <tr>
                 <th scope="col" className="px-6 py-3">
                 Name
@@ -41,7 +41,7 @@ function AdminStaff() {
                    </tr>
         </thead>
         <tbody>
-            <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+            <tr className="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <a  className='no-underline text-2xl hover:underline inline-block  text-custom-blue' href="">Mohammad</a>
                 </th>
@@ -58,7 +58,7 @@ function AdminStaff() {
                 <button className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'>Delete</button>
                 </td>
             </tr>
-            <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+            <tr className="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <a  className='no-underline text-2xl hover:underline inline-block  text-custom-blue' href="">Mohammad</a>
                 </th>
@@ -75,7 +75,7 @@ function AdminStaff() {
                 <button className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'>Delete</button>
                 </td>
             </tr>
-            <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+            <tr className="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <a  className='no-underline text-2xl hover:underline inline-block  text-custom-blue' href="">Mohammad</a>
                 </th>
@@ -92,7 +92,7 @@ function AdminStaff() {
                 <button className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900'>Delete</button>
                 </td>
             </tr>
-            <tr class="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
+            <tr className="bg-blue-100 border-b text-black rounded-lg  dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <a  className='no-underline text-2xl hover:underline inline-block  text-custom-blue' href="">Mohammad</a>
                 </th>

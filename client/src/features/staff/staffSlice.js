@@ -1,7 +1,9 @@
 import {createSlice,createAsyncThunk} from "@reduxjs/toolkit"
 import staffService from './staffService'
-const user=JSON.parse(localStorage.getItem('staff'));
+import {toast} from 'react-toastify';
 
+
+const user=JSON.parse(localStorage.getItem('staff'));
 
 const initialState={
     staff:user?user:null,
@@ -29,6 +31,7 @@ export const loginstaff=createAsyncThunk('staff/login',async(user,thunkAPI)=>{
     }
     catch(error){
         const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
+        toast.error("Wrong Credentials");
         return thunkAPI.rejectWithValue(message)
         console.log(error);
     }

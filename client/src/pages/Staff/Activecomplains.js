@@ -26,7 +26,7 @@ function Activecomplains() {
       {allactiveComplain?allactiveComplain.map((k)=>(  <Activecmpt k={k}/>)):(<div className=' flex justify-center mt-80 text-2xl text-slate-400 text-center'> No Active Complaints Registered </div>)}
 
         </div>
-         <div> </div>
+        
       
     </div>
   )

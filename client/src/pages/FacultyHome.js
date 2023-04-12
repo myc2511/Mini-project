@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Singlecmpln from '../components/Singlecmpln';
 import FacultyNav from '../components/FacultyNav';
 // import ViewComplaint from '../components/ViewComplaint';
@@ -9,11 +9,12 @@ function FacultyHome() {
     const [showing,setshowing]=useState(false);
     const [name,setname]=useState("Shafi");
     const {staff}=useSelector((state)=>state.staff)
+    
     return (
   <div className='flex flex-col min-h-screen'>    
   <FacultyNav homeclr='dark:text-blue-400' newcpl="dark:text-gray-400" activecpl='dark:text-gray-400' closedcpl="dark:text-gray-400"/>
  
-
+       
       <div className='mt-40'>   
   
     <div className="parent m-auto mt-20 mb-20 box-shadow rounded-lg h-full">

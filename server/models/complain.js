@@ -9,7 +9,7 @@ const complain=new mongoose.Schema({
         required:true
        },
        photo:{
-        type:Array,
+        type:String,
        },
        status:{
         type:String,

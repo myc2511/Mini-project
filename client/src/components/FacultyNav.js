@@ -1,6 +1,6 @@
-import React from 'react';
+import React ,{ useEffect}from 'react';
 import {Link,useNavigate} from 'react-router-dom';
-import logo from './img/CC-1.png';
+import logo from './img/FinalLogo.png';
 import { useDispatch,useSelector } from 'react-redux';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {logoutstaff,resetstaff} from '../features/staff/staffSlice'
@@ -11,25 +11,20 @@ function FacultyNav(props) {
   const {staff}=useSelector((state)=>state.staff)
 
     const logout=()=>{
+
          dispatch(logoutstaff());
          dispatch(resetstaff());
-         navigate("/", { replace: true });
-      
- 
+         navigate('/');
     }
-  // let navigate = useNavigate();
-  //   // console.log(props);
-  //   const logout = () =>{
-  //     localStorage.removeItem('staff');
-  //     navigate('/', { replace: true });
-  //    }
+  
+  
   return (
     <>
     
 <nav className="bg-white px-2 sm:px-4 py-4 dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
   <div className="container flex flex-wrap items-center justify-between mx-auto">
-  <a href="/Staff/Home" className="flex items-center">
-      <img src={logo} className="w-20" alt="Flowbite Logo"/>
+  <a href="/Staff/Home" className="flex  items-center">
+      <img src={logo} className="w-20 mr-3" alt="Flowbite Logo"/>
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CollegeComplaint</span>
   </a>
   {staff?( <div className="flex md:order-2"> 

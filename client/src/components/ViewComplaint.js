@@ -15,13 +15,13 @@ const staff=useSelector((state)=>state.staff)
 
   return (
 
-    <>
-      {!user? (<Navbar/>):(<FacultyNav/>)}
-  
-    <div className="mt-28 flex flex-col min-h-screen">
+    <div className="mt-28">
+      {user? (<Navbar/>):(<FacultyNav/>)}
+    
+    <div >
 
 
-      <div className="text-center">
+      <div className="text-center -mt-2">
         <button
         onClick={()=>{
           setshowCmnt(false);
@@ -49,7 +49,7 @@ const staff=useSelector((state)=>state.staff)
           </div>
 
     </div>
-    </>
+    </div>
   );
 }
 

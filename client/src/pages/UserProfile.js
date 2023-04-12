@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import {getAllUserComplain} from "../features/complain/complainSlice"
 import { useEffect } from 'react';
 function UserProfile() {
+
   const [showing,setshowing]=useState(false);
 
   const {user} =useSelector((state)=>state.auth)
@@ -29,15 +30,15 @@ function UserProfile() {
        <p className='p-1'>Mobile No:{user.mobileNo}</p>
          <button className="bg-custom-blue edt-btn mt-5 text-white text-sm  p-2 rounded-lg" onClick={() => setshowing(true)}>Edit Profile</button>
        <div className={showing?"block":"hidden"} >
-            <label for="">
+            <label htmlFor="">
                 <span className='mt-2 mb-1 inline-block'>Name</span>
                 <input className='border-2 border-slate-400 w-full p-1 rounded-lg' type="text"/>
             </label>
-            <label for="">
+            <label htmlFor="">
                 <span className='mt-2 mb-1 inline-block'>Mobile No</span>
                 <input className='border-2 border-slate-400 w-full p-1 rounded-lg' type="text"/>
             </label>
-            <label for="">
+            <label htmlFor="">
                 <span className='mt-2 mb-1 inline-block'>Change Photo</span>
                 <input className='border-2 mb-4 border-slate-400 w-full p-1 rounded-lg' type="file"/>
             </label>
