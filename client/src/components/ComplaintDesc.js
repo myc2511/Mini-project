@@ -5,12 +5,16 @@ import { useParams } from "react-router-dom";
 
 function ComplaintDesc() {
   let [modalIsOpen, setmodalIsOpen] = useState("hidden");
-
+   const [btndata,setbtndata]=useState("")
   const handleModal = () => {
     setmodalIsOpen("hidden");
+    if(btndata==="Close"){
+      closeComplain();
+    }
+    else
     escalteCmpln();
   };
-
+   
   const id = useParams();
 
   const dispatch = useDispatch();
@@ -23,11 +27,27 @@ function ComplaintDesc() {
   if (!SingleComplain) {
     return <p>Loading...</p>;
   }
+  const checktimeforEsclation=()=>{
+    const ONE_WEEK = 7 * 24 * 60 * 60 * 1000; 
+   // console.log(SingleComplain.assigned)
+   const l=SingleComplain.assigned.length;
+ const lastAssigntime = SingleComplain.assigned[l-1].time;
+// console.log(lastAssigntime)
+ const assignedDate = new Date(lastAssigntime.time);
 
+if ( 
+    (Date.now() - assignedDate.getTime() < ONE_WEEK)) {
+  // disable the esclate button
+  console.log(Date.now() - assignedDate.getTime())
+} else {
+  // enable the esclate button
+}
+  }
+  checktimeforEsclation();
   const escalteCmpln = async () => {
-    console.log("complaint Escalated");
+   
     const url = `http://localhost:5000/api/complain//escalateComplain/${SingleComplain._id}`;
-    // console.log(username);
+
     const response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -36,7 +56,21 @@ function ComplaintDesc() {
       body: JSON.stringify({ department: SingleComplain.complain_regarding }),
     });
     const res = await response.json();
-    //console.log(res)
+   
+  };
+  const  closeComplain = async () => {
+    
+    const url = `http://localhost:5000/api/complain/closeComplain/${SingleComplain._id}`;
+  
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    
+    });
+    const res = await response.json();
+  
   };
   return (
     <div>
@@ -48,7 +82,7 @@ function ComplaintDesc() {
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
-                  // className="w-6 h-6"
+                 
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +195,7 @@ function ComplaintDesc() {
                         ></path>
                       </svg>
                       <h3 className="mb-5 text-lg font-normal text-white dark:text-white-400">
-                        Are you sure you want to Escalate this complaint?
+                        Are you sure you want to {btndata} this complaint?
                       </h3>
 
                       <button
@@ -170,12 +204,13 @@ function ComplaintDesc() {
                         type="button"
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                       >
-                        Yes, Escalate
+                        Yes, {btndata}
                       </button>
 
                       <button
                         onClick={() => {
                           setmodalIsOpen("hidden");
+                          setbtndata("")
                         }}
                         data-modal-hide="popup-modal"
                         type="button"
@@ -197,10 +232,16 @@ function ComplaintDesc() {
             </h1>
             </div>
             <div>
-            {!user?(<button 
-         onClick={()=>{setmodalIsOpen('')}}
+            {!user && SingleComplain.status!=="Closed" ?(<button 
+         onClick={()=>{setmodalIsOpen('')
+         setbtndata("esclate")
+         }}
           className="bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg"> Escalate Complain</button>):<></>}
-
+            {!user && SingleComplain.status!=="Closed" ?(<button 
+         onClick={()=>{setmodalIsOpen('')
+         setbtndata("Close")
+         }}
+          className="bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg"> Close Complain</button>):<></>}
             </div>
             
             

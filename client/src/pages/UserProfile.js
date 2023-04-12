@@ -49,7 +49,7 @@ function UserProfile() {
     </div>
     <div className='basis-2/3'>
     {alluserComplain?alluserComplain.map((p)=>(
-      <Singlecmpln title={p.title} ticketno={p._id} complain_type={p.complain_type} complain_regarding={p.complain_regarding}/>
+      <Singlecmpln title={p.title} createdAt={p.createdAt} ticketno={p._id} complain_type={p.complain_type} complain_regarding={p.complain_regarding}/>
    )):  <><div>No complain </div></>}
     
 

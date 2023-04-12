@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 function Singlecmpln(props) {
+  const getDate = (time) => {
+    const date = new Date(time);
+    return date.toUTCString();;
+    }
   return (
     <div className="p-2 box-shadow border-2 m-5 rounded-2xl border-custom-grey cmpln ">
     <Link to={`/Complaint/${props.ticketno}`} >
@@ -9,7 +13,7 @@ function Singlecmpln(props) {
         <span className="  rounded-full pl-2 pr-2 mt-2 mr-3 text-lg  float-right border-2 border-custom-grey">{props.complain_type}</span>
         <span className='pl-4  text-sm block'>Ticket No: {props.ticketno}</span>
         <p className="pl-4 text-sm mt-1">Complain Related: {props.complain_regarding}</p>
-        <span className="pl-4 inline-block text-sm">Date and   Time</span>
+        <span className="pl-4 inline-block text-sm">{getDate(props.createdAt)}</span>
        
         <div>
         <ol className="flex justify-center items-center w-full mb-4 sm:mb-5 ">

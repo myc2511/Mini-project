@@ -5,7 +5,10 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { Link } from "react-router-dom";
 
 function SingleBlogCmpln(props){
-  
+  const getDate = (time) => {
+    const date = new Date(time);
+    return date.toUTCString();;
+    }
   
 return(
 
@@ -113,7 +116,7 @@ return(
             </div>
           </li>
         </ol>
-        <span className="m-4 inline-block text-sm">Date at Time</span>
+        <span className="m-4 inline-block text-sm">{getDate(props.createdAt)}</span>
 
         
     </div>

@@ -1,13 +1,15 @@
 import axios from 'axios'
 const API_URL='/api/complain/'
 //Register Complain
-const register=async(data,token)=>{
+const register=async(formData,token)=>{
     const config={
         headers:{
-            Authorization:`Bearer ${token}`
+            Authorization:`Bearer ${token}`,
+           'Content-Type': 'multipart/form-data' 
         }
     }
-    const response=await axios.post(API_URL+'register',data,config)
+ //   console.log(formData)
+    const response=await axios.post(API_URL+'register',formData,config)
   
     return response.data;
 }
@@ -40,6 +42,14 @@ const getallnewComplain=async(data)=>{
    
      return response.data;
 }
+
+const getallclosedComplain=async(data)=>{
+    
+    // console.log(data.Role)
+   const response=await axios.get(API_URL+'closedComplain/'+`${data.Role}`)
+  
+    return response.data;
+ }
 const getallactiveComplain=async(data)=>{
     
    // console.log(data.Role)
@@ -62,6 +72,6 @@ const getsingleComplain=async(id,token)=>{
 
 
 const complainService={
-    register,fetchPublicComplain,getallactiveComplain,getAllUserComplain,getsingleComplain,getAllComplain,getallnewComplain
+    register,fetchPublicComplain,getallclosedComplain,getallactiveComplain,getAllUserComplain,getsingleComplain,getAllComplain,getallnewComplain
 }
 export default complainService
