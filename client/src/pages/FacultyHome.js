@@ -3,9 +3,14 @@ import Singlecmpln from '../components/Singlecmpln';
 import FacultyNav from '../components/FacultyNav';
 // import ViewComplaint from '../components/ViewComplaint';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function FacultyHome() {
   
+  let navigate = useNavigate();
+ 
+    
+    
     const [showing,setshowing]=useState(false);
     const [name,setname]=useState("Shafi");
     const {staff}=useSelector((state)=>state.staff)

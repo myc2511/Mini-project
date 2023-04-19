@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ComplaintForm from '../components/ComplaintForm'
 import Navbar from '../components/Navbar'
 
 function Complaint() {
+
   return (
     <div>
       <Navbar/>

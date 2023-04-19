@@ -81,10 +81,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
         navigate("/Staff/Home")
       }
       
-      if(!user && !staff){
-        // console.log(staff);
-        navigate('/');
-      }
+      
 
     
     
@@ -95,15 +92,14 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
 }, [user ,isError,isSuccess,message,navigate,dispatch,Success,msg,Error,staff])
 
-useEffect(()=>{
-  if(!staff){
-  navigate('/');
-  }
- },[staff])
+
+
 
   return (
     < div className="flex flex-col min-h-screen">
     <Navbar/>
+    <div>
+    </div>
     <div className="flex justify-between items-center m-auto container mt-60 ">
       
       <div className="container w-2/3 p-20 text-center">
@@ -115,6 +111,7 @@ useEffect(()=>{
 
       <div className="container w-1/3">
         
+     
       
         <div className=" box-shadow rounded-lg items-center p-10">
               {/* <h1 className="text-5xl  text-custom-blue mb-8 text-center">Log In</h1> */}
