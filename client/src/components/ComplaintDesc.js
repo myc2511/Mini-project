@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 function ComplaintDesc() {
   let [modalIsOpen, setmodalIsOpen] = useState("hidden");
    const [btndata,setbtndata]=useState("")
+   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [reqtime,setreqtime]=useState("");
+  
   const handleModal = () => {
     setmodalIsOpen("hidden");
     if(btndata==="Close"){
@@ -24,26 +27,54 @@ function ComplaintDesc() {
   }, [id, dispatch]);
   const { SingleComplain } = useSelector((state) => state.complain);
   const { user } = useSelector((state) => state.auth);
-  if (!SingleComplain) {
-    return <p>Loading...</p>;
-  }
-  const checktimeforEsclation=()=>{
-    const ONE_WEEK = 7 * 24 * 60 * 60 * 1000; 
-   // console.log(SingleComplain.assigned)
-   const l=SingleComplain.assigned.length;
- const lastAssigntime = SingleComplain.assigned[l-1].time;
-// console.log(lastAssigntime)
- const assignedDate = new Date(lastAssigntime.time);
 
-if ( 
-    (Date.now() - assignedDate.getTime() < ONE_WEEK)) {
-  // disable the esclate button
-  console.log(Date.now() - assignedDate.getTime())
-} else {
-  // enable the esclate button
-}
+
+  useEffect(() => {
+    if(SingleComplain){
+   const l=SingleComplain.assigned.length;
+   const lastAssigntime = SingleComplain.assigned[l-1].time;
+   
+   let date=new Date(lastAssigntime)
+   
+   let currentdate=new Date();
+  const diff=currentdate-date;
+  const milsec1day = 86400000
+   const numDays = Math.floor((currentdate-date)/milsec1day);
+  
+  const datediff = new Date(date.getTime()+((7*milsec1day)));
+      setreqtime(datediff)
+    if (currentdate >= datediff) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }}
+  }, [SingleComplain]);
+  if (!SingleComplain) {
+  return <p>Loading...</p>;
   }
-  checktimeforEsclation();
+//   const checktimeforEsclation=()=>{
+  
+//    const l=SingleComplain.assigned.length;
+//  const lastAssigntime = SingleComplain.assigned[l-1].time;
+ 
+//  let date=new Date(lastAssigntime)
+ 
+//  let currentdate=new Date();
+// const diff=currentdate-date;
+// const milsec1day = 86400000
+//  const numDays = Math.floor((currentdate-date)/milsec1day);
+
+// const datediff = new Date(currentdate.getTime()+(numDays*milsec1day));
+// //console.log(datediff);
+// const button = document.getElementById("esclate");
+// button.disabled = true;
+//      if(datediff<currentdate){
+//           button.disabled=false;
+//       console.log("jhgvg");
+//      }
+//   }
+ 
+  //checktimeforEsclation();
   const escalteCmpln = async () => {
    
     const url = `http://localhost:5000/api/complain//escalateComplain/${SingleComplain._id}`;
@@ -232,11 +263,13 @@ if (
             </h1>
             </div>
             <div>
-            {!user && SingleComplain.status!=="Closed" ?(<button 
+            { SingleComplain.status!=="Closed" ?(<button disabled={buttonDisabled} 
          onClick={()=>{setmodalIsOpen('')
          setbtndata("esclate")
          }}
-          className="bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg"> Escalate Complain</button>):<></>}
+         title={`You can esclate complain after ${reqtime}`}
+          className={`bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg ${buttonDisabled?'opacity-50 cursor-not-allowed':''}`}> Escalate Complain</button>):<></>}
+
             {!user && SingleComplain.status!=="Closed" ?(<button 
          onClick={()=>{setmodalIsOpen('')
          setbtndata("Close")

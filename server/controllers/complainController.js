@@ -272,7 +272,25 @@ const assignComplaint =asyncHandler(async(req,res)=>{
           console.error(err);
         }})
       
+        const upvoteComplaint =asyncHandler(async(req,res)=>{
+          try {
+              const complaint = await Complain.findById(req.params._id);
+              const userId=req.student.id
+                 complaint.upvotes.push(userId)
+               await complaint.save()
+             .then(function(err) {
+            if (!err) {
+              res.send("Successfully Added to the DataBase.");
+            } else {
+              res.send(err);
+            }
+          })
+              }
+               catch (err) {
+              console.error(err);
+            }})
+          
     
 
   
-module.exports={registerComplain,getclosedComplaint,getactiveComplaint,getnewComplaint,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}
+module.exports={registerComplain,upvoteComplaint,getclosedComplaint,getactiveComplaint,getnewComplaint,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}

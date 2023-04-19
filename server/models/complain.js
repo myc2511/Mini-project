@@ -37,7 +37,13 @@ const complain=new mongoose.Schema({
        complain_regarding:{
         type:String,
         required:true,
-       }
+       },
+       upvotes: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'STUDENT'
+        }
+      ]
 },
 {
     timestamps: true
