@@ -3,24 +3,62 @@ import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { blue } from "@mui/material/colors";
 
 function SingleBlogCmpln(props){
+  const {user}= useSelector((state)=> state.auth )
   
+  const upvoted=props.upvotes.includes(user._id)
+   const [up,setup]=useState(upvoted)
+  
+   const iconColor = up ? "blue" : "grey";
+   
+  const getDate = (time) => {
+    const date = new Date(time);
+    return date.toUTCString();;
+    }
+    const upvote=async()=>{
+        if(!upvoted){
+          const url = `http://localhost:5000/api/complain/upvote/${props.ticketno}`;
+          const token=user.token
+          const response = await fetch(url, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:`Bearer ${token}`
+            },
+           
+          });
+          
+          const res = await response.json();
+          console.log(res);
+        
+          if (res.success) {
+           
+          } else {
+            alert("Wrong credentials");
+          }
+         
+          
+        }
+    }
+    
   
 return(
 
     <div className="container mx-auto w-4/6 ">
  <div className="p-2  m-5 rounded-2xl box-shadow cmpln flex">
         <div className="m-5 my-auto w-1/6  flex flex-col items-center"> 
-        <button type="button" className="hover:bg-gray-300 rounded-full ">
-            <ArrowDropUpIcon sx={{
-     
-      fontSize:"50px"
+        <button type="button" onClick={upvote} className="hover:bg-gray-300 rounded-full ">
+            <ArrowDropUpIcon   sx={{
+         color: iconColor,
+         fontSize:"50px"
          
   }}/>
   <span className="sr-only">Icon description</span>
 </button>
-<p className="">12</p>
+<p className="">{props.len}</p>
 <button type="button" className="hover:bg-gray-300 rounded-full ">
             <ArrowDropDownIcon sx={{
      
@@ -113,7 +151,7 @@ return(
             </div>
           </li>
         </ol>
-        <span className="m-4 inline-block text-sm">Date at Time</span>
+        <span className="m-4 inline-block text-sm">{getDate(props.createdAt)}</span>
 
         
     </div>

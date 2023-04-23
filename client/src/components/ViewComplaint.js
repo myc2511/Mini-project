@@ -10,7 +10,7 @@ import FacultyNav from "./FacultyNav";
 function ViewComplaint() {
   const [showComnt,setshowCmnt]=useState(false);
    
-const user=useSelector((state)=>state.user);
+const user=useSelector((state)=>state.auth);
 const staff=useSelector((state)=>state.staff)
 
   return (

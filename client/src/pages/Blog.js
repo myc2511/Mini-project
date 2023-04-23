@@ -27,8 +27,8 @@ dispatch(fetchPublic());
     <Navbar/>
     <div className='mt-40 mb-28'>
 
-    {publicComplain.lenght?publicComplain.map((p)=>(
-      <SingleBlogCmpln  title={p.title} desc={p.desc} cmpln={p.complain_regarding} ticketno={p._id} key={p}/>
+    {publicComplain?publicComplain.map((p)=>(
+      <SingleBlogCmpln  title={p.title} upvotes={ p.upvotes} len={p.upvotes.length} createdAt={p.createdAt} desc={p.desc} cmpln={p.complain_regarding} ticketno={p._id} key={p}/>
     
    )):<div className=' flex justify-center mt-80 text-2xl text-slate-400 text-center'> No Complaints Registered </div>}
   

@@ -5,12 +5,19 @@ import { useParams } from "react-router-dom";
 
 function ComplaintDesc() {
   let [modalIsOpen, setmodalIsOpen] = useState("hidden");
-
+   const [btndata,setbtndata]=useState("")
+   const [buttonDisabled, setButtonDisabled] = useState(true);
+  const [reqtime,setreqtime]=useState("");
+  
   const handleModal = () => {
     setmodalIsOpen("hidden");
+    if(btndata==="Close"){
+      closeComplain();
+    }
+    else
     escalteCmpln();
   };
-
+   
   const id = useParams();
 
   const dispatch = useDispatch();
@@ -20,14 +27,58 @@ function ComplaintDesc() {
   }, [id, dispatch]);
   const { SingleComplain } = useSelector((state) => state.complain);
   const { user } = useSelector((state) => state.auth);
-  if (!SingleComplain) {
-    return <p>Loading...</p>;
-  }
 
+
+  useEffect(() => {
+    if(SingleComplain){
+   const l=SingleComplain.assigned.length;
+   const lastAssigntime = SingleComplain.assigned[l-1].time;
+   
+   let date=new Date(lastAssigntime)
+   
+   let currentdate=new Date();
+  const diff=currentdate-date;
+  const milsec1day = 86400000
+   const numDays = Math.floor((currentdate-date)/milsec1day);
+  
+  const datediff = new Date(date.getTime()+((7*milsec1day)));
+      setreqtime(datediff)
+    if (currentdate >= datediff) {
+      setButtonDisabled(false);
+    } else {
+      setButtonDisabled(true);
+    }}
+  }, [SingleComplain]);
+  if (!SingleComplain) {
+  return <p>Loading...</p>;
+  }
+//   const checktimeforEsclation=()=>{
+  
+//    const l=SingleComplain.assigned.length;
+//  const lastAssigntime = SingleComplain.assigned[l-1].time;
+ 
+//  let date=new Date(lastAssigntime)
+ 
+//  let currentdate=new Date();
+// const diff=currentdate-date;
+// const milsec1day = 86400000
+//  const numDays = Math.floor((currentdate-date)/milsec1day);
+
+// const datediff = new Date(currentdate.getTime()+(numDays*milsec1day));
+// //console.log(datediff);
+// const button = document.getElementById("esclate");
+// button.disabled = true;
+//      if(datediff<currentdate){
+//           button.disabled=false;
+//       console.log("jhgvg");
+//      }
+//   }
+ 
+  //checktimeforEsclation();
   const escalteCmpln = async () => {
-    console.log("complaint Escalated");
+   
     const url = `http://localhost:5000/api/complain//escalateComplain/${SingleComplain._id}`;
-    // console.log(username);
+
     const response = await fetch(url, {
       method: "PUT",
       headers: {
@@ -36,7 +87,21 @@ function ComplaintDesc() {
       body: JSON.stringify({ department: SingleComplain.complain_regarding }),
     });
     const res = await response.json();
-    //console.log(res)
+   
+  };
+  const  closeComplain = async () => {
+    
+    const url = `http://localhost:5000/api/complain/closeComplain/${SingleComplain._id}`;
+  
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    
+    });
+    const res = await response.json();
+  
   };
   return (
     <div>
@@ -48,7 +113,7 @@ function ComplaintDesc() {
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
-                  // className="w-6 h-6"
+                 
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +226,7 @@ function ComplaintDesc() {
                         ></path>
                       </svg>
                       <h3 className="mb-5 text-lg font-normal text-white dark:text-white-400">
-                        Are you sure you want to Escalate this complaint?
+                        Are you sure you want to {btndata} this complaint?
                       </h3>
 
                       <button
@@ -170,12 +235,13 @@ function ComplaintDesc() {
                         type="button"
                         className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"
                       >
-                        Yes, Escalate
+                        Yes, {btndata}
                       </button>
 
                       <button
                         onClick={() => {
                           setmodalIsOpen("hidden");
+                          setbtndata("")
                         }}
                         data-modal-hide="popup-modal"
                         type="button"
@@ -197,10 +263,18 @@ function ComplaintDesc() {
             </h1>
             </div>
             <div>
-            {!user?(<button 
-         onClick={()=>{setmodalIsOpen('')}}
-          className="bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg"> Escalate Complain</button>):<></>}
+            { SingleComplain.status!=="Closed" ?(<button disabled={buttonDisabled} 
+         onClick={()=>{setmodalIsOpen('')
+         setbtndata("esclate")
+         }}
+         title={`You can esclate complain after ${reqtime}`}
+          className={`bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg ${buttonDisabled?'opacity-50 cursor-not-allowed':''}`}> Escalate Complain</button>):<></>}
 
+            {!user && SingleComplain.status!=="Closed" ?(<button 
+         onClick={()=>{setmodalIsOpen('')
+         setbtndata("Close")
+         }}
+          className="bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg"> Close Complain</button>):<></>}
             </div>
             
             

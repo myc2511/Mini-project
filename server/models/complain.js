@@ -9,19 +9,22 @@ const complain=new mongoose.Schema({
         required:true
        },
        photo:{
-        type:Array,
+        type:String,
        },
        status:{
         type:String,
        },
-       assigned: {
+       assigned: [{
         assignedto: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'staff'},
         role:{
           type:String
+        },
+        time:{
+          type:Date,
         }
-      },
+      }],
        user_id:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'STUDENT'
@@ -34,7 +37,13 @@ const complain=new mongoose.Schema({
        complain_regarding:{
         type:String,
         required:true,
-       }
+       },
+       upvotes: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'STUDENT'
+        }
+      ]
 },
 {
     timestamps: true

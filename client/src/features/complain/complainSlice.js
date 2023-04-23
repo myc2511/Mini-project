@@ -9,17 +9,18 @@ const initialState={
     SingleComplain:null,
     allnewComplain:null,
     allactiveComplain:null,
+    allclosedComplain:null,
     isError:false,
     isSuccess:false,
     isLoading:false,
     message:""
 }
 //Register Complain
-export const register=createAsyncThunk('complain/register',async(data,thunkAPI)=>{
+export const register=createAsyncThunk('complain/register',async(formData,thunkAPI)=>{
 
     try{
         const token=thunkAPI.getState().auth.user.token
-        return await complainService.register(data,token)
+        return await complainService.register(formData,token)
     }
     catch(error){
         const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
@@ -74,6 +75,18 @@ export const getallnewComplain=createAsyncThunk('complain/newComplain',async(dat
        //  console.log(id.id);
     
       return await complainService.getallnewComplain(data);
+    }
+    catch(error){
+      const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+})
+export const getallclosedComplain=createAsyncThunk('complain/closedComplain',async(data,thunkAPI)=>{
+    try{
+      //  const token=thunkAPI.getState().auth.user.token
+       //  console.log(id.id);
+    
+      return await complainService.getallclosedComplain(data);
     }
     catch(error){
       const message=(error.response && error.response.data && error.response.message)||error.message ||error.toString()
@@ -192,6 +205,20 @@ export const getallactiveComplain=createAsyncThunk('complain/activeComplain',asy
             state.isError=true
             state.message=action.payload
             state.allactiveComplain=null
+        })
+        .addCase(getallclosedComplain.pending,(state)=>{
+            state.isLoading=true
+        })
+        .addCase(getallclosedComplain.fulfilled,(state,action)=>{
+            state.isLoading=false
+            state.isSuccess=true
+            state.allclosedComplain=action.payload
+        })
+        .addCase(getallclosedComplain.rejected,(state,action)=>{
+            state.isLoading=false
+            state.isError=true
+            state.message=action.payload
+            state.allclosedComplain=null
         })
         .addCase(singleComplain.pending,(state)=>{
             state.isLoading=true

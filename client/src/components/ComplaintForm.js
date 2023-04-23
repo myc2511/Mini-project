@@ -53,36 +53,34 @@ inputdata[i]=URL.createObjectURL(e.target.files[0]);
       // }
       // if( isSuccess){
     
-      //   navigate("/Userprofile")
+      
       // //  closeSignup();
-      // }
+      //  }
      dispatch(reset());
   
   }, [data ,isError,isSuccess,message,navigate,dispatch])
   function handleSubmit(e){
     e.preventDefault();
-    const data={
-      title,
-      desc,
-      status:"Open",
-      photo:images,
-      complain_regarding,
-      complain_type
-     }
-     dispatch(register(data));
-    //   dispatch(reset());
-    //  settitle("");
-    //  setDesc("");
-    //  setImages("");
-    //  setcomplainType(options1[0]);
-    //  setcomplainRegard(options2[0]);
-   // alert("Your Complain submitted Successfully");
-   toast("Complaint Registered Successfully");
-   navigate("/Userprofile");
+    const formData = new FormData();
+    for (let i = 0; i < images.length; i++) {
+      formData.append('photo', images[i]);
+      // console.log(images[i])
+    }
+    formData.append('title', title);
+    formData.append('desc', desc);
+    formData.append('status', "Open");
+    formData.append('complain_regarding', complain_regarding);
+    formData.append('complain_type', complain_type);
+   
+   
+     dispatch(register(formData));
+     toast("Complaint Registered Successfully");
+     navigate("/Userprofile")
+
   }
   return (
     <div className="">
-      <form className="mt-8 text-left">
+      <form className="mt-8 text-left" enctype="multipart/form-data">
       
         <div>
           <label htmlFor="Title">

@@ -2,15 +2,15 @@ const asyncHandler=require('express-async-handler');
 const Comment=require('../models/comment');
 
 const addComment=asyncHandler( async(req,res)=>{
-    
+ 
     const {desc,photo,complain_id,name,Role}=req.body;
    
      if(!desc){
         res.status(400);
         throw new Error('Please add all data')
      }
-  
-
+    
+     
     //Create Comment
      const comm= await Comment.create({
      desc,

@@ -11,14 +11,22 @@ const StaffHierarchy={
 }
 const registerComplain=asyncHandler( async(req,res)=>{
    
-    const {title,desc,photo,status,complain_type,user_id,complain_regarding}=req.body;
-   
+    const {title,desc,complain_type,complain_regarding}=req.body;
+   // console.log(req)
      if(!title||!desc||!complain_type||!complain_regarding){
         res.status(400);
         throw new Error('Please add all data')
      }
-    
-
+    let photo;
+   console.log(req.files)
+    if(req.files){
+      let path=''
+      req.files.forEach(function(files,index,arr){
+        path=path+files.path+','
+      })
+      path=path.substring(0,path.lastIndexOf(","))
+      photo=path
+    }
     //Create Complain
      const complain= await Complain.create({
      title,
@@ -29,7 +37,7 @@ const registerComplain=asyncHandler( async(req,res)=>{
       user_id:req.student.id,
       complain_type,
       complain_regarding,
-      assigned:{assignedto:null,role:StaffHierarchy[complain_regarding][0]}
+      assigned:{assignedto:null,role:StaffHierarchy[complain_regarding][0],time:Date.now()}
     
      })
      if(complain){
@@ -126,13 +134,22 @@ const getPublicComplain=asyncHandler(async(req,res)=>{
 })
 //Get all open complaint
 const getnewComplaint=asyncHandler(async(req,res)=>{
+
   
   try {
-    let complains;
-      
-      complains = await Complain.find({"assigned.role":req.params.Role,"assigned.assignedto":null}).sort({ createdAt: 'desc'}).exec();;
-    
-    res.status(200).json(complains);
+    let result = [];
+ 
+   let complains
+    complains= await Complain.find();
+     complains.map((cpl)=>{
+      const lastindex = cpl.assigned.length -1;
+     
+      if(cpl.assigned[lastindex].role === req.params.Role && cpl.assigned[lastindex].assignedto === null ){
+        result.push(cpl);
+      }
+    });
+
+      res.status(200).json(result);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -142,11 +159,43 @@ const getnewComplaint=asyncHandler(async(req,res)=>{
 const getactiveComplaint=asyncHandler(async(req,res)=>{
   
   try {
-    let complains;
-      console.log(req.params.Role)
-      complains = await Complain.find({$and: [{"assigned.role":req.params.Role,"assigned.assignedto": { $ne: null },"status":'IN_PROGRESS'}]}).sort({ createdAt: 'desc'}).exec();;
-   // console.log(complains)
-    res.status(200).json(complains);
+    let result = [];
+ 
+    let complains
+     complains= await Complain.find();
+      complains.map((cpl)=>{
+       const lastindex = cpl.assigned.length -1;
+      
+       if(cpl.assigned[lastindex].role === req.params.Role && cpl.assigned[lastindex].assignedto !== null && 
+        cpl.status==='IN_PROGRESS' ){
+         result.push(cpl);
+       }
+     });
+ 
+       res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+ 
+})
+//get all closed complain
+const getclosedComplaint=asyncHandler(async(req,res)=>{
+  
+  try {
+    let result = [];
+ 
+    let complains
+     complains= await Complain.find();
+      complains.map((cpl)=>{
+       const lastindex = cpl.assigned.length -1;
+      
+       if(cpl.assigned[lastindex].role === req.params.Role && cpl.assigned[lastindex].assignedto !== null && 
+        cpl.status==='Closed' ){
+         result.push(cpl);
+       }
+     });
+ 
+       res.status(200).json(result);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -157,13 +206,15 @@ const assignComplaint =asyncHandler(async(req,res)=>{
   try {
   const complaint = await Complain.findById(req.params._id);
      const staff=await Staff.findById(req.body.assignedTo)
-     //console.log(staff)
-    complaint.assigned={
+     const l=complaint.assigned.length;
+
+    complaint.assigned[l-1]={
       assignedto :req.body.assignedTo,
-    role:staff.role
+    role:staff.role,
+     time:complaint.assigned[l-1].time
     };
     complaint.status = 'IN_PROGRESS';
-    console.log(complaint)
+   
     await complaint.save().then(function(err) {
       if (!err) {
         res.send("Successfully Added to th DataBase.");
@@ -178,34 +229,38 @@ const assignComplaint =asyncHandler(async(req,res)=>{
   const escalateComplaint =asyncHandler(async(req,res)=>{
   try {
       const complaint = await Complain.findById(req.params._id);
-       
-        const currentLevel = complaint.assigned.role;
+      const l=complaint.assigned.length;
+        const currentLevel = complaint.assigned[l-1].role;
           const hierarchy = StaffHierarchy[req.body.department];
          const currentLevelIndex = hierarchy.indexOf(currentLevel);
 
-  if (currentLevelIndex === hierarchy.length - 1) {
-    // We've reached the highest level of authority for this department
-    res.status(400).json("Reached Highest Level");
-  }
-  complaint.assigned.role=hierarchy[currentLevelIndex+1];
-  complaint.assigned.assignedto=null
-  await complaint.save().then(function(err) {
-    if (!err) {
-      res.send("Successfully Added to the DataBase.");
-    } else {
-      res.send(err);
+    if (currentLevelIndex === hierarchy.length - 1) {
+      // We've reached the highest level of authority for this department
+      res.status(400).json("Reached Highest Level");
     }
-  });
-      } catch (err) {
-      console.error(err);
-    }})
+    complaint.assigned.push({
+      role:hierarchy[currentLevelIndex+1],
+      assignedto: null,
+      time:Date.now()
+    });
+      
+        await complaint.save().then(function(err) {
+          if (!err) {
+            res.send("Successfully Added to the DataBase.");
+          } else {
+            res.send(err);
+          }
+        });
+            } catch (err) {
+            console.error(err);
+          }})
   
     const closeComplaint =asyncHandler(async(req,res)=>{
       try {
           const complaint = await Complain.findById(req.params._id);
              complaint.status="Closed"
            await complaint.save()
-      .then(function(err) {
+         .then(function(err) {
         if (!err) {
           res.send("Successfully Added to the DataBase.");
         } else {
@@ -217,7 +272,25 @@ const assignComplaint =asyncHandler(async(req,res)=>{
           console.error(err);
         }})
       
+        const upvoteComplaint =asyncHandler(async(req,res)=>{
+          try {
+              const complaint = await Complain.findById(req.params._id);
+              const userId=req.student.id
+                 complaint.upvotes.push(userId)
+               await complaint.save()
+             .then(function(err) {
+            if (!err) {
+              res.send("Successfully Added to the DataBase.");
+            } else {
+              res.send(err);
+            }
+          })
+              }
+               catch (err) {
+              console.error(err);
+            }})
+          
     
 
   
-module.exports={registerComplain,getactiveComplaint,getnewComplaint,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}
+module.exports={registerComplain,upvoteComplaint,getclosedComplaint,getactiveComplaint,getnewComplaint,getEveryComplain,escalateComplaint,closeComplaint,deleteComplain,getComplain,getAllComplain,getPublicComplain,assignComplaint}
