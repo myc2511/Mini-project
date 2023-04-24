@@ -16,8 +16,8 @@ const staff=useSelector((state)=>state.staff)
   return (
 
     <div className="mt-28">
-      {user? (<Navbar/>):(<FacultyNav/>)}
-    
+      {user? (<Navbar/>):<></>}
+      {staff? (<FacultyNav/>):<></>}
     <div >
 
 
