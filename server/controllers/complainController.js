@@ -280,7 +280,7 @@ const assignComplaint =asyncHandler(async(req,res)=>{
                await complaint.save()
              .then(function(err) {
             if (!err) {
-              res.send("Successfully Added to the DataBase.");
+              res.status(200).json();
             } else {
               res.send(err);
             }
