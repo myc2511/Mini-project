@@ -8,7 +8,7 @@ const register=async(formData,token)=>{
            'Content-Type': 'multipart/form-data' 
         }
     }
- //   console.log(formData)
+   
     const response=await axios.post(API_URL+'register',formData,config)
   
     return response.data;

@@ -23,33 +23,28 @@ import AdminStaff from './components/AdminStaff';
 import ViewComplaint from './components/ViewComplaint';
 import AddStaff from './components/AddStaff';
 import ViewComplainstaff from './components/ViewComplainstaff'
+import Resetpass from './components/Resetpass';
+import ResetPassword from './components/ResetPassword';
 function App() {
   return (
   <div className='relative'>
-
-
-  
-      {/* <Navbar/> */}
-  
  <Router>
-       {/* <Navbar/> */}
+      
       <Routes>
       <Route path="/Complaint/:id" element={<ViewComplaint/>}/>
         <Route path='/' element={<Home/>}/>
-        {/* Faculty */}
         <Route path='/Staff/Home' element={<FacultyHome/>}/>
         <Route path='/Staff/Newcomplaints' element={<Newcomplains/>}/> 
         <Route path='/Staff/Activecomplains' element={<Activecomplains/>}/>
        <Route path='/Staff/ClosedCompalins' element={<ClosedCompalins/>}/>
         <Route path='/Staff/SingleCompalins' element={<ViewComplainstaff/>}/>
-
-        {/* Faculty */}
         <Route path='/Blog' element={<Blog/>}/>
-       
-
+        <Route path='/reset-password' element={<ResetPassword/>}/>
+        
         <Route path='/Complaint' element={<Complaint/>}/>
         <Route path='/UserProfile' element={<UserProfile/>}/>
         <Route path='/SignUp' element={<SignUp/>}/>
+        <Route path='/ResetPass' element={<Resetpass/>}/>
         <Route path='/AdminLogin' element={<AdminLogin/>}/>
         <Route path='/Admin/AdminHome' element={<AdminHome/>}/>
         <Route path='/Admin/Complain' element={<AdminCompTable/>}/>

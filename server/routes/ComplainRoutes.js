@@ -6,7 +6,7 @@ const {upload}=require("../middleware/upload")
 router.get('/compl/:_id',getComplain);
 router.delete('/delete/:_id',deleteComplain);
 router.put('/assignComplain/:_id',assignComplaint)
-router.post('/register',protect,upload.array('photos', 5),registerComplain);
+router.post('/register',protect,upload.array('photo', 5),registerComplain);
 router.put('/escalateComplain/:_id',escalateComplaint);
 router.put('/closeComplain/:_id',closeComplaint);
 router.get('/newComplain/:Role',getnewComplaint);
