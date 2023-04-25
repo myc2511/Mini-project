@@ -6,4 +6,5 @@ router.post('/',registerStudent)
 router.post('/login',loginStudent)
 router.get('/me',protect,getStudent)
 router.get('/getStudent/:_id',getStudentbyid)
+
 module.exports=router

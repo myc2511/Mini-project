@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import {useSelector,useDispatch} from 'react-redux'
 import {Link,useNavigate } from 'react-router-dom';
 import logo from './img/FinalLogo.png'
@@ -14,10 +14,20 @@ function Navbar() {
   const {user}=useSelector((state)=>state.auth)
 
     const onLogout=()=>{
+      setLogin(false);
       dispatch(logout());
       dispatch(reset());
-      navigate('/',{replace:true});
     }
+
+
+    const [login,setLogin]=useState(true);
+
+    useEffect(() =>{
+      if(!login){
+        console.log(login);
+        navigate('/');
+      }
+  },[onLogout])  
   
   return (
     <>

@@ -8,7 +8,7 @@ const register=async(formData,token)=>{
            'Content-Type': 'multipart/form-data' 
         }
     }
- //   console.log(formData)
+   
     const response=await axios.post(API_URL+'register',formData,config)
   
     return response.data;
@@ -37,7 +37,7 @@ const getAllComplain=async()=>{
 }
 const getallnewComplain=async(data)=>{
     
-      console.log(data.Role)
+    //   console.log(data.Role)
     const response=await axios.get(API_URL+'newComplain/'+`${data.Role}`)
    
      return response.data;

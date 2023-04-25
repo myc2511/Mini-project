@@ -3,9 +3,20 @@ import Singlecmpln from '../components/Singlecmpln';
 import FacultyNav from '../components/FacultyNav';
 // import ViewComplaint from '../components/ViewComplaint';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import ResetPassword from '../components/ResetPassword';
 
 function FacultyHome() {
   
+  const [resetPass,setresetPass]=useState(false);
+  function resetpass(){
+    setresetPass(!resetPass)
+  }
+
+  let navigate = useNavigate();
+ 
+    
+    
     const [showing,setshowing]=useState(false);
     const [name,setname]=useState("Shafi");
     const {staff}=useSelector((state)=>state.staff)
@@ -31,6 +42,9 @@ function FacultyHome() {
          <p className='p-2'>Department : {staff.Department}</p>
          <p className='p-2'>Email : {staff.email}</p>
          <p className='p-2'>Mobile No : {staff.mobileNo}</p>
+         <button onClick={resetpass} className=" text-custom-blue hover:underline text-xl" href="">Reset Password</button>
+         {resetPass && <ResetPassword/>}
+
          <button className="bg-custom-blue edt-btn mt-5 text-white text-sm  p-3 rounded-lg" onClick={() => setshowing(true)}>Edit Profile</button>
          </div>
         <div className='pt-5'>

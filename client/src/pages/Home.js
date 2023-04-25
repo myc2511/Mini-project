@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { loginstaff,resetstaff } from "../features/staff/staffSlice";
 import Navbar from "../components/Navbar";
  import SignUp from "../components/SignUp";
+import Resetpass from "../components/Resetpass";
 
 
 function Home() {
@@ -16,6 +17,7 @@ function Home() {
   // const [checkbox, setCheckbox] = useState(false);
   const [loginAs, setLoginAs] = useState("");
 const [showSignup,setshowSignup]=useState(false);
+const [resetPass,setresetPass]=useState(false);
 
 
 const navigate=useNavigate();
@@ -49,6 +51,10 @@ if(loginAs == 'User'){
 function handleclick(){
   setshowSignup(!showSignup)
 }
+function resetpass(){
+  setresetPass(!resetPass)
+}
+
 function closeSignup(){
   setshowSignup(false)
 }
@@ -81,10 +87,7 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
         navigate("/Staff/Home")
       }
       
-      if(!user && !staff){
-        // console.log(staff);
-        navigate('/');
-      }
+      
 
     
     
@@ -95,15 +98,14 @@ const {user,isLoading,isError,isSuccess,message}= useSelector(
 
 }, [user ,isError,isSuccess,message,navigate,dispatch,Success,msg,Error,staff])
 
-useEffect(()=>{
-  if(!staff){
-  navigate('/');
-  }
- },[staff])
+
+
 
   return (
     < div className="flex flex-col min-h-screen">
     <Navbar/>
+    <div>
+    </div>
     <div className="flex justify-between items-center m-auto container mt-60 ">
       
       <div className="container w-2/3 p-20 text-center">
@@ -115,6 +117,7 @@ useEffect(()=>{
 
       <div className="container w-1/3">
         
+     
       
         <div className=" box-shadow rounded-lg items-center p-10">
               {/* <h1 className="text-5xl  text-custom-blue mb-8 text-center">Log In</h1> */}
@@ -165,8 +168,10 @@ useEffect(()=>{
     </div>
            <button onClick={handlelogin} className="text-white mt-4 mb-3 w-full p-3 ml-1 bg-custom-blue rounded-lg">Log In</button>
         
-        <p className="text-base text-center">Don't have an account? <button onClick={handleclick} className=" text-custom-blue hover:underline text-xl" href="">Register</button></p>
-       
+        <p className="text-base text-center">Don't have an account? <button onClick={handleclick} className=" text-custom-blue hover:underline text-xl" href="">Register</button>
+        <button onClick={resetpass} className=" text-custom-blue hover:underline text-xl" href="">Reset Password</button>
+        </p>
+        
         </div>
 
         
@@ -177,6 +182,7 @@ useEffect(()=>{
 {/* Signup */}
 
       {showSignup && <SignUp closeSignup={closeSignup}/>}
+      {resetPass && <Resetpass/>}
      
     </div>
   );

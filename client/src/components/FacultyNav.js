@@ -1,4 +1,4 @@
-import React ,{ useEffect}from 'react';
+import React ,{ useEffect,useState}from 'react';
 import {Link,useNavigate} from 'react-router-dom';
 import logo from './img/FinalLogo.png';
 import { useDispatch,useSelector } from 'react-redux';
@@ -11,12 +11,19 @@ function FacultyNav(props) {
   const {staff}=useSelector((state)=>state.staff)
 
     const logout=()=>{
-
+         setLogin(false);
          dispatch(logoutstaff());
          dispatch(resetstaff());
-         navigate('/');
+        //  navigate('/');
     }
-  
+    const [login,setLogin]=useState(true);
+
+    useEffect(() =>{
+      if(!login){
+        console.log(login);
+        navigate('/');
+      }
+  },[logout])  
   
   return (
     <>
