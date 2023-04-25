@@ -87,9 +87,18 @@ const getStudent=asyncHandler( async(req,res)=>{
 
 const getStudentbyid=asyncHandler(async(req,res)=>{
  
-    try {
-   
-       const student = await Student.findById(req.params._id);
+    try {const student = await Student.findById(req.params._id);
+    
+       res.status(200).json(student);
+     } 
+     catch (err) {
+       res.status(500).json(err);
+     }
+ })
+
+ const getallStudent=asyncHandler(async(req,res)=>{
+ 
+    try {const student = await Student.find();
     
        res.status(200).json(student);
      } 
@@ -105,4 +114,4 @@ const generateToken=(id)=>{
         expiresIn:'30d',
     })
 }
-module.exports={registerStudent,getStudentbyid,getStudent,loginStudent}
+module.exports={registerStudent,getStudentbyid,getStudent,loginStudent,getallStudent}

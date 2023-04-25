@@ -40,15 +40,22 @@ router.post(
         name: req.body.name,
         password: secPass,
         email: req.body.email,
+      
       })
-      const data = {
-        admin:{
-          id:admin.id
-        }
-      }
-      const authtoken = jwt.sign(data,JWT_SECRET);
-      success = true;
-      res.json({success,authtoken});
+      // const data = {
+      //   admin:{
+      //     id:admin.id
+      //   }
+      // }
+      // const authtoken = jwt.sign(data,JWT_SECRET);
+      // success = true;
+      res.json({
+        _id:admin.id,
+        name:admin.name,
+        email:admin.email,
+       token:generateToken(admin.id)
+    })
+      //res.json({success,authtoken});
 
     }catch(error){
         console.error(error.message);
@@ -63,17 +70,20 @@ router.post(
 //login admin
 router.post(
   "/Adminlogin",
+ 
   [
     body("email").isEmail(),
     body("password").isLength({ min: 8 }),
   ],
    async (req, res) => {
+   
     let success = false;
     const errors = validationResult(req);
+    
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
+    //console.log(req.body)
     try {
     let admin = await Admin.findOne({email:req.body.email})
     if(!admin){
@@ -84,16 +94,18 @@ router.post(
     if(!passwordCompare){
       return res.status(400).json({error:"Invalid Credentials"})
     }
-    
-    const data = {
+  const data = {
       admin:{
         id:admin.id
       }
     }
-    const authtoken = jwt.sign(data,JWT_SECRET);
-    success = true;
-    res.json({success,authtoken});
-      
+   
+   res.json({
+    _id:admin.id,
+    name:admin.name,
+    email:admin.email, 
+   token:generateToken(admin.id)
+})
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Interneral server error")
@@ -117,5 +129,10 @@ router.post(
   }
 
 );
-
+const generateToken=(id)=>{
+  console.log(id);
+  return jwt.sign({id},process.env.JWT_SECRET,{
+      expiresIn:'30d',
+  })
+}
 module.exports = router;

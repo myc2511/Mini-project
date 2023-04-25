@@ -86,28 +86,7 @@ function ComplaintDesc() {
   if (!userData) {
     return <p>Loading...</p>;
     }
-//   const checktimeforEsclation=()=>{
-  
-//    const l=SingleComplain.assigned.length;
-//  const lastAssigntime = SingleComplain.assigned[l-1].time;
- 
-//  let date=new Date(lastAssigntime)
- 
-//  let currentdate=new Date();
-// const diff=currentdate-date;
-// const milsec1day = 86400000
-//  const numDays = Math.floor((currentdate-date)/milsec1day);
-// const datediff = new Date(currentdate.getTime()+(numDays*milsec1day));
-// //console.log(datediff);
-// const button = document.getElementById("esclate");
-// button.disabled = true;
-//      if(datediff<currentdate){
-//           button.disabled=false;
-//       console.log("jhgvg");
-//      }
-//   }
- 
-  //checktimeforEsclation();
+
   const escalteCmpln = async () => {
    
     const url = `http://localhost:5000/api/complain//escalateComplain/${SingleComplain._id}`;
@@ -243,6 +222,8 @@ function ComplaintDesc() {
          }}
           className="bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg"> Close Complain</button>):<></>}
             </div>
+            
+
             
             
           </div>

@@ -194,4 +194,36 @@ router.get(
   }
 
 );
+//delete user
+router.delete(
+  "/deleteuser/:id",
+   async (req, res) => {
+   try {
+    const  staffId = req.params.id;
+    const staff = await Staff.findByIdAndRemove(staffId)
+    res.send(staff)
+
+   } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Interneral server error")
+   }
+  }
+
+);
+//Get all staff
+router.get(
+  "/getallStaffData",
+   async (req, res) => {
+   try {
+   
+    const staff = await Staff.find();
+    res.send(staff)
+
+   } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Interneral server error")
+   }
+  }
+
+);
 module.exports = router;
