@@ -11,8 +11,8 @@ function SingleBlogCmpln(props){
   
   const upvoted=props.upvotes.includes(user._id)
    const [up,setup]=useState(upvoted)
-   const [acc,setacc]=useState(props.status==="IN_PROGRESS" ? true : false)
-   const [inprg,setinprg]=useState(props.status==="IN_PROGRESS" ? true :false)
+   const [acc,setacc]=useState((props.status==="IN_PROGRESS" ||props.status==="Closed")? true : false)
+   const [inprg,setinprg]=useState((props.status==="IN_PROGRESS"||props.status==="Closed") ? true :false)
    const [cls,setcls]=useState(props.status==="Closed" ? true :false)
    console.log(acc,inprg,cls)
    const iconColor = up ? "blue" : "grey";
@@ -97,7 +97,7 @@ return(
               <span className="text-gray-700">Accepted</span>
             </div>
           </li>
-          <li className={`flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block ${cls  ?"after:border-blue-600":"after:border-gray-600"}`}>
+          <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block after:border-blue-600"  >
             <div className="flex flex-col items-center mt-5">
               <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${inprg?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
                 <svg
