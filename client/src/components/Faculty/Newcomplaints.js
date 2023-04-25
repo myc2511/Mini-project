@@ -3,6 +3,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 import { useDispatch,useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 function Newcomplaints(props) {
    const dispatch=useDispatch();
    const staff=useSelector((state)=>state.staff)
@@ -18,10 +19,10 @@ function Newcomplaints(props) {
   });
   
   const res = await response.json();
-  console.log(res);
+  console.log(response.status);
 
-  if (res.success) {
-   
+  if (response.status === 200) {
+    toast("Complaint Accepted");
   } else {
     alert("Wrong credentials");
   }

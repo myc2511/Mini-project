@@ -141,10 +141,57 @@ router.post(
   }
 
 );
+
+//reset pass
+router.post(
+  "/resetpass", fetchStaff,
+   async (req, res) => {
+    console.log( req.staff.id)
+    const salt = await bcrypt.genSalt(10);
+    const password=req.body.password;
+    const secPass = await bcrypt.hash(password,salt);
+
+   try {
+    const  staffId = req.staff.id;
+    const staff = await Staff.findById(staffId);
+  
+      if (!user) {
+        throw new Error('User not found');
+      }
+    
+      user.password = secPass;
+      await user.save();
+    
+      console.log('User password updated');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+);
+
+
 const generateToken=(id)=>{
   console.log(id);
   return jwt.sign({id},process.env.JWT_SECRET,{
       expiresIn:'30d',
   })
 }
+
+//get staff 
+router.get(
+  "/getStaffData/:id",
+   async (req, res) => {
+   try {
+    const  staffId = req.params.id;
+    const staff = await Staff.findById(staffId).select("-password");
+    res.send(staff)
+
+   } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Interneral server error")
+   }
+  }
+
+);
 module.exports = router;

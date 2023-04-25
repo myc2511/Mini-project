@@ -37,7 +37,7 @@ const getAllComplain=async()=>{
 }
 const getallnewComplain=async(data)=>{
     
-      console.log(data.Role)
+    //   console.log(data.Role)
     const response=await axios.get(API_URL+'newComplain/'+`${data.Role}`)
    
      return response.data;

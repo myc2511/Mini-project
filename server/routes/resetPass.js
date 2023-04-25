@@ -4,6 +4,8 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const UserModel = require('../models/studentSchema');
 const dotenv=require("dotenv")
+const url = require('url');
+
 
 const token = crypto.randomBytes(20).toString('hex');
 
@@ -52,24 +54,29 @@ router.post('/reset-password', async (req, res) => {
 });
 
 router.post('/newpassword', async (req, res) => {
-  const { token, password } = req.body;
-  
-  // Check if the token is valid and not expired
-  const tokenData = await validateToken(token);
-  if (!tokenData) {
+  const {token1, password ,email} = req.body;
+
+  if (token1 !== token) {
     res.status(400).send('Invalid or expired token');
     return;
   }
+
+  try {
+    const user = await UserModel.findOne({ email: email });
+    if (!user) {
+      throw new Error('User not found');
+    }
   
-  // Update the user's password in the database
-  const userId = tokenData.userId;
-  await updateUserPassword(userId, password);
+    user.password = password;
+    await user.save();
   
-  // Invalidate the token
-  await invalidateToken(token);
+    console.log('User password updated');
+  } catch (error) {
+    console.error(error);
+  }
   
-  // Redirect the user to the login page
-  res.redirect('/login');
+ 
+  
 });
 
 

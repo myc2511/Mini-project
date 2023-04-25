@@ -31,6 +31,7 @@ function ComplaintDesc() {
   const { SingleComplain } = useSelector((state) => state.complain);
   const { user } = useSelector((state) => state.auth);
 
+
   const getUser = async () => {
     // console.log(SingleComplain.user_id)
     const url = `http://localhost:5000/api/students/getStudent/${SingleComplain.user_id}`;
@@ -53,6 +54,8 @@ function ComplaintDesc() {
  
 
 
+  const { staff } = useSelector((state) => state.staff);
+
   useEffect(() => {
     if(SingleComplain){
    const l=SingleComplain.assigned.length;
@@ -64,14 +67,18 @@ function ComplaintDesc() {
   const diff=currentdate-date;
   const milsec1day = 86400000
    const numDays = Math.floor((currentdate-date)/milsec1day);
-  
   const datediff = new Date(date.getTime()+((7*milsec1day)));
       setreqtime(datediff)
     if (currentdate >= datediff) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
-    }}
+    }
+    if(staff && SingleComplain.assigned[l-1].assignedto!==null){
+      setButtonDisabled(false);
+
+    }
+  }
   }, [SingleComplain]);
   if (!SingleComplain) {
   return <p>Loading...</p>;
@@ -90,7 +97,6 @@ function ComplaintDesc() {
 // const diff=currentdate-date;
 // const milsec1day = 86400000
 //  const numDays = Math.floor((currentdate-date)/milsec1day);
-
 // const datediff = new Date(currentdate.getTime()+(numDays*milsec1day));
 // //console.log(datediff);
 // const button = document.getElementById("esclate");
@@ -224,13 +230,13 @@ function ComplaintDesc() {
             </h1>
             </div>
             <div>
-            { SingleComplain.status!=="Closed" ?(<button disabled={buttonDisabled} 
+            { (SingleComplain.status!=="Closed"  )?(<button disabled={buttonDisabled} 
          onClick={()=>{setmodalIsOpen('')
          setbtndata("esclate")
          }}
-         title={`You can esclate complain after ${reqtime}`}
-          className={`bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg ${buttonDisabled?'opacity-50 cursor-not-allowed':''}`}> Escalate Complain</button>):<></>}
-
+         title={`${staff?'First accept complaint and then escalte it':`You can esclate complain after ${reqtime}`}`}
+          className={`bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg ${buttonDisabled?'opacity-50 cursor-not-allowed':''}`}> Escalate Complain</button>):<>
+             </>}
             {!user && SingleComplain.status!=="Closed" ?(<button 
          onClick={()=>{setmodalIsOpen('')
          setbtndata("Close")
