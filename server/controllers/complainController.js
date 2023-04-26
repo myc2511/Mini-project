@@ -17,16 +17,18 @@ const registerComplain=asyncHandler( async(req,res)=>{
         res.status(400);
         throw new Error('Please add all data')
      }
+     
+    //  console.log(req.body.photo)
     let photo;
-   console.log(req.files)
-    if(req.files){
-      let path=''
-      req.files.forEach(function(files,index,arr){
-        path=path+files.path+','
-      })
-      path=path.substring(0,path.lastIndexOf(","))
-      photo=path
-    }
+  //  console.log(req.files)
+  //   if(req.files){
+  //     let path=''
+  //     req.files.forEach(function(files,index,arr){
+  //       path=path+files.path+','
+  //     })
+  //     path=path.substring(0,path.lastIndexOf(","))
+  //     photo=path
+  //   }
     //Create Complain
      const complain= await Complain.create({
      title,

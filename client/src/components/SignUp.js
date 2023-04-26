@@ -4,6 +4,8 @@ import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import { register,reset } from "../features/auth/authSlice";
 import { useEffect } from "react";
+import CloseIcon from '@mui/icons-material/Close';
+
   function SignUp({closeSignup}) {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastName] = useState("");
@@ -54,11 +56,7 @@ import { useEffect } from "react";
     <div className="overlay"></div>
      <div className=" modal-content"> 
 
-      <h1 className="text-center text-custom-blue text-3xl p-5 rounded-lg">
-        SignUp
-      </h1>
-
-      <form className="mt-5  mx-auto text-left">
+      <form className="-mb-8 mx-5  text-left">
         <div className="flex justify-between">
           <div className="">
             <label htmlFor="firstName">
@@ -149,8 +147,15 @@ import { useEffect } from "react";
           </label>
         </div>
  <div className="mx-auto"> 
- <button onClick={handleSubmit} className="btn w-full text-center m-auto text-white mt-10"> Sign Up</button>
- <button onClick={closeSignup} className="close-modal hover:text-red-500">X</button>
+ <div className="flex justify-around ">
+ <button onClick={handleSubmit} className="btn  container w-1/3 justify-center bg-gray-800 text-white mt-10 p-5 hover:bg-gray-900"> Sign Up</button>
+ <button onClick={closeSignup} className="btn  container w-1/3 justify-center bg-gray-800 text-white mt-10 p-5 hover:bg-gray-900">Close</button>
+
+ </div>
+ <button onClick={closeSignup}  className="close-modal hover:text-red-500"><CloseIcon sx={{
+         fontSize:"35px"
+         
+  }}/></button>
  </div>
 
     

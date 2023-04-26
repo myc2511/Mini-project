@@ -42,8 +42,8 @@ function FacultyHome() {
          <p className='p-2'>Department : {staff.Department}</p>
          <p className='p-2'>Email : {staff.email}</p>
          <p className='p-2'>Mobile No : {staff.mobileNo}</p>
-         <button onClick={resetpass} className=" text-custom-blue hover:underline text-xl" href="">Reset Password</button>
-         {resetPass && <ResetPassword/>}
+         {/* <button onClick={resetpass} className=" text-custom-blue hover:underline text-xl" href="">Reset Password</button>
+         {resetPass && <ResetPassword/>} */}
 
          <button className="bg-custom-blue edt-btn mt-5 text-white text-sm  p-3 rounded-lg" onClick={() => setshowing(true)}>Edit Profile</button>
          </div>

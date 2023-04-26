@@ -8,6 +8,12 @@ const register=async(formData,token)=>{
            'Content-Type': 'multipart/form-data' 
         }
     }
+
+    for (const [key, value] of formData.entries()) {
+        if (key === 'photo') {
+          console.log(value);
+        }
+      }
    
     const response=await axios.post(API_URL+'register',formData,config)
   

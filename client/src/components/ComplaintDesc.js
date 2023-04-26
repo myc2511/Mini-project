@@ -10,7 +10,21 @@ function ComplaintDesc() {
    const [buttonDisabled, setButtonDisabled] = useState(true);
   const [reqtime,setreqtime]=useState("");
  const [userData,setData] = useState();
+ const [dropdown, setdropdown] = useState(false);
 
+ const  toggledropdown = () =>{
+  if(dropdown){
+  setdropdown(false);
+  }
+  else{
+    setdropdown(true);
+  }
+  console.log(dropdown)
+ }
+
+//  useEffect(()=>{
+//   toggledropdown
+//  },[dropdown])
   
   const handleModal = () => {
     setmodalIsOpen("hidden");
@@ -143,6 +157,9 @@ function ComplaintDesc() {
       <div className="w-2/3  px-20 py-5 mb-20 bg-gray-200 rounded-lg ">
         <div>
           <div>
+            
+
+
             <div className={`${modalIsOpen} model box-shadow`}>
               <div className="overlay"></div>
 
@@ -222,26 +239,52 @@ function ComplaintDesc() {
               </div>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center relative">
             <div>
             <h1 className="text-4xl text-center m-10 p-3 text-custom-blue">
               {" "}
               {SingleComplain.title}
             </h1>
             </div>
+            <div className="absolute right-0 top-10">
+            <button  onClick={toggledropdown} data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-9 py-3 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 " type="button"> Update Status <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+
+<div i class={`z-10 ${dropdown?"hidden":""} bg-white divide-y divide-gray-100 rounded-lg shadow w-48 dark:bg-gray-400`}>
+    <ul class="py-2 text-sm text-gray-700 dark:text-black" aria-labelledby="dropdownDefaultButton">
+    <li>
+      { (SingleComplain.status!=="Closed"  )?(<button disabled={buttonDisabled} 
+         onClick={()=>{setmodalIsOpen('')
+         setbtndata("esclate")
+         }}
+         title={`${staff?'First accept complaint and then escalte it':`You can esclate complain after ${reqtime}`}`}
+          className={`block px-4 py-3 w-full hover:bg-gray-100 rounded-lg dark:hover:bg-gray-600 dark:hover:text-white ${buttonDisabled?'opacity-50 cursor-not-allowed':''}`}> Escalate Complain</button>):<>
+             </>}
+      </li>
+      <hr></hr>
+      <li>
+      {!user && SingleComplain.status!=="Closed" ?(<button 
+         onClick={()=>{setmodalIsOpen('')
+         setbtndata("Close")
+         }}
+          className="block px-4 py-3  w-full rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"> Close Complain</button>):<></>}
+      </li>
+     
+    </ul>
+</div>
+            </div>
             <div>
-            { (SingleComplain.status!=="Closed"  )?(<button disabled={buttonDisabled} 
+            {/* { (SingleComplain.status!=="Closed"  )?(<button disabled={buttonDisabled} 
          onClick={()=>{setmodalIsOpen('')
          setbtndata("esclate")
          }}
          title={`${staff?'First accept complaint and then escalte it':`You can esclate complain after ${reqtime}`}`}
           className={`bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg ${buttonDisabled?'opacity-50 cursor-not-allowed':''}`}> Escalate Complain</button>):<>
-             </>}
-            {!user && SingleComplain.status!=="Closed" ?(<button 
+             </>} */}
+            {/* {!user && SingleComplain.status!=="Closed" ?(<button 
          onClick={()=>{setmodalIsOpen('')
          setbtndata("Close")
          }}
-          className="bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg"> Close Complain</button>):<></>}
+          className="bg-blue-700  mr-5 edt-btn mt-10 mb-10 text-white text-sm  p-4 rounded-lg"> Close Complain</button>):<></>} */}
             </div>
             
             

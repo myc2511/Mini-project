@@ -5,9 +5,9 @@ function Singlecmpln(props) {
     const date = new Date(time);
     return date.toUTCString();
     }
-    const [acc,setacc]=useState((props.status==="IN_PROGRESS"||props.status==="Closed") ? true : false)
-    const [inprg,setinprg]=useState((props.status==="IN_PROGRESS"||props.status==="Closed") ? true :false)
-    const [cls,setcls]=useState(props.status==="Closed" ? true :false)
+    // const [acc,setacc]=useState((props.status==="IN_PROGRESS"||props.status==="Closed") ? true : false)
+    // const [inprg,setinprg]=useState((props.status==="IN_PROGRESS"||props.status==="Closed") ? true :false)
+    // const [cls,setcls]=useState(props.status==="Closed" ? true :false)
   return (
     <div className="p-2 box-shadow border-2 m-5 rounded-2xl border-custom-grey cmpln ">
     <Link to={`/Complaint/${props.ticketno}`} >
@@ -18,11 +18,11 @@ function Singlecmpln(props) {
         <p className="pl-4 text-sm mt-1">Complain Related: {props.complain_regarding}</p>
         <span className="pl-4 inline-block text-sm">{getDate(props.createdAt)}</span>
        
-      
+        {console.log(props.title,props.status)}
         <ol className="flex justify-center items-center w-full mb-4 sm:mb-5 ">
-          <li className={`flex w-full items-center text-gray-600 dark:text-gray-500 after:content-[''] after:w-full after:h-1 after:border-b ${acc  ?"after:border-blue-600":"after:border-gray-600"} after:border-4 after:inline-block dark:after:border-blue-70`}>
+          <li className={`flex w-full items-center text-gray-600 dark:text-gray-500 after:content-[''] after:w-full after:h-1 after:border-b ${props.status !== "Open"  ?"after:border-blue-600":"after:border-gray-600"} after:border-4 after:inline-block dark:after:border-blue-70`}>
             <div className="flex flex-col items-center mt-5">
-              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${acc?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
+              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${props.status !== 'Open'?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -41,9 +41,9 @@ function Singlecmpln(props) {
               <span className="text-gray-700">Accepted</span>
             </div>
           </li>
-          <li className={`flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block ${cls  ?"after:border-blue-600":"after:border-gray-900"}`}>
+          <li className={`flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block ${props.status === 'Closed'  ?"after:border-blue-600":"after:border-gray-900"}`}>
             <div className="flex flex-col items-center mt-5">
-              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${inprg?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
+              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${props.status !== 'Open'?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -64,7 +64,7 @@ function Singlecmpln(props) {
           </li>
           <li className="flex items-center">
             <div className="flex flex-col items-center mt-5">
-              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${cls?"dark:bg-blue-700":"dark:bg-gray-700"}  shrink-0`}>
+              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${props.status === 'Closed'?"dark:bg-blue-700":"dark:bg-gray-700"}  shrink-0`}>
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"

@@ -86,11 +86,11 @@ const getStudent=asyncHandler( async(req,res)=>{
 })
 
 const getStudentbyid=asyncHandler(async(req,res)=>{
- 
+    console.log(req.params._id)
     try {
    
        const student = await Student.findById(req.params._id);
-    
+        console.log(student)
        res.status(200).json(student);
      } 
      catch (err) {

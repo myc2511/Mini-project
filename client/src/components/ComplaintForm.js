@@ -28,17 +28,24 @@ function ComplaintForm() {
 
   const uploadImg = (event, index) => {
     const selectedFile = event.target.files[0];
-    const reader = new FileReader();
+    // const reader = new FileReader();
   
-    reader.onload = () => {
+    
       const updatedImages = [...images];
-      updatedImages[index] = reader.result;
+      updatedImages[index] = URL.createObjectURL(selectedFile);
       setImages(updatedImages);
-    };
+
+      console.log(images)
   
-    reader.readAsDataURL(selectedFile);
+    // reader.readAsDataURL(selectedFile);
    
   };
+
+  // const uploadImg = (event) => {
+  //   const file = event.target.files[0];
+  //   setImage(URL.createObjectURL(file));
+  // };
+  
 
   function handleAdd(e) {
     const pic = [...images, []];

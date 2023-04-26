@@ -11,10 +11,13 @@ function SingleBlogCmpln(props){
   
   const upvoted=props.upvotes.includes(user._id)
    const [up,setup]=useState(upvoted)
-   const [acc,setacc]=useState((props.status==="IN_PROGRESS" ||props.status==="Closed")? true : false)
-   const [inprg,setinprg]=useState((props.status==="IN_PROGRESS"||props.status==="Closed") ? true :false)
-   const [cls,setcls]=useState(props.status==="Closed" ? true :false)
-   console.log(acc,inprg,cls)
+   const [name,setname]=useState('');
+
+  //  const [acc,setacc]=useState((props.status==="IN_PROGRESS" ||props.status==="Closed")? true : false)
+  //  const [inprg,setinprg]=useState((props.status==="IN_PROGRESS"||props.status==="Closed") ? true :false)
+  //  const [cls,setcls]=useState(props.status==="Closed" ? true :false)
+  //  console.log(props.status)
+
    const iconColor = up ? "blue" : "grey";
   
   const getDate = (time) => {
@@ -44,16 +47,35 @@ function SingleBlogCmpln(props){
     useEffect(()=>{
       
     },[upvote])
+
+    const getuserName=async()=>{
+      
+        const url = `http://localhost:5000/api/students/getStudent/${props.user_id}`;
+        
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json"
+          },
+         
+        });
+        
+        const res = await response.json();
+        setname(res.name);
+        // console.log(name);
+  }
+  getuserName()
+
   
 return(
 
     <div className="container mx-auto w-4/6 ">
  <div className="p-2  m-5 rounded-2xl box-shadow cmpln flex">
-        <div className="m-5 my-auto w-1/6  flex flex-col items-center"> 
+        <div className="m-3 my-auto w-1/12  flex flex-col items-center"> 
         <button type="button" onClick={upvote} className="hover:bg-gray-300 rounded-full ">
             <ArrowDropUpIcon   sx={{
          color: iconColor,
-         fontSize:"50px"
+         fontSize:"70px"
          
   }}/>
   <span className="sr-only">Icon description</span>
@@ -68,17 +90,18 @@ return(
         <Link to={`/Complaint/${props.ticketno}`} >
         <a href="/"  className="no-underline hover:underline p-4 inline-block text-3xl text-custom-blue " >{props.title}</a>
         </Link>
+        
         <span className="  rounded-full pl-2 pr-2 mt-2 mr-3 tex
         t-lg  float-right border-2 border-custom-grey">Public</span>
-        <span className='pl-4  text-sm block'>Ticket No: {props.ticketno}</span>
-        <p className="pl-4 text-sm mt-1">Complain Related: {props.cmpln}</p>
+        <span className='pl-4  text-sm block'>Ticket No : {props.ticketno}</span>
+        <p className="pl-4 text-sm mt-1">Complain Related : {props.cmpln}</p>
 
         <p className="pl-4 pt-4">{props.desc}</p>
       
         <ol className="flex justify-center items-center w-full mb-4 sm:mb-5 ">
-          <li className={`flex w-full items-center text-gray-600 dark:text-gray-500 after:content-[''] after:w-full after:h-1 after:border-b ${acc  ?"after:border-blue-600":"after:border-gray-600"} after:border-4 after:inline-block dark:after:border-blue-70`}>
+          <li className={`flex w-full items-center text-gray-600 dark:text-gray-500 after:content-[''] after:w-full after:h-1 after:border-b ${props.status !== 'Open'  ?"after:border-blue-600":"after:border-gray-600"} after:border-4 after:inline-block dark:after:border-blue-70`}>
             <div className="flex flex-col items-center mt-5">
-              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${acc?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
+              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${props.status !== 'Open'?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -97,9 +120,9 @@ return(
               <span className="text-gray-700">Accepted</span>
             </div>
           </li>
-          <li className="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:inline-block after:border-blue-600"  >
+          <li className={`flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b  after:border-4 after:inline-block ${props.status === 'Closed'  ?"after:border-blue-600":"after:border-gray-600"}` }>
             <div className="flex flex-col items-center mt-5">
-              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${inprg?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
+              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${props.status !== 'Open'?"dark:bg-blue-700":"dark:bg-gray-700"} shrink-0`}>
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -120,7 +143,7 @@ return(
           </li>
           <li className="flex items-center">
             <div className="flex flex-col items-center mt-5">
-              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${cls?"dark:bg-blue-700":"dark:bg-gray-700"}  shrink-0`}>
+              <div className={`flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 ${props.status === 'Closed'?"dark:bg-blue-700":"bg-gray-700"}  shrink-0`}>
                 <svg
                   aria-hidden="true"
                   className="w-5 h-5 text-gray-500 lg:w-6 lg:h-6 dark:text-gray-100"
@@ -140,7 +163,11 @@ return(
             </div>
           </li>
         </ol>
-        <span className="m-4 inline-block text-sm">{getDate(props.createdAt)}</span>
+        <div className="flex justify-between">
+        <div className="pl-2 pt-4">Submitted By : {name}</div>
+        <div className=" inline-block text-sm m-6">{getDate(props.createdAt)}</div>
+        </div>
+        
 
         
     </div>
