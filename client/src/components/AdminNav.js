@@ -1,14 +1,15 @@
 import React from 'react'
 import logo from './img/CC-1.png'
-import { Link,useNavigate,useLocation} from "react-router-dom";
-
+import { Link,useNavigate} from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutadmin,resetadmin } from '../features/Admin/adminSlice';
 function AdminNav() {
-  let location = useLocation();
   let navigate  = useNavigate();
- 
-
+ const dispatch=useDispatch();
+const {admin}=useSelector((state)=>state.admin)
    const logout = () =>{
-    localStorage.removeItem('token');
+    dispatch(logoutadmin());
+    dispatch(resetadmin());
     navigate('/AdminLogin', { replace: true });
    }
   return (
@@ -20,15 +21,15 @@ function AdminNav() {
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">CollegeComplaint</span>
   </a>
 
-  {location.pathname === '/AdminLogin'?"":<div className="flex md:order-2"> 
+  {!admin?(<></>):(<div className="flex md:order-2"> 
       <button onClick={logout} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">LogOut</button>
       <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
         <span className="sr-only">Open main menu</span>
         <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
     </button>
-  </div>}
+  </div>)}
  
-  {location.pathname === '/AdminLogin'?"" :<div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+  {!admin ?(<></>):(<div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
     <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
       <li>
         <Link to='/Admin/AdminHome'  className="block py-2 pl-3 text-xl pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</Link>
@@ -45,19 +46,10 @@ function AdminNav() {
       
     </ul>
 
-  </div>}
+  </div>)}
   </div>
 </nav>
-{/* <div className='flex justify-between p-8 clr'>
-        <img src='/'/>
-        <ul className='flex'>
-        <li><Link to='/Admin/Home'>Home</Link></li>
-        <li><Link to='/Admin/Complain'>Complaint</Link></li>
-          <li><Link to='/Admin/Student'>Students</Link></li>
-        <li><Link to='/Admin/Staff'>Staffs</Link></li>
-            <li><Link to=''>Logout</Link></li>
-            <li><Link to='/'><img src="/" alt="User" /></Link></li>
-        </ul> */}
+
       
     </div>  )
 }

@@ -1,34 +1,58 @@
 import React, { useState ,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import AdminNav from "../components/AdminNav";
+import  { loginadmin } from "../features/Admin/adminSlice";
+import { useDispatch, useSelector } from "react-redux";
 function AdminLogin() {
   let location = useNavigate();
-
+ 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const {admin,Success}=useSelector((state)=>state.admin)
+  
+const navigate=useNavigate();
 
+   const dispatch=useDispatch()
   const handleClick = async (e) => {
     e.preventDefault();
-    const url = `http://localhost:5000/api/admin/adminLogin`;
-    console.log(username);
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email: username, password: password }),
-    });
-    const res = await response.json();
-
-    console.log(res);
-
-    if (res.success) {
-      localStorage.setItem("token", res.authtoken);
-      location("/Admin/AdminHome");
-    } else {
-      alert("Wrong credentials");
+    const userdata={
+      email:username,password
     }
-  };
+   
+    dispatch(loginadmin(userdata));
+    
+   }
+   useEffect(() =>{
+  
+    if(admin|| Success ){
+                        
+     navigate("/Admin/AdminHome")
+
+      }
+
+}, [admin,Success])
+
+
+    // const url = `http://localhost:5000/api/admin/adminLogin`;
+    // console.log(username);
+    // const response = await fetch(url, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ email: username, password: password }),
+    // });
+    // const res = await response.json();
+
+    // console.log(res);
+
+    // if (res.success) {
+    //  // localStorage.setItem("token", res.authtoken);
+    //   location("/Admin/AdminHome");
+    // } else {
+    //   alert("Wrong credentials");
+    // }
+ // };
 
 
   return (
